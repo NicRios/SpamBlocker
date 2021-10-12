@@ -1,0 +1,6 @@
+framework module Pods_Coverage_call_blocker {
+  umbrella header "Pods-Coverage-call-blocker-umbrella.h"
+
+  export *
+  module * { export * }
+}

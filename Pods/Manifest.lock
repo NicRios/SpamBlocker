@@ -1,0 +1,63 @@
+PODS:
+  - AGHandyUIKit (1.0.1)
+  - Alamofire (4.9.1)
+  - AlamofireObjectMapper (5.2.1):
+    - Alamofire (~> 4.7)
+    - ObjectMapper (~> 3.4)
+  - IQKeyboardManagerSwift (6.5.6)
+  - LGSideMenuController (3.1.2)
+  - ObjectMapper (3.5.3)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
+  - SVPinView (1.0.11)
+  - SVProgressHUD (2.2.5)
+  - SwiftyJSON (5.0.1)
+  - TCProgressBar (0.4)
+  - "UITextView+Placeholder (1.4.0)"
+
+DEPENDENCIES:
+  - AGHandyUIKit
+  - Alamofire
+  - AlamofireObjectMapper (~> 5.2)
+  - IQKeyboardManagerSwift
+  - LGSideMenuController
+  - SDWebImage
+  - SVPinView (~> 1.0)
+  - SVProgressHUD
+  - SwiftyJSON
+  - TCProgressBar
+  - "UITextView+Placeholder"
+
+SPEC REPOS:
+  trunk:
+    - AGHandyUIKit
+    - Alamofire
+    - AlamofireObjectMapper
+    - IQKeyboardManagerSwift
+    - LGSideMenuController
+    - ObjectMapper
+    - SDWebImage
+    - SVPinView
+    - SVProgressHUD
+    - SwiftyJSON
+    - TCProgressBar
+    - "UITextView+Placeholder"
+
+SPEC CHECKSUMS:
+  AGHandyUIKit: 465495385a3fd9af889d4518904df8a70b443199
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireObjectMapper: 1989f690e982b71921b9253f53a4f33a9bc00d88
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  LGSideMenuController: 0c7b155b0dbdf14bf8b88d5ac363c5fe1584bb23
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  TCProgressBar: 14bf8cce9d9a4dae2d82fe88b8e9c45709ebe55d
+  "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
+
+PODFILE CHECKSUM: a7702cfd7324d4f3b99f0db65105ae606059ad66
+
+COCOAPODS: 1.11.2

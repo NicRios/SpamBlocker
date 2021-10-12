@@ -1,0 +1,13 @@
+${PODS_ROOT}/Target Support Files/Pods-Coverage-call-blocker/Pods-Coverage-call-blocker-frameworks.sh
+${BUILT_PRODUCTS_DIR}/AGHandyUIKit/AGHandyUIKit.framework
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework
+${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
+${BUILT_PRODUCTS_DIR}/LGSideMenuController/LGSideMenuController.framework
+${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/SVPinView/SVPinView.framework
+${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework
+${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
+${BUILT_PRODUCTS_DIR}/TCProgressBar/TCProgressBar.framework
+${BUILT_PRODUCTS_DIR}/UITextView+Placeholder/UITextView_Placeholder.framework

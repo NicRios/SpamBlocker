@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="InAppPurchaseCollectionViewCell" customModule="Coverage_call_blocker" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="287" height="186"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="287" height="186"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgX-Ft-fdI">
+                        <rect key="frame" x="8" y="8" width="271" height="147"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.99/month" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWD-3H-Duc">
+                                <rect key="frame" x="83" y="32" width="105" height="21.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idr-VB-n41">
+                                <rect key="frame" x="101.5" y="69.5" width="68" height="37.5"/>
+                                <string key="text">3 day 
+FREE trial</string>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Selected_Right" translatesAutoresizingMaskIntoConstraints="NO" id="wga-kj-2Gd">
+                                <rect key="frame" x="223" y="99" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wga-kj-2Gd" secondAttribute="height" multiplier="1:1" id="Gmh-cw-CNv"/>
+                                    <constraint firstAttribute="height" constant="40" id="lEv-5Z-CEk"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="idr-VB-n41" secondAttribute="bottom" constant="40" id="6GM-5f-gdY"/>
+                            <constraint firstItem="aWD-3H-Duc" firstAttribute="centerX" secondItem="fgX-Ft-fdI" secondAttribute="centerX" id="AmC-ck-Pf4"/>
+                            <constraint firstItem="idr-VB-n41" firstAttribute="centerX" secondItem="fgX-Ft-fdI" secondAttribute="centerX" id="FkU-tP-0Sq"/>
+                            <constraint firstItem="idr-VB-n41" firstAttribute="top" secondItem="aWD-3H-Duc" secondAttribute="bottom" constant="16" id="UCQ-s7-x6c"/>
+                            <constraint firstAttribute="bottom" secondItem="wga-kj-2Gd" secondAttribute="bottom" constant="8" id="iqv-wA-N49"/>
+                            <constraint firstAttribute="trailing" secondItem="wga-kj-2Gd" secondAttribute="trailing" constant="8" id="l4x-8R-y65"/>
+                            <constraint firstItem="aWD-3H-Duc" firstAttribute="top" secondItem="fgX-Ft-fdI" secondAttribute="top" constant="32" id="v4i-D3-FUS"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="LayerRadius">
+                                <real key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="size" keyPath="ShadowOffset">
+                                <size key="value" width="2" height="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="ShadowColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fgX-Ft-fdI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Wx9-EZ-w0C"/>
+                <constraint firstAttribute="trailing" secondItem="fgX-Ft-fdI" secondAttribute="trailing" constant="8" id="gc7-g5-MWk"/>
+                <constraint firstItem="fgX-Ft-fdI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="i9n-Sw-NEv"/>
+            </constraints>
+            <size key="customSize" width="287" height="186"/>
+            <connections>
+                <outlet property="backGroundView" destination="fgX-Ft-fdI" id="wXw-1m-grX"/>
+                <outlet property="dayLabel" destination="idr-VB-n41" id="LMS-CQ-nlD"/>
+                <outlet property="priceLabel" destination="aWD-3H-Duc" id="Xw2-Mh-5nq"/>
+                <outlet property="selectedImageView" destination="wga-kj-2Gd" id="3RZ-b9-JUo"/>
+            </connections>
+            <point key="canvasLocation" x="290.57971014492756" y="122.54464285714285"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Selected_Right" width="22" height="28.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
