@@ -1,11 +1,11 @@
 //
-//  LGSideMenuController+ValidatingUserInteraction.swift
+//  LGSideMenuSegue.h
 //  LGSideMenuController
 //
 //
 //  The MIT License (MIT)
 //
-//  Copyright © 2015 Grigorii Lutkov <friend.lga@gmail.com>
+//  Copyright © 2015 Grigory Lutkov <Friend.LGA@gmail.com>
 //  (https://github.com/Friend-LGA/LGSideMenuController)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,32 +27,8 @@
 //  SOFTWARE.
 //
 
-import Foundation
-import UIKit
+#import <UIKit/UIKit.h>
 
-internal extension LGSideMenuController {
+@interface LGSideMenuSegue : UIStoryboardSegue
 
-    func validateViewsUserInteraction() {
-        self.validateRootViewsUserInteraction()
-        self.validateLeftViewsUserInteraction()
-        self.validateRightViewsUserInteraction()
-    }
-
-    func validateRootViewsUserInteraction() {
-        guard let rootViewWrapperView = self.rootViewWrapperView else { return }
-        rootViewWrapperView.isUserInteractionEnabled = self.isRootViewShowing
-    }
-
-    func validateLeftViewsUserInteraction() {
-        guard let leftViewWrapperView = self.leftViewWrapperView else { return }
-        leftViewWrapperView.isUserInteractionEnabled =
-            (self.isLeftViewShowing || self.isLeftViewAlwaysVisible) && self.isRightViewHidden
-    }
-
-    func validateRightViewsUserInteraction() {
-        guard let rightViewWrapperView = self.rightViewWrapperView else { return }
-        rightViewWrapperView.isUserInteractionEnabled =
-            (self.isRightViewShowing || self.isRightViewAlwaysVisible) && self.isLeftViewHidden
-    }
-
-}
+@end

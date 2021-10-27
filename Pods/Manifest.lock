@@ -5,7 +5,7 @@ PODS:
     - Alamofire (~> 4.7)
     - ObjectMapper (~> 3.4)
   - IQKeyboardManagerSwift (6.5.6)
-  - LGSideMenuController (3.1.2)
+  - LGSideMenuController (2.1.1)
   - ObjectMapper (3.5.3)
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
@@ -49,7 +49,7 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireObjectMapper: 1989f690e982b71921b9253f53a4f33a9bc00d88
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
-  LGSideMenuController: 0c7b155b0dbdf14bf8b88d5ac363c5fe1584bb23
+  LGSideMenuController: ae40c80983ab8b8801c7cef0a6804d43aaa72d45
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466

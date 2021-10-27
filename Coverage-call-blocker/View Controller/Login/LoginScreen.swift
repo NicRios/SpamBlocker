@@ -14,6 +14,7 @@ class LoginScreen: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var labelLoginSignupScreen: UILabel!
     @IBOutlet weak var registerLoginButton: UIButton!
+    @IBOutlet weak var EmailalreadyTakenMesageView: UIView!
     
     var isLogin: Bool = false
     
@@ -25,6 +26,8 @@ class LoginScreen: UIViewController, UITextFieldDelegate {
     
     func setupinitialView(){
         self.view.addGradientWithColor()
+        
+        EmailalreadyTakenMesageView.isHidden = true
         
         emailTextField.delegate = self
         emailTextField.setLeftPaddingPoints(16)
@@ -97,10 +100,7 @@ class LoginScreen: UIViewController, UITextFieldDelegate {
                 LoginAPI()
             }
             else{
-                let vc =  STORYBOARD.login.instantiateViewController(withIdentifier: "MobileScreen") as! MobileScreen
-                vc.emailString = emailTextField.text ?? ""
-                vc.passwordString = passwordTextField.text ?? ""
-                self.navigationController?.pushViewController(vc, animated: true)
+                CheckEmailAPI()
             }
         }
     }
@@ -114,13 +114,43 @@ class LoginScreen: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func onButton(_ sender: UIButton) {
-
+        let vc =  STORYBOARD.Survey.instantiateViewController(withIdentifier: "SurveyScreen") as! SurveyScreen
+        //        let vc =  STORYBOARD.inAppPurchase.instantiateViewController(withIdentifier: "InAppPurchaseScreen") as! InAppPurchaseScreen
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
 
 //MARK: - API
 extension LoginScreen{
+    
+    //MARK: - Check Email API
+    func CheckEmailAPI(){
+        self.view.endEditing(true)
+        Utility.showIndecator()
+        let data = CheckEmailRequest(email: emailTextField.text ?? "")
+        LoginServices.shared.checkEmail(parameters: data.toJSON()) { [weak self] (statusCode, response) in
+            Utility.hideIndicator()
+            
+            self?.goFurtherCheckEmailAPI()
+        } failure: { [weak self] (error) in
+            Utility.hideIndicator()
+            
+            if error == "This email is taken by another account"{
+                self?.EmailalreadyTakenMesageView.isHidden = false
+            }else{
+                guard let stronSelf = self else { return }
+                Utility.showAlert(vc: stronSelf, message: error)
+            }
+        }
+    }
+    
+    func goFurtherCheckEmailAPI(){
+        let vc =  STORYBOARD.login.instantiateViewController(withIdentifier: "MobileScreen") as! MobileScreen
+        vc.emailString = emailTextField.text ?? ""
+        vc.passwordString = passwordTextField.text ?? ""
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     //MARK: - Login API
     func LoginAPI(){

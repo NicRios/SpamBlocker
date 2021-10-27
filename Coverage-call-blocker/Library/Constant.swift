@@ -10,6 +10,7 @@ import UIKit
 struct STORYBOARD {
     static let main = UIStoryboard(name: "Main", bundle: Bundle.main)
     static let login = UIStoryboard(name: "Login", bundle: Bundle.main)
+    static let Survey = UIStoryboard(name: "Survey", bundle: Bundle.main)
     static let home = UIStoryboard(name: "Home", bundle: Bundle.main)
     static let menu = UIStoryboard(name: "Menu", bundle: Bundle.main)
     static let inAppPurchase = UIStoryboard(name: "InAppPurchase", bundle: Bundle.main)
@@ -25,10 +26,10 @@ let store_url            = ""
 let android_url          = ""
 let AppID                = ""
 let video_lenth          = 60
-let leftMenuWidth = (screenWidth/10) * 8
+let leftMenuWidth = (screenWidth/10) * 7
 var videoFaceMaskOutputURL = ""
 let tableViewHeight: CGFloat = 100
-//let CountryCode = "+91"
+var CountryCode = "+91"
 
 //MARK: - color
 let appBackgroundColor = UIColor.init(hex: "F0F0F0")
@@ -40,6 +41,7 @@ let server_url = "https://demo.iroidsolutions.com/spam-blocker-backend/public/ap
 //Login
 let refreshTokenURL = server_url+"refresh-token"
 let signupURL = server_url+"signup"
+let checkmailURL = server_url+"checkmail"
 let loginURL = server_url+"login"
 let sendotpURL = server_url+"send-otp"
 let verifyotpURL = server_url+"verify-otp"
@@ -53,6 +55,7 @@ let getMaxBlocking = server_url+"get/max_blocking"
 
 //MARK:- Session Key
 let USER_DATA = "user_data"
+let SURVEYARRAY = "SurveyArray"
 
 //let GOOGLE_CLIENT_ID = "394157784224-l7lpjf6mp36ml094ibd08lehto0opsin.apps.googleusercontent.com"
 

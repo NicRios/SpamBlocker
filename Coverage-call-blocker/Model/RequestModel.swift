@@ -116,3 +116,19 @@ class ServeyRequest: Mappable{
     }
 }
 
+class CheckEmailRequest: Mappable{
+    var email: String?
+    
+    init(email: String?) {
+        self.email = email
+    }
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        email <- map["email"]
+    }
+}
+

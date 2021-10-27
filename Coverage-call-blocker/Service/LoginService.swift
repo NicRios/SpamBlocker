@@ -26,6 +26,15 @@ class LoginServices {
         }
     }
     
+    //MARK: - Check email is already exist or not
+    func checkEmail(parameters: [String: Any] = [:],success: @escaping (Int, Response) -> (), failure: @escaping (String) -> ()){
+        APIManager.shared.requestAPIWithParameters(method: .post, urlString: checkmailURL, parameters: parameters) { (statusCode, response) in
+            success(statusCode,response)
+        } failure: { (error) in
+            failure(error)
+        }
+    }
+    
     //MARK: - Login
     func Login(parameters: [String: Any] = [:],success: @escaping (Int, Response) -> (), failure: @escaping (String) -> ()){
         APIManager.shared.requestAPIWithParameters(method: .post, urlString: loginURL, parameters: parameters) { (statusCode, response) in

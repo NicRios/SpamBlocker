@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26118F7527102D8F00B7165A /* InAppPurchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26118F7427102D8F00B7165A /* InAppPurchase.storyboard */; };
+		26118F7727102DA400B7165A /* InAppPurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26118F7627102DA400B7165A /* InAppPurchaseScreen.swift */; };
+		26118F7927102DD400B7165A /* Question1Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26118F7827102DD400B7165A /* Question1Screen.swift */; };
+		26118F7B27102DE400B7165A /* Question2Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26118F7A27102DE400B7165A /* Question2Screen.swift */; };
+		26118F7D27102DF300B7165A /* Question3Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26118F7C27102DF300B7165A /* Question3Screen.swift */; };
 		261B8273271161BC006E796B /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261B8271271161BC006E796B /* QuestionTableViewCell.swift */; };
 		261B8274271161BC006E796B /* QuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 261B8272271161BC006E796B /* QuestionTableViewCell.xib */; };
 		261B827727116BA5006E796B /* InAppPurchaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261B827527116BA5006E796B /* InAppPurchaseCollectionViewCell.swift */; };
 		261B827827116BA5006E796B /* InAppPurchaseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 261B827627116BA5006E796B /* InAppPurchaseCollectionViewCell.xib */; };
+		261B827A271199C8006E796B /* ServeyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261B8279271199C8006E796B /* ServeyServices.swift */; };
 		2634DE47270F229F00F3C56B /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634DE46270F229F00F3C56B /* HomeScreen.swift */; };
 		2657959027106E5000CB31B9 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2657958827106DD300CB31B9 /* Roboto-Bold.ttf */; };
 		2657959127106E5000CB31B9 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2657958A27106DDB00CB31B9 /* Roboto-Regular.ttf */; };
 		2657959227106E5000CB31B9 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2657958C27106DE200CB31B9 /* Roboto-Light.ttf */; };
 		2657959327106E5000CB31B9 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2657958E27106DE800CB31B9 /* Roboto-Medium.ttf */; };
+		267AE186270AE1A50012FCE0 /* SurveyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267AE185270AE1A50012FCE0 /* SurveyScreen.swift */; };
+		267AE189270AE1D80012FCE0 /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 267AE188270AE1D80012FCE0 /* Survey.storyboard */; };
 		267AE18B270AFE940012FCE0 /* SignupCompleteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267AE18A270AFE940012FCE0 /* SignupCompleteScreen.swift */; };
 		2696E5992706EC510011337E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696E5982706EC510011337E /* AppDelegate.swift */; };
 		2696E59B2706EC510011337E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696E59A2706EC510011337E /* SceneDelegate.swift */; };
@@ -42,6 +50,8 @@
 		2696E5DA2706F55E0011337E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696E5D72706F55E0011337E /* Response.swift */; };
 		2696E5DB2706F55E0011337E /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696E5D82706F55E0011337E /* ResponseModel.swift */; };
 		2696E5DD2706F5720011337E /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696E5DC2706F5720011337E /* LoginService.swift */; };
+		26C41E5D271834B900EF345F /* States.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C41E5C271834B900EF345F /* States.json */; };
+		26C41E5F27183BA000EF345F /* IndustryGroups.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C41E5E27183BA000EF345F /* IndustryGroups.json */; };
 		26E0B470270C34F700085C47 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26E0B46F270C34F700085C47 /* Home.storyboard */; };
 		26E0B474270C35DA00085C47 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26E0B473270C35DA00085C47 /* Menu.storyboard */; };
 		26E0B476270C35EB00085C47 /* MenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0B475270C35EB00085C47 /* MenuScreen.swift */; };
@@ -51,15 +61,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26118F7427102D8F00B7165A /* InAppPurchase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InAppPurchase.storyboard; sourceTree = "<group>"; };
+		26118F7627102DA400B7165A /* InAppPurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseScreen.swift; sourceTree = "<group>"; };
+		26118F7827102DD400B7165A /* Question1Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question1Screen.swift; sourceTree = "<group>"; };
+		26118F7A27102DE400B7165A /* Question2Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question2Screen.swift; sourceTree = "<group>"; };
+		26118F7C27102DF300B7165A /* Question3Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question3Screen.swift; sourceTree = "<group>"; };
 		261B8271271161BC006E796B /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		261B8272271161BC006E796B /* QuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionTableViewCell.xib; sourceTree = "<group>"; };
 		261B827527116BA5006E796B /* InAppPurchaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		261B827627116BA5006E796B /* InAppPurchaseCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InAppPurchaseCollectionViewCell.xib; sourceTree = "<group>"; };
+		261B8279271199C8006E796B /* ServeyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeyServices.swift; sourceTree = "<group>"; };
 		2634DE46270F229F00F3C56B /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		2657958827106DD300CB31B9 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		2657958A27106DDB00CB31B9 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		2657958C27106DE200CB31B9 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		2657958E27106DE800CB31B9 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		267AE185270AE1A50012FCE0 /* SurveyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyScreen.swift; sourceTree = "<group>"; };
+		267AE188270AE1D80012FCE0 /* Survey.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Survey.storyboard; sourceTree = "<group>"; };
 		267AE18A270AFE940012FCE0 /* SignupCompleteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupCompleteScreen.swift; sourceTree = "<group>"; };
 		2696E5952706EC510011337E /* Coverage-call-blocker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coverage-call-blocker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2696E5982706EC510011337E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +106,8 @@
 		2696E5D72706F55E0011337E /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		2696E5D82706F55E0011337E /* ResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		2696E5DC2706F5720011337E /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		26C41E5C271834B900EF345F /* States.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = States.json; sourceTree = "<group>"; };
+		26C41E5E27183BA000EF345F /* IndustryGroups.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IndustryGroups.json; sourceTree = "<group>"; };
 		26E0B46F270C34F700085C47 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		26E0B473270C35DA00085C47 /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		26E0B475270C35EB00085C47 /* MenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreen.swift; sourceTree = "<group>"; };
@@ -118,6 +138,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		26118F7327102D6400B7165A /* InAppPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				26118F7427102D8F00B7165A /* InAppPurchase.storyboard */,
+				26118F7627102DA400B7165A /* InAppPurchaseScreen.swift */,
+			);
+			path = InAppPurchase;
+			sourceTree = "<group>";
+		};
 		2657958727106DC100CB31B9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +156,18 @@
 				2657958E27106DE800CB31B9 /* Roboto-Medium.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		267AE187270AE1BA0012FCE0 /* Survey */ = {
+			isa = PBXGroup;
+			children = (
+				267AE188270AE1D80012FCE0 /* Survey.storyboard */,
+				267AE185270AE1A50012FCE0 /* SurveyScreen.swift */,
+				26118F7827102DD400B7165A /* Question1Screen.swift */,
+				26118F7A27102DE400B7165A /* Question2Screen.swift */,
+				26118F7C27102DF300B7165A /* Question3Screen.swift */,
+			);
+			path = Survey;
 			sourceTree = "<group>";
 		};
 		2696E58C2706EC510011337E = {
@@ -181,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				2696E5DC2706F5720011337E /* LoginService.swift */,
+				261B8279271199C8006E796B /* ServeyServices.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -209,8 +251,10 @@
 		2696E5B52706ED6D0011337E /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				26118F7327102D6400B7165A /* InAppPurchase */,
 				26E0B46E270C34E000085C47 /* Menu */,
 				26E0B46D270C34D700085C47 /* Home */,
+				267AE187270AE1BA0012FCE0 /* Survey */,
 				2696E5CD2706F0370011337E /* Login */,
 			);
 			path = "View Controller";
@@ -230,6 +274,8 @@
 				2696E5BD2706EF310011337E /* SwiftLoader */,
 				2696E5C12706EF310011337E /* Toast.swift */,
 				2696E5BC2706EF310011337E /* Utility.swift */,
+				26C41E5C271834B900EF345F /* States.json */,
+				26C41E5E27183BA000EF345F /* IndustryGroups.json */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -340,11 +386,15 @@
 				2657959327106E5000CB31B9 /* Roboto-Medium.ttf in Resources */,
 				2696E5A82706EC540011337E /* LaunchScreen.storyboard in Resources */,
 				2696E5C92706EF320011337E /* Rachability in Resources */,
+				26118F7527102D8F00B7165A /* InAppPurchase.storyboard in Resources */,
 				26E0B474270C35DA00085C47 /* Menu.storyboard in Resources */,
 				26E0B470270C34F700085C47 /* Home.storyboard in Resources */,
 				2696E5CF2706F0530011337E /* Login.storyboard in Resources */,
 				2696E5A52706EC540011337E /* Assets.xcassets in Resources */,
+				26C41E5D271834B900EF345F /* States.json in Resources */,
+				267AE189270AE1D80012FCE0 /* Survey.storyboard in Resources */,
 				2696E5A02706EC510011337E /* Main.storyboard in Resources */,
+				26C41E5F27183BA000EF345F /* IndustryGroups.json in Resources */,
 				261B827827116BA5006E796B /* InAppPurchaseCollectionViewCell.xib in Resources */,
 				2696E5C82706EF320011337E /* SwiftLoader in Resources */,
 			);
@@ -401,6 +451,8 @@
 			files = (
 				2696E5DD2706F5720011337E /* LoginService.swift in Sources */,
 				2696E5CC2706EF320011337E /* Toast.swift in Sources */,
+				26118F7D27102DF300B7165A /* Question3Screen.swift in Sources */,
+				26118F7B27102DE400B7165A /* Question2Screen.swift in Sources */,
 				2696E5C72706EF320011337E /* Utility.swift in Sources */,
 				2696E59D2706EC510011337E /* ViewController.swift in Sources */,
 				2696E5DA2706F55E0011337E /* Response.swift in Sources */,
@@ -409,16 +461,20 @@
 				2696E5C42706EF320011337E /* File.swift in Sources */,
 				2696E5C52706EF320011337E /* Dir.swift in Sources */,
 				261B827727116BA5006E796B /* InAppPurchaseCollectionViewCell.swift in Sources */,
+				26118F7927102DD400B7165A /* Question1Screen.swift in Sources */,
 				267AE18B270AFE940012FCE0 /* SignupCompleteScreen.swift in Sources */,
 				2696E5A32706EC510011337E /* Coverage_call_blocker.xcdatamodeld in Sources */,
 				2634DE47270F229F00F3C56B /* HomeScreen.swift in Sources */,
 				26F7E61427073E1B0094E3BA /* MobileScreen.swift in Sources */,
+				261B827A271199C8006E796B /* ServeyServices.swift in Sources */,
 				26F7E61627073E3E0094E3BA /* VerifyScreen.swift in Sources */,
 				2696E5D92706F55E0011337E /* RequestModel.swift in Sources */,
 				2696E5C32706EF320011337E /* Extension.swift in Sources */,
 				2696E5DB2706F55E0011337E /* ResponseModel.swift in Sources */,
+				26118F7727102DA400B7165A /* InAppPurchaseScreen.swift in Sources */,
 				261B8273271161BC006E796B /* QuestionTableViewCell.swift in Sources */,
 				2696E5CA2706EF320011337E /* ImagePicker.swift in Sources */,
+				267AE186270AE1A50012FCE0 /* SurveyScreen.swift in Sources */,
 				2696E5C62706EF320011337E /* ExtensionClass.swift in Sources */,
 				2696E5C22706EF310011337E /* LightCompressor.swift in Sources */,
 				2696E5D32706F0C70011337E /* LoginScreen.swift in Sources */,

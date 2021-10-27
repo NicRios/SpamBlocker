@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Caller+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:Caller+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:Coverage-call-blocker.xcodeproj">
    </FileRef>
    <FileRef

@@ -8,11 +8,15 @@
 import UIKit
 
 class MenuScreen: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setUpInitialView()
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     func setUpInitialView(){
@@ -33,6 +37,13 @@ class MenuScreen: UIViewController {
         self.view.makeToast("This module is under development")
     }
     
+    @IBAction func onSurvey(_ sender: Any) {
+        self.sideMenuController?.hideLeftView()
+        
+        let vc =  STORYBOARD.Survey.instantiateViewController(withIdentifier: "Question1Screen") as! Question1Screen
+        vc.isFromMenuScreen = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     @IBAction func onSetting(_ sender: Any) {
         
         self.view.makeToast("This module is under development")

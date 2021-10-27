@@ -19,21 +19,8 @@ class MobileScreen: UIViewController, UITextFieldDelegate {
     var passwordString: String = ""
     var mobileNunberString: String = ""
     
-    var CountryCode = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let countryCode = (Locale.current as NSLocale).object(forKey: .countryCode) as? String {
-            print("countryCode : ", countryCode)
-            if countryCode == "IN"
-            {
-                CountryCode = "+91"
-            }
-            else{
-                CountryCode = "+1"
-            }
-        }
         
         setupinitialView()
     }
@@ -70,7 +57,7 @@ class MobileScreen: UIViewController, UITextFieldDelegate {
     func checkValidation() -> String?{
         if mobileNunberString.count == 0{
             return "Please enter phone number"
-        }else if mobileNunberString.count != 10{
+        }else if mobileNunberString.count != 13{
             return "Please enter Valid phone number"
         }
         return nil
@@ -115,7 +102,7 @@ class MobileScreen: UIViewController, UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return false }
         let newString = (text as NSString).replacingCharacters(in: range, with: string)
-        textField.text = format(with: "XXX XXX XXXX", phone: newString)
+        textField.text = format(with: "(XXX) XXX-XXXX", phone: newString)
         return false
     }
     

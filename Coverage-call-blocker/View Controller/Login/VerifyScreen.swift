@@ -11,30 +11,28 @@ import SVPinView
 class VerifyScreen: UIViewController {
     
     @IBOutlet weak var messageTextField: UILabel!
+    
+    @IBOutlet weak var resendTextLabel: UILabel!
+    @IBOutlet weak var resendOTPButton: UIButton!
+    
     @IBOutlet weak var pinView: SVPinView!
+    
+    var Secound = 60
+    var timer = Timer()
     
     var emailString: String = ""
     var passwordString: String = ""
     var mobileNunberString: String = ""
     var pinString: String = ""
     
-    var CountryCode = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let countryCode = (Locale.current as NSLocale).object(forKey: .countryCode) as? String {
-            print("countryCode : ", countryCode)
-            if countryCode == "IN"
-            {
-                CountryCode = "+91"
-            }
-            else{
-                CountryCode = "+1"
-            }
-        }
-        
         setupinitialView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer.invalidate()
     }
     
     func setupinitialView(){
@@ -50,7 +48,28 @@ class VerifyScreen: UIViewController {
             self.pinString = "\(pin)"
         }
         
-//        SendOTPAPI()
+        timer.invalidate()
+        resendOTPButton.isHidden = true
+        resendTextLabel.isHidden = false
+        Secound = 60
+        resendTextLabel.text = "Resend in \(Secound) seconds"
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        
+    }
+    
+    @objc func timerAction() {
+        Secound -= 1
+        if Secound == 0{
+            timer.invalidate()
+            resendOTPButton.isHidden = false
+            resendTextLabel.isHidden = true
+        }
+        else if Secound == 1{
+            resendTextLabel.text = "Resend in \(Secound) second"
+        }
+        else{
+            resendTextLabel.text = "Resend in \(Secound) seconds"
+        }
     }
     
     //MARK:- Check Validation
@@ -64,6 +83,7 @@ class VerifyScreen: UIViewController {
     //MARK: - button clicked event
     @IBAction func onResend(_ sender: UIButton) {
         self.view.endEditing(true)
+        pinView.clearPin()
         SendOTPAPI()
     }
     
@@ -89,12 +109,22 @@ extension VerifyScreen{
         let data = SendOTPRequest(phone_number: "\(CountryCode) \(mobileNunberString)")
         LoginServices.shared.SendOTP(parameters: data.toJSON()) { [weak self] (statusCode, response) in
             Utility.hideIndicator()
+            self?.goFurtherSendOTPAPI()
             self?.view.makeToast(response.message ?? "")
         } failure: { [weak self] (error) in
             Utility.hideIndicator()
             guard let stronSelf = self else { return }
             Utility.showAlert(vc: stronSelf, message: error)
         }
+    }
+    
+    func goFurtherSendOTPAPI(){
+        self.timer.invalidate()
+        self.resendOTPButton.isHidden = true
+        self.resendTextLabel.isHidden = false
+        self.Secound = 60
+        self.resendTextLabel.text = "Resend in \(Secound) seconds"
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
     
     //MARK: - VerifyOTP API
@@ -135,6 +165,7 @@ extension VerifyScreen{
     }
     
     func goFurtherSignupAPI(){
-        self.view.makeToast("This module is under development")
+        let vc =  STORYBOARD.Survey.instantiateViewController(withIdentifier: "SurveyScreen") as! SurveyScreen
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

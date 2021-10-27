@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         setupViewController()
         
-        CheckFonts()
+//        CheckFonts()
         
         return true
     }
@@ -40,6 +40,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setupViewController(){
+        
+        if let countryCode = (Locale.current as NSLocale).object(forKey: .countryCode) as? String {
+            print("countryCode : ", countryCode)
+            if countryCode == "IN"
+            {
+                CountryCode = "+91"
+            }
+            else{
+                CountryCode = "+1"
+            }
+        }
         
         let loginData = Utility.getUserData()
         
@@ -66,6 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             sideMenuController.leftViewPresentationStyle = .slideAbove
             sideMenuController.isLeftViewSwipeGestureEnabled = false
             sideMenuController.isRightViewSwipeGestureEnabled = false
+            sideMenuController.leftViewBackgroundAlpha = 0.0
+            sideMenuController.leftViewWidth = leftMenuWidth
             navVC = UINavigationController.init(rootViewController: sideMenuController)
             navVC?.isNavigationBarHidden = true
             self.navVC?.interactivePopGestureRecognizer?.isEnabled = false

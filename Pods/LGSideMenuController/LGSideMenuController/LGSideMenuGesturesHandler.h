@@ -1,11 +1,11 @@
 //
-//  LGSideMenuWrapperView.swift
+//  LGSideMenuGesturesHandler.h
 //  LGSideMenuController
 //
 //
 //  The MIT License (MIT)
 //
-//  Copyright © 2015 Grigorii Lutkov <friend.lga@gmail.com>
+//  Copyright © 2015 Grigory Lutkov <Friend.LGA@gmail.com>
 //  (https://github.com/Friend-LGA/LGSideMenuController)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,31 +27,21 @@
 //  SOFTWARE.
 //
 
-import Foundation
-import UIKit
+#import <UIKit/UIKit.h>
+#import "LGSideMenuController.h"
 
-public final class LGSideMenuWrapperView: UIView {
+@interface LGSideMenuGesturesHandler : NSObject <UIGestureRecognizerDelegate>
 
-    public var canLayoutSubviews = true
+@property (assign, nonatomic, nonnull) LGSideMenuController *sideMenuController;
 
-    public override func setNeedsLayout() {
-        guard canLayoutSubviews else { return }
-        super.setNeedsLayout()
-    }
+@property (weak, nonatomic, nullable) UIView *rootViewContainer;
+@property (weak, nonatomic, nullable) UIView *leftViewContainer;
+@property (weak, nonatomic, nullable) UIView *rightViewContainer;
 
-    public override func layoutIfNeeded() {
-        guard canLayoutSubviews else { return }
-        super.layoutIfNeeded()
-    }
+@property (weak, nonatomic, nullable) UIView *rootViewCoverView;
 
-    public override func layoutSubviews() {
-        guard canLayoutSubviews else { return }
-        super.layoutSubviews()
-    }
+@property (assign, nonatomic, getter=isAnimating) BOOL animating;
 
-    public override func layoutSublayers(of layer: CALayer) {
-        guard canLayoutSubviews else { return }
-        super.layoutSublayers(of: layer)
-    }
+- (nonnull instancetype)initWithSideMenuController:(nonnull LGSideMenuController *)sideMenuController;
 
-}
+@end

@@ -48,10 +48,16 @@ class StateResponse: Mappable{
    
     var state_id: Int?
     var state_name: String?
-    var isSelected: Bool = false
+//    var isSelected: Bool = false
     
     required init?(map: Map) {
         
+    }
+    
+    init(state_id: Int?, state_name: String?) {
+        self.state_id = state_id
+        self.state_name = state_name
+//        self.isSelected = false
     }
     
     func mapping(map: Map) {
@@ -65,10 +71,16 @@ class CompaniesResponse: Mappable{
    
     var company_id: Int?
     var company_name: String?
-    var isSelected: Bool = false
+//    var isSelected: Bool = false
     
     required init?(map: Map) {
         
+    }
+    
+    init(company_id: Int?, company_name: String?) {
+        self.company_id = company_id
+        self.company_name = company_name
+//        self.isSelected = false
     }
     
     func mapping(map: Map) {

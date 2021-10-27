@@ -24,29 +24,29 @@ class QuestionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    var itemState: StateResponse?{
-        didSet{
-            answerLabel.text = itemState?.state_name
-            if itemState?.isSelected ?? false == false{
-                selectedImageView.isHidden = true
-            }
-            else{
-                selectedImageView.isHidden = false
-            }
-        }
-    }
-    
-    var item: CompaniesResponse?{
-        didSet{
-            answerLabel.text = item?.company_name
-            if item?.isSelected ?? false == false{
-                selectedImageView.isHidden = true
-            }
-            else{
-                selectedImageView.isHidden = false
-            }
-        }
-    }
+//    var itemState: StateResponse?{
+//        didSet{
+//            answerLabel.text = itemState?.state_name
+//            if itemState?.isSelected ?? false == false{
+//                selectedImageView.isHidden = true
+//            }
+//            else{
+//                selectedImageView.isHidden = false
+//            }
+//        }
+//    }
+//    
+//    var item: CompaniesResponse?{
+//        didSet{
+//            answerLabel.text = item?.company_name
+//            if item?.isSelected ?? false == false{
+//                selectedImageView.isHidden = true
+//            }
+//            else{
+//                selectedImageView.isHidden = false
+//            }
+//        }
+//    }
     
     
     

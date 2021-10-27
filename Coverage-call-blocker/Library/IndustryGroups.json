@@ -1,0 +1,100 @@
+{
+  "data": [
+    {
+      "company_id": 1,
+      "company_name": "Automobiles and Components"
+    },
+    {
+      "company_id": 2,
+      "company_name": "Banks"
+    },
+    {
+      "company_id": 3,
+      "company_name": "Capital Goods"
+    },
+    {
+      "company_id": 4,
+      "company_name": "Commercial and Professional Services"
+    },
+    {
+      "company_id": 5,
+      "company_name": "Consumer Durables and Apparel"
+    },
+    {
+      "company_id": 6,
+      "company_name": "Consumer Services"
+    },
+    {
+      "company_id": 7,
+      "company_name": "Diversified Financials"
+    },
+    {
+      "company_id": 8,
+      "company_name": "Energy"
+    },
+    {
+      "company_id": 9,
+      "company_name": "Food, Beverage, and Tobacco"
+    },
+    {
+      "company_id": 10,
+      "company_name": "Food and Staples Retailing"
+    },
+    {
+      "company_id": 11,
+      "company_name": "Health Care Equipment and Services"
+    },
+    {
+      "company_id": 12,
+      "company_name": "Household and Personal Products"
+    },
+    {
+      "company_id": 13,
+      "company_name": "Insurance"
+    },
+    {
+      "company_id": 14,
+      "company_name": "Materials"
+    },
+    {
+      "company_id": 15,
+      "company_name": "Media and Entertainment"
+    },
+    {
+      "company_id": 16,
+      "company_name": "Pharmaceuticals, Biotechnology, and Life Sciences"
+    },
+    {
+      "company_id": 17,
+      "company_name": "Real Estate"
+    },
+    {
+      "company_id": 18,
+      "company_name": "Retailing"
+    },
+    {
+      "company_id": 19,
+      "company_name": "Semiconductors and Semiconductor Equipment"
+    },
+    {
+      "company_id": 20,
+      "company_name": "Software and Services"
+    },
+    {
+      "company_id": 21,
+      "company_name": "Technology Hardware and Equipment"
+    },
+    {
+      "company_id": 22,
+      "company_name": "Telecommunication Services"
+    },
+    {
+      "company_id": 23,
+      "company_name": "Transportation"
+    },
+    {
+      "company_id": 24,
+      "company_name": "Utilities"
+    }
+  ]
+}

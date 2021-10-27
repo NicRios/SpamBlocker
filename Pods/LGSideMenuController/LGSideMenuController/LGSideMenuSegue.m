@@ -1,11 +1,11 @@
 //
-//  LGSideMenuSegue.swift
+//  LGSideMenuSegue.m
 //  LGSideMenuController
 //
 //
 //  The MIT License (MIT)
 //
-//  Copyright © 2015 Grigorii Lutkov <friend.lga@gmail.com>
+//  Copyright © 2015 Grigory Lutkov <Friend.LGA@gmail.com>
 //  (https://github.com/Friend-LGA/LGSideMenuController)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,33 +27,23 @@
 //  SOFTWARE.
 //
 
-import Foundation
-import UIKit
+#import "LGSideMenuSegue.h"
+#import "LGSideMenuController.h"
 
-public final class LGSideMenuSegue: UIStoryboardSegue {
+@implementation LGSideMenuSegue
 
-    public struct Identifier {
-        public static let root  = "root"
-        public static let left  = "left"
-        public static let right = "right"
+- (void)perform {
+    NSString *lowercaseIdentifier = self.identifier.lowercaseString;
+
+    if ([lowercaseIdentifier isEqualToString:LGSideMenuSegueRootIdentifier]) {
+        [(LGSideMenuController *)self.sourceViewController setRootViewController:self.destinationViewController];
     }
-
-    public override func perform() {
-        guard let sideMenuController = self.source as? LGSideMenuController else {
-            assert(false, "LGSideMenuSegue must have source as LGSideMenuController")
-            return
-        }
-
-        switch identifier {
-        case Identifier.root:
-            sideMenuController.rootViewController = destination
-        case Identifier.left:
-            sideMenuController.leftViewController = destination
-        case Identifier.right:
-            sideMenuController.rightViewController = destination
-        default:
-            assert(false, "LGSideMenuSegue must have identifier either \"root\", \"left\" or \"right\"")
-        }
+    else if ([lowercaseIdentifier isEqualToString:LGSideMenuSegueLeftIdentifier]) {
+        [(LGSideMenuController *)self.sourceViewController setLeftViewController:self.destinationViewController];
     }
-    
+    else if ([lowercaseIdentifier isEqualToString:LGSideMenuSegueRightIdentifier]) {
+        [(LGSideMenuController *)self.sourceViewController setRightViewController:self.destinationViewController];
+    }
 }
+
+@end

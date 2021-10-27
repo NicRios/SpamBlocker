@@ -28,8 +28,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="9NV-fT-Xv1">
-                                <rect key="frame" x="48" y="260" width="318" height="364"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="9NV-fT-Xv1">
+                                <rect key="frame" x="48" y="260" width="318" height="369"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zIG-eH-YJD">
                                         <rect key="frame" x="0.0" y="0.0" width="318" height="60"/>
@@ -52,7 +52,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xzt-0Y-4at">
                                         <rect key="frame" x="0.0" y="76" width="318" height="60"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username or email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XE-XD-Wty">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XE-XD-Wty">
                                                 <rect key="frame" x="0.0" y="0.0" width="318" height="60"/>
                                                 <color key="backgroundColor" red="0.054901960784313725" green="0.29803921568627451" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -77,6 +77,7 @@
                                             <constraint firstAttribute="bottom" secondItem="3XE-XD-Wty" secondAttribute="bottom" id="FBQ-80-1Ah"/>
                                             <constraint firstAttribute="trailing" secondItem="3XE-XD-Wty" secondAttribute="trailing" id="Kre-Lu-owv"/>
                                             <constraint firstItem="3XE-XD-Wty" firstAttribute="top" secondItem="xzt-0Y-4at" secondAttribute="top" id="YUC-5X-qUH"/>
+                                            <constraint firstAttribute="height" constant="60" id="bly-M9-Fdr"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9v-4e-Pzg">
@@ -104,10 +105,30 @@
                                             <constraint firstItem="HpA-4y-hOC" firstAttribute="top" secondItem="j9v-4e-Pzg" secondAttribute="top" id="67o-Ce-jSE"/>
                                             <constraint firstAttribute="bottom" secondItem="HpA-4y-hOC" secondAttribute="bottom" id="VLI-q5-Mgk"/>
                                             <constraint firstAttribute="trailing" secondItem="HpA-4y-hOC" secondAttribute="trailing" id="ZGx-f4-93D"/>
+                                            <constraint firstAttribute="height" constant="60" id="hfk-Oy-2QG"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Un3-LD-Qft">
+                                        <rect key="frame" x="0.0" y="228" width="318" height="25"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This email is taken by another account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="zfz-pB-ENb">
+                                                <rect key="frame" x="16" y="0.0" width="286" height="25"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                                                <color key="textColor" systemColor="systemRedColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="zfz-pB-ENb" firstAttribute="leading" secondItem="Un3-LD-Qft" secondAttribute="leading" constant="16" id="4Bi-WF-jr7"/>
+                                            <constraint firstItem="zfz-pB-ENb" firstAttribute="top" secondItem="Un3-LD-Qft" secondAttribute="top" id="PED-ky-fYL"/>
+                                            <constraint firstAttribute="trailing" secondItem="zfz-pB-ENb" secondAttribute="trailing" constant="16" id="Rz8-bd-Gg8"/>
+                                            <constraint firstAttribute="height" constant="25" id="fSF-lq-b4N"/>
+                                            <constraint firstAttribute="bottom" secondItem="zfz-pB-ENb" secondAttribute="bottom" id="tCZ-bB-MIL"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTX-G5-FcD">
-                                        <rect key="frame" x="0.0" y="228" width="318" height="60"/>
+                                        <rect key="frame" x="0.0" y="269" width="318" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBE-42-OkK">
                                                 <rect key="frame" x="0.0" y="5" width="318" height="50"/>
@@ -144,16 +165,17 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="OBE-42-OkK" secondAttribute="trailing" id="7Sp-3F-lEu"/>
+                                            <constraint firstAttribute="height" constant="60" id="7vd-Qp-8QA"/>
                                             <constraint firstItem="OBE-42-OkK" firstAttribute="centerY" secondItem="GTX-G5-FcD" secondAttribute="centerY" id="Des-xX-Z0F"/>
                                             <constraint firstItem="OBE-42-OkK" firstAttribute="centerX" secondItem="GTX-G5-FcD" secondAttribute="centerX" id="HQJ-HE-mcx"/>
                                             <constraint firstItem="OBE-42-OkK" firstAttribute="leading" secondItem="GTX-G5-FcD" secondAttribute="leading" id="p5Y-jg-52P"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akE-8H-Fc6" customClass="UIControl">
-                                        <rect key="frame" x="0.0" y="304" width="318" height="60"/>
+                                        <rect key="frame" x="0.0" y="345" width="318" height="24"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="returning user? login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjw-9l-sQ6">
-                                                <rect key="frame" x="16" y="0.0" width="286" height="28.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="returning user? login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="hjw-9l-sQ6">
+                                                <rect key="frame" x="16" y="0.0" width="286" height="24"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -161,7 +183,9 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="hjw-9l-sQ6" secondAttribute="bottom" id="EGw-ly-okW"/>
                                             <constraint firstAttribute="trailing" secondItem="hjw-9l-sQ6" secondAttribute="trailing" constant="16" id="EuH-xL-1cY"/>
+                                            <constraint firstAttribute="height" constant="24" id="TF6-rx-sRq"/>
                                             <constraint firstItem="hjw-9l-sQ6" firstAttribute="leading" secondItem="akE-8H-Fc6" secondAttribute="leading" constant="16" id="dpo-qX-RF1"/>
                                             <constraint firstItem="hjw-9l-sQ6" firstAttribute="top" secondItem="akE-8H-Fc6" secondAttribute="top" id="r8R-1F-9tA"/>
                                         </constraints>
@@ -201,6 +225,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="EmailalreadyTakenMesageView" destination="Un3-LD-Qft" id="oJl-fj-nJC"/>
                         <outlet property="emailTextField" destination="3XE-XD-Wty" id="rqA-Rg-9mz"/>
                         <outlet property="labelLoginSignupScreen" destination="hjw-9l-sQ6" id="r6b-ZT-0pJ"/>
                         <outlet property="labelTitle" destination="wa9-I2-gHF" id="pHQ-3k-DQk"/>
@@ -265,7 +290,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="10 digit number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JjL-7J-7Mj">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="(XXX) XXX-XXXX" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JjL-7J-7Mj">
                                         <rect key="frame" x="32" y="288" width="350" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
@@ -486,19 +511,37 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderLineColor">
                                                 <color key="value" red="0.20392156862745098" green="0.65098039215686276" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="shouldSecureText" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPp-1W-Cnm">
-                                        <rect key="frame" x="332" y="148" width="66" height="27"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Resend OTP">
-                                            <color key="titleColor" red="0.20392156862745098" green="0.65098039215686276" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onResend:" destination="uxG-4p-adB" eventType="touchUpInside" id="tHg-l3-zKM"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ECA-rl-dNR">
+                                        <rect key="frame" x="114.5" y="144" width="283.5" height="29"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn't get OTP?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzY-Po-par">
+                                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="29"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resend in 60 seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ic-rL-68U">
+                                                <rect key="frame" x="85.5" y="0.0" width="117" height="29"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPp-1W-Cnm">
+                                                <rect key="frame" x="206.5" y="0.0" width="77" height="29"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Resend OTP">
+                                                    <color key="titleColor" red="0.20392156862745098" green="0.65098039215686276" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onResend:" destination="uxG-4p-adB" eventType="touchUpInside" id="tHg-l3-zKM"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -508,12 +551,12 @@
                                     <constraint firstItem="bfx-ZR-XzI" firstAttribute="leading" secondItem="zvl-bE-07L" secondAttribute="leading" constant="32" id="NLJ-2K-R99"/>
                                     <constraint firstAttribute="trailing" secondItem="gVZ-2X-pVw" secondAttribute="trailing" constant="16" id="TYO-cD-LYx"/>
                                     <constraint firstItem="9Gy-qm-H4q" firstAttribute="top" secondItem="zvl-bE-07L" secondAttribute="top" constant="16" id="VeT-kh-5Rq"/>
+                                    <constraint firstItem="ECA-rl-dNR" firstAttribute="trailing" secondItem="gVZ-2X-pVw" secondAttribute="trailing" id="Ymb-hk-ORN"/>
                                     <constraint firstItem="9Gy-qm-H4q" firstAttribute="centerX" secondItem="zvl-bE-07L" secondAttribute="centerX" id="Zo0-eo-F8o"/>
                                     <constraint firstItem="gVZ-2X-pVw" firstAttribute="centerX" secondItem="zvl-bE-07L" secondAttribute="centerX" id="ZrH-Nk-5Px"/>
+                                    <constraint firstItem="ECA-rl-dNR" firstAttribute="top" secondItem="gVZ-2X-pVw" secondAttribute="bottom" constant="4" id="a5x-vl-g3E"/>
                                     <constraint firstItem="RtD-RX-gKh" firstAttribute="width" secondItem="zvl-bE-07L" secondAttribute="width" multiplier="0.5" id="dhM-1e-9Z5"/>
-                                    <constraint firstItem="OPp-1W-Cnm" firstAttribute="top" secondItem="gVZ-2X-pVw" secondAttribute="bottom" constant="8" id="eFc-Jr-mvI"/>
                                     <constraint firstItem="gVZ-2X-pVw" firstAttribute="leading" secondItem="zvl-bE-07L" secondAttribute="leading" constant="16" id="fgA-TO-ULI"/>
-                                    <constraint firstItem="OPp-1W-Cnm" firstAttribute="trailing" secondItem="gVZ-2X-pVw" secondAttribute="trailing" id="iPM-c4-4Lk"/>
                                     <constraint firstItem="bfx-ZR-XzI" firstAttribute="top" secondItem="gVZ-2X-pVw" secondAttribute="bottom" constant="80" id="kZk-Gn-3k9"/>
                                     <constraint firstAttribute="trailing" secondItem="bfx-ZR-XzI" secondAttribute="trailing" constant="32" id="oTR-cj-iYP"/>
                                     <constraint firstAttribute="bottom" secondItem="RtD-RX-gKh" secondAttribute="bottom" constant="16" id="qCH-xf-9OD"/>
@@ -560,6 +603,8 @@
                     <connections>
                         <outlet property="messageTextField" destination="gVZ-2X-pVw" id="nak-nK-G4o"/>
                         <outlet property="pinView" destination="bfx-ZR-XzI" id="dLt-gn-xMq"/>
+                        <outlet property="resendOTPButton" destination="OPp-1W-Cnm" id="ZWh-ff-UlX"/>
+                        <outlet property="resendTextLabel" destination="7Ic-rL-68U" id="7sW-Cq-pBu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TZO-DF-7x1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -636,6 +681,9 @@ Complete!</string>
         <image name="back_Back" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
