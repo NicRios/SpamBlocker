@@ -82,13 +82,13 @@ class Question3Screen: UIViewController {
         }
         
         if let surveyArray = UserDefaults.standard.value(forKey: SURVEYARRAY) as? [[String : Any]] {
-//            print("surveyArray : ", surveyArray)
+            //            print("surveyArray : ", surveyArray)
             
             if surveyArray.count >= 3{
                 selectedAnswer3String = surveyArray[2]["answer"] as? String ?? ""
                 print("selectedAnswer3String : ", selectedAnswer3String)
                 
-//                selectedCompanyidArray = selectedAnswer3String.compactMap{Int(String($0))}
+                //                selectedCompanyidArray = selectedAnswer3String.compactMap{Int(String($0))}
                 selectedCompanyidArray = self.get_numbers(stringtext: selectedAnswer3String)
                 
                 mainTableView.reloadData()
@@ -111,9 +111,9 @@ class Question3Screen: UIViewController {
         }
         else{
             
-//            print("selectedAnswer1String : ", selectedAnswer1String)
-//            print("selectedAnswer2String : ", selectedAnswer2String)
-//            print("selectedAnswer3String : ", selectedAnswer3String)
+            //            print("selectedAnswer1String : ", selectedAnswer1String)
+            //            print("selectedAnswer2String : ", selectedAnswer2String)
+            //            print("selectedAnswer3String : ", selectedAnswer3String)
             
             var ansArray: [QuestionData] = []
             
@@ -198,27 +198,6 @@ extension Question3Screen: UITableViewDelegate,UITableViewDataSource{
 
 //MARK: - API
 extension Question3Screen{
-    
-    //    //MARK:- get Companies API
-    //    func getCompaniesAPI(){
-    //        self.view.endEditing(true)
-    //        Utility.showIndecator()
-    //        ServeyServices.shared.getCompanies(success: {  (statusCode, response) in
-    //
-    //            if let res = response?.companiesResponse{
-    //                self.companyArray = res
-    //                self.mainTableView.reloadData()
-    //                self.mainTableView.isHidden = false
-    //            }
-    //
-    //            Utility.hideIndicator()
-    //
-    //        }, failure: { [weak self] (error) in
-    //            Utility.hideIndicator()
-    //            guard let stronSelf = self else { return }
-    //            Utility.showAlert(vc: stronSelf, message: error)
-    //        })
-    //    }
     
     //MARK: - Servey Post API
     func SurveyPostAPI(questions: [QuestionData]){

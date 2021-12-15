@@ -12,6 +12,7 @@ class LoginResponse: Mappable{
     var id: Int?
     var email: String?
     var password: String?
+    var isPremium: Int?
     var auth: Auth?
     
     required init?(map: Map) {
@@ -22,6 +23,7 @@ class LoginResponse: Mappable{
         id <- map["id"]
         email <- map["email"]
         password <- map["password"]
+        isPremium <- map["isPremium"]
         auth <- map["access_token"]
     }
 }
@@ -94,6 +96,7 @@ class MaxBlockingResponse: Mappable{
    
     var user_id: Int?
     var phone: String?
+    var context: String?
     
     required init?(map: Map) {
         
@@ -103,6 +106,52 @@ class MaxBlockingResponse: Mappable{
         
         user_id <- map["user_id"]
         phone <- map["phone"]
+        context <- map["context"]
+    }
+}
+
+class ContactResponse: Mappable{
+    
+    var name:String?
+    var number:Int64?
+    var isWhiteList: Bool?
+    var isBlackList: Bool?
+    
+    init(name:String?, number: Int64?, isWhiteList: Bool?, isBlackList: Bool?) {
+        self.name = name
+        self.number = number
+        self.isWhiteList = isWhiteList
+        self.isBlackList = isBlackList
+    }
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        name <- map["name"]
+        number <- map["number"]
+        isWhiteList <- map["isWhiteList"]
+        isBlackList <- map["isBlackList"]
+    }
+}
+
+class Meta: Mappable{
+    var total: Int?
+    var perPage: Int?
+    var currentPage: Int?
+    var lastPage: Int?
+    var from: Int?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        total <- map["total"]
+        perPage <- map["per_page"]
+        currentPage <- map["current_page"]
+        lastPage <- map["last_page"]
+        from <- map["from"]
     }
 }
 

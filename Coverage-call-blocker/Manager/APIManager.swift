@@ -51,9 +51,9 @@ class APIManager {
             failure("No internet available.")
             return
         }
-        print("url ----> ", urlString)
-        print("parameters ----> ", parameters)
-        print("headers ----> ", getHeader())
+//        print("url ----> ", urlString)
+//        print("parameters ----> ", parameters)
+//        print("headers ----> ", getHeader())
         
         Alamofire.request(urlString, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: getHeader()).responseObject { (response: DataResponse<Response>) in
             switch response.result{
@@ -63,7 +63,7 @@ class APIManager {
                     return
                 }
                 
-                print("response ----> ", response.result.value?.toJSON() as Any)
+//                print("response ----> ", response.result.value?.toJSON() as Any)
                 
                 if (200..<300).contains(statusCode){
                     success(statusCode,value)
@@ -89,8 +89,8 @@ class APIManager {
             failure("No internet available.")
             return
         }
-        print("url ----> ", urlString)
-        print("headers ----> ", getHeader())
+//        print("url ----> ", urlString)
+//        print("headers ----> ", getHeader())
         
         Alamofire.request(urlString, method: method, parameters: nil, encoding: JSONEncoding.default, headers: getHeader()).responseObject { (response: DataResponse<Response>) in
             switch response.result{
@@ -100,7 +100,7 @@ class APIManager {
                     return
                 }
                 
-                print("response ----> ", response.result.value?.toJSON() as Any)
+//                print("response ----> ", response.result.value?.toJSON() as Any)
                 
                 if (200..<300).contains(statusCode){
                     success(statusCode,value)

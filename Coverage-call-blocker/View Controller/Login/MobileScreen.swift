@@ -8,7 +8,7 @@
 import UIKit
 import SVPinView
 
-class MobileScreen: UIViewController, UITextFieldDelegate {
+class MobileScreen: UIViewController {
     
     @IBOutlet weak var pinView: SVPinView!
     @IBOutlet weak var termsLabel: UILabel!
@@ -53,7 +53,7 @@ class MobileScreen: UIViewController, UITextFieldDelegate {
         
     }
     
-    //MARK:- Check Validation
+    //MARK: - Check Validation
     func checkValidation() -> String?{
         if mobileNunberString.count == 0{
             return "Please enter phone number"
@@ -106,6 +106,13 @@ class MobileScreen: UIViewController, UITextFieldDelegate {
         return false
     }
     
+}
+
+extension MobileScreen: UITextFieldDelegate{
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
 }
 
 extension MobileScreen{

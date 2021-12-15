@@ -19,6 +19,11 @@ target 'Coverage-call-blocker' do
   pod 'SVPinView', '~> 1.0'
   pod 'LGSideMenuController'
   pod 'TCProgressBar'
-
+  pod 'SwiftyStoreKit'
+  pod 'FTPopOverMenu_Swift', '~> 0.1.4'
+#  pod 'Firebase/Analytics'
+#  pod 'Firebase/Auth'
+#  pod 'Firebase/Firestore'
+  pod 'Firebase/AppDistribution'
 
 end

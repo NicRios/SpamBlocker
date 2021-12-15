@@ -739,7 +739,7 @@ class Utility: NSObject {
     
     class func removeUserData(){
         UserDefaults.standard.removeObject(forKey: USER_DATA)
-        UserDefaults.standard.removeObject(forKey: SURVEYARRAY)
+//        UserDefaults.standard.removeObject(forKey: SURVEYARRAY)
     }
     
     class func saveUserData(data: [String: Any]){

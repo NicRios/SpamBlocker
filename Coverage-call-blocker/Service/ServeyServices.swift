@@ -37,8 +37,17 @@ class ServeyServices {
     }
     
     //MARK: - Max_Blocking
-    func max_blocking(success: @escaping (Int, Response?) -> (), failure: @escaping (String) -> ()){
-        APIManager.shared.requestAPIWithGetMethod(method: .get, urlString: getMaxBlocking) { (statusCode, response) in
+    func max_blocking(url:String,success: @escaping (Int, Response?) -> (), failure: @escaping (String) -> ()){
+        APIManager.shared.requestAPIWithGetMethod(method: .get, urlString: url) { (statusCode, response) in
+            success(statusCode,response)
+        } failure: { (error) in
+            failure(error)
+        }
+    }
+    
+    //MARK: - getSpams
+    func getSpams(url:String,success: @escaping (Int, Response?) -> (), failure: @escaping (String) -> ()){
+        APIManager.shared.requestAPIWithGetMethod(method: .get, urlString: url) { (statusCode, response) in
             success(statusCode,response)
         } failure: { (error) in
             failure(error)

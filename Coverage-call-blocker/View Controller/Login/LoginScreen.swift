@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginScreen: UIViewController, UITextFieldDelegate {
+class LoginScreen: UIViewController {
     
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
@@ -119,6 +119,18 @@ class LoginScreen: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+}
+
+extension LoginScreen: UITextFieldDelegate{
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField{
+            passwordTextField.becomeFirstResponder()
+        }else if textField == passwordTextField{
+            passwordTextField.resignFirstResponder()
+        }
+        return true
+    }
 }
 
 //MARK: - API

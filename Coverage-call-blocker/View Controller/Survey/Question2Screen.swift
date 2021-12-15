@@ -69,7 +69,7 @@ class Question2Screen: UIViewController {
                 selectedAnswer2String = surveyArray[1]["answer"] as? String ?? ""
                 print("selectedAnswer2String : ", selectedAnswer2String)
                 
-//                selectedstateidArray = selectedAnswer2String.compactMap{Int(String($0))}
+                //                selectedstateidArray = selectedAnswer2String.compactMap{Int(String($0))}
                 selectedstateidArray = self.get_numbers(stringtext: selectedAnswer2String)
                 
                 mainTableView.reloadData()
@@ -169,28 +169,3 @@ extension Question2Screen: UITableViewDelegate,UITableViewDataSource{
         
     }
 }
-
-//MARK: - API
-//extension Question2Screen{
-//
-//    //MARK:- get States API
-//    func getStatesAPI(){
-//        self.view.endEditing(true)
-//        Utility.showIndecator()
-//        ServeyServices.shared.getStates(success: {  (statusCode, response) in
-//
-//            if let res = response?.stateResponse{
-//                self.stateArray = res
-//                self.mainTableView.reloadData()
-//                self.mainTableView.isHidden = false
-//            }
-//
-//            Utility.hideIndicator()
-//
-//        }, failure: { [weak self] (error) in
-//            Utility.hideIndicator()
-//            guard let stronSelf = self else { return }
-//            Utility.showAlert(vc: stronSelf, message: error)
-//        })
-//    }
-//}

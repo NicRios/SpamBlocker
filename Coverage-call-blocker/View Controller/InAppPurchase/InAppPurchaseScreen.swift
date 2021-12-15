@@ -11,11 +11,14 @@ class InAppPurchaseScreen: UIViewController {
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
-//    var dealResourceArray:[DealResourceResponse] = []
-
+    //    var dealResourceArray:[DealResourceResponse] = []
+    
+    var isFlagRestore: Bool = false
+    var expiryDate: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setUpIntialView()
     }
     
@@ -25,15 +28,17 @@ class InAppPurchaseScreen: UIViewController {
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
         mainCollectionView.register(UINib(nibName: "InAppPurchaseCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "InAppPurchaseCollectionViewCell")
-
+        
     }
-//MARK: - button clicked event
+    //MARK: - button clicked event
+    
     @IBAction func onSkip(_ sender: UIButton) {
         self.view.endEditing(true)
         
         let vc =  STORYBOARD.login.instantiateViewController(withIdentifier: "SignupCompleteScreen") as! SignupCompleteScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
     @IBAction func onContinue(_ sender: UIButton) {
         self.view.makeToast("This module is under development")
     }
@@ -43,21 +48,21 @@ class InAppPurchaseScreen: UIViewController {
 extension InAppPurchaseScreen:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        var numOfSections: Int = 0
-//
-//        if dealResourceArray.count > 0 {
-//            numOfSections = 1
-//            collectionView.backgroundView = nil
-//        } else {
-//            let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height))
-//            noDataLabel.text = "No Deals Found"
-//            noDataLabel.textColor = UIColor.darkGray
-//            noDataLabel.textAlignment = .center
-//            noDataLabel.numberOfLines = 1
-//            collectionView.backgroundView = noDataLabel
-//        }
-//
-//        return numOfSections
+        //        var numOfSections: Int = 0
+        //
+        //        if dealResourceArray.count > 0 {
+        //            numOfSections = 1
+        //            collectionView.backgroundView = nil
+        //        } else {
+        //            let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height))
+        //            noDataLabel.text = "No Deals Found"
+        //            noDataLabel.textColor = UIColor.darkGray
+        //            noDataLabel.textAlignment = .center
+        //            noDataLabel.numberOfLines = 1
+        //            collectionView.backgroundView = noDataLabel
+        //        }
+        //
+        //        return numOfSections
         
         return 1
     }
@@ -65,10 +70,10 @@ extension InAppPurchaseScreen:UICollectionViewDelegate,UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
-        
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InAppPurchaseCollectionViewCell", for: indexPath) as? InAppPurchaseCollectionViewCell ?? Bundle.main.loadNibNamed("InAppPurchaseCollectionViewCell", owner: self, options: nil)![0] as! InAppPurchaseCollectionViewCell
-//        cell.item = dealResourceArray[indexPath.row]
+        //        cell.item = dealResourceArray[indexPath.row]
         return cell
     }
     

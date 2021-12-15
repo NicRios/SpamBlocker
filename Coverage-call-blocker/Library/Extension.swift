@@ -6,6 +6,7 @@
 
 import Foundation
 import UIKit
+import CoreTelephony
 
 extension UITextView: UITextViewDelegate {
     
@@ -161,5 +162,20 @@ extension UIView {
         let nibName = type(of: self).description().components(separatedBy: ".").last!
         let nib = UINib(nibName: nibName, bundle: bundle)
         return nib.instantiate(withOwner: self, options: nil).first as! UIView
+    }
+}
+
+extension UIViewController{
+    func hasCellularCoverage() -> Bool {
+        
+        if #available(iOS 12.0, *) {
+            return CTTelephonyNetworkInfo().serviceSubscriberCellularProviders?.first?.value.mobileNetworkCode != nil
+        } else {
+            if let _ = CTTelephonyNetworkInfo().subscriberCellularProvider?.isoCountryCode {
+                return true
+            } else {
+                return false
+            }
+        }
     }
 }

@@ -31,6 +31,7 @@ var videoFaceMaskOutputURL = ""
 let tableViewHeight: CGFloat = 100
 var CountryCode = "+91"
 
+
 //MARK: - color
 let appBackgroundColor = UIColor.init(hex: "F0F0F0")
 
@@ -50,14 +51,20 @@ let verifyotpURL = server_url+"verify-otp"
 let getStatesURL = server_url+"get/states"
 let getCompaniesURL = server_url+"get/companies"
 let serveyPostURL = server_url+"servey/post"
-let getMaxBlocking = server_url+"get/max_blocking"
+let getMaxBlockingURL = server_url+"get/max_blocking"
+let getSpamsURL = server_url+"get/spams"
 
 
 //MARK:- Session Key
 let USER_DATA = "user_data"
 let SURVEYARRAY = "SurveyArray"
+let KEYWhiteListArray = "whiteListNumberArray"
+let KEYBlackListArray = "blackListNumberArray"
+let KEYSelectedOptionOnHomeScreen = "selectedOptionOnHomeScreen"
 
 //let GOOGLE_CLIENT_ID = "394157784224-l7lpjf6mp36ml094ibd08lehto0opsin.apps.googleusercontent.com"
+
+let SimNotAvailableMessage = "Sim not available."
 
 
 func getFileName() -> String{

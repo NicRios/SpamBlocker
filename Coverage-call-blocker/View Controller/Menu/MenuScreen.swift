@@ -28,13 +28,17 @@ class MenuScreen: UIViewController {
     //MARK: - button clicked event
     
     @IBAction func onWhitelistNumber(_ sender: Any) {
+        self.sideMenuController?.hideLeftView()
         
-        self.view.makeToast("This module is under development")
+        let vc =  STORYBOARD.menu.instantiateViewController(withIdentifier: "WhitelistNumberScreen") as! WhitelistNumberScreen
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func onBlacklistNumber(_ sender: Any) {
+        self.sideMenuController?.hideLeftView()
         
-        self.view.makeToast("This module is under development")
+        let vc =  STORYBOARD.menu.instantiateViewController(withIdentifier: "BlacklistNumberScreen") as! BlacklistNumberScreen
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func onSurvey(_ sender: Any) {
@@ -45,8 +49,10 @@ class MenuScreen: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func onSetting(_ sender: Any) {
+        self.sideMenuController?.hideLeftView()
         
-        self.view.makeToast("This module is under development")
+        let vc =  STORYBOARD.menu.instantiateViewController(withIdentifier: "SettingScreen") as! SettingScreen
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func onLogout(_ sender: Any) {
