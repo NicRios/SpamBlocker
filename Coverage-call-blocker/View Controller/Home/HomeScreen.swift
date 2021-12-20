@@ -123,7 +123,7 @@ class HomeScreen: UIViewController {
         //        print("number : ", number)
         //        let num = Int64("\(CountryCode)"+"\(number)")
         //        print("num : ", num ?? 0)
-//        print("number : ", number)
+        //        print("number : ", number)
         
         let caller = self.caller ?? Caller(context: self.callerData.context)
         caller.name = nameString
@@ -139,7 +139,7 @@ class HomeScreen: UIViewController {
     
     func warningNumber(nameString : String , number: Int64){
         
-//        print("nameString : ", nameString)
+        //        print("nameString : ", nameString)
         //        print("number : ", number)
         //        let num = Int64("\(CountryCode)"+"\(number)")
         //        print("num : ", num ?? 0)
@@ -179,16 +179,16 @@ class HomeScreen: UIViewController {
             
             for i in 0..<results!.count {
                 autoreleasepool{
-                let indexPath = IndexPath(item: i, section: 0)
-                let caller = self.resultsController.object(at: indexPath)
-//                let phonenumber = "\(caller.number)"
-//                let phonenumberInt = Int64(phonenumber.suffix(10)) ?? 0
-//                blockedArray.append(phonenumberInt)
+                    let indexPath = IndexPath(item: i, section: 0)
+                    let caller = self.resultsController.object(at: indexPath)
+                    //                let phonenumber = "\(caller.number)"
+                    //                let phonenumberInt = Int64(phonenumber.suffix(10)) ?? 0
+                    //                blockedArray.append(phonenumberInt)
                     blockedArray.append(caller.number)
                 }
             }
             
-            blockedArray.sort()
+//            blockedArray.sort()
             
         } catch {
             print("Failed to fetch data: \(error.localizedDescription)")
@@ -214,12 +214,12 @@ class HomeScreen: UIViewController {
             
             for i in 0..<results!.count {
                 autoreleasepool{
-                let indexPath = IndexPath(item: i, section: 0)
-                let caller = self.resultsController.object(at: indexPath)
-//                let phonenumber = "\(caller.number)"
-//                let phonenumberInt = Int64(phonenumber.suffix(10)) ?? 0
-//                blockedArray.append(phonenumberInt)
-                blockedArray.append(caller.number)
+                    let indexPath = IndexPath(item: i, section: 0)
+                    let caller = self.resultsController.object(at: indexPath)
+                    //                let phonenumber = "\(caller.number)"
+                    //                let phonenumberInt = Int64(phonenumber.suffix(10)) ?? 0
+                    //                blockedArray.append(phonenumberInt)
+                    blockedArray.append(caller.number)
                 }
             }
             
@@ -229,7 +229,7 @@ class HomeScreen: UIViewController {
     }
     
     //    func hasCellularCoverage() -> Bool {
-    //        
+    //
     //        if #available(iOS 12.0, *) {
     //            return CTTelephonyNetworkInfo().serviceSubscriberCellularProviders?.first?.value.mobileNetworkCode != nil
     //        } else {
@@ -311,7 +311,7 @@ class HomeScreen: UIViewController {
         if selectebutton == 1{
             self.view.makeToast("You already blocked numbers.")
             return
-        }       
+        }
         
         retrieveBlockedData(isWarning: false)
         
@@ -348,9 +348,9 @@ class HomeScreen: UIViewController {
             
             for i in tempDic {
                 autoreleasepool{
-                if let obj = ContactResponse(JSON:i) {
-                    self.blackListNumberArray.append(obj)
-                }
+                    if let obj = ContactResponse(JSON:i) {
+                        self.blackListNumberArray.append(obj)
+                    }
                 }
             }
             
@@ -362,32 +362,32 @@ class HomeScreen: UIViewController {
         
         for i in 0..<results!.count {
             autoreleasepool{
-            let indexPath = IndexPath(item: i, section: 0)
-            let caller = self.resultsController.object(at: indexPath)
-            
-            //            let phonenumber = "\(caller.number)"
-            //            let phonenumberInt = Int64(phonenumber.suffix(10)) ?? 0
-            
-            //            if self.blackListNumberArray.contains(where: { $0.number != Int64(phonenumberInt)}){
-            if self.blackListNumberArray.contains(where: { $0.number != caller.number}){
+                let indexPath = IndexPath(item: i, section: 0)
+                let caller = self.resultsController.object(at: indexPath)
                 
-                caller.isRemoved = true
-                //            caller.isBlocked = false
-                caller.updatedDate = Date()
-                self.callerData.saveContext()
-            }
-            else{
-                //                print("phonenumberInt : ", phonenumberInt)
-                //                let num = Int64("\(CountryCode)"+"\(phonenumberInt)")
+                //            let phonenumber = "\(caller.number)"
+                //            let phonenumberInt = Int64(phonenumber.suffix(10)) ?? 0
                 
-                caller.name = caller.name
-                //                caller.number  = num ?? 0
-                caller.number = caller.number
-                caller.isBlocked = true
-                caller.isRemoved = true
-                caller.updatedDate = Date()
-                self.callerData.saveContext()
-            }
+                //            if self.blackListNumberArray.contains(where: { $0.number != Int64(phonenumberInt)}){
+                if self.blackListNumberArray.contains(where: { $0.number != caller.number}){
+                    
+                    caller.isRemoved = true
+                    //            caller.isBlocked = false
+                    caller.updatedDate = Date()
+                    self.callerData.saveContext()
+                }
+                else{
+                    //                print("phonenumberInt : ", phonenumberInt)
+                    //                let num = Int64("\(CountryCode)"+"\(phonenumberInt)")
+                    
+                    caller.name = caller.name
+                    //                caller.number  = num ?? 0
+                    caller.number = caller.number
+                    caller.isBlocked = true
+                    caller.isRemoved = true
+                    caller.updatedDate = Date()
+                    self.callerData.saveContext()
+                }
             }
         }
         self.reload()
@@ -421,7 +421,7 @@ extension HomeScreen{
                 print("Api response at : ", Date())
                 if self.meta?.lastPage ?? 0 >= self.meta?.currentPage ?? 0{
                     self.blockNumberArray = response?.maxBlockingResponse ?? []
-                    self.blockNumberArray = self.blockNumberArray.sorted(by: { $0.phone ?? "" > $1.phone ?? "" })
+//                    self.blockNumberArray = self.blockNumberArray.sorted(by: { $0.phone ?? "" > $1.phone ?? "" })
                     self.goFurthermax_blockingAPI(isWarning: isWarning)
                     
                 }else{
@@ -446,36 +446,36 @@ extension HomeScreen{
         
         for i in 0..<self.blockNumberArray.count {
             autoreleasepool {
-            let contact = self.blockNumberArray[i]
-            if isWarning{
-                self.warningNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0)
-            }
-            else{
-                autoreleasepool {
-//                let phonenumber = contact.phone ?? "0"
-//                let phonenumberInt = Int(phonenumber.suffix(10))
-                //                print("phonenumberInt : ", phonenumberInt ?? "")
-                
-                    if !self.blockedArray.contains(Int64(contact.phone ?? "0") ?? 0){
-                        self.blockNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0 )
+                let contact = self.blockNumberArray[i]
+                if isWarning{
+                    self.warningNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0)
                 }
+                else{
+                    autoreleasepool {
+                        //                let phonenumber = contact.phone ?? "0"
+                        //                let phonenumberInt = Int(phonenumber.suffix(10))
+                        //                print("phonenumberInt : ", phonenumberInt ?? "")
+                        
+                        if !self.blockedArray.contains(Int64(contact.phone ?? "0") ?? 0){
+                            self.blockNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0 )
+                        }
+                    }
                 }
-            }
             }
         }
         
-//        //=== After
-//
-//        let array = self.blockNumberArray.filter{ !self.blockedArray.contains(Int64($0.phone?.suffix(10) ?? "") ?? 0)}
-//        print("array : ", array)
-//        print("array count : ", array.count)
-//        for i in 0..<array.count {
-//            autoreleasepool {
-//            let contact = array[i]
-//            self.blockNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0)
-//            }
-//        }
-//        //===
+        //        //=== After
+        //
+        //        let array = self.blockNumberArray.filter{ !self.blockedArray.contains(Int64($0.phone?.suffix(10) ?? "") ?? 0)}
+        //        print("array : ", array)
+        //        print("array count : ", array.count)
+        //        for i in 0..<array.count {
+        //            autoreleasepool {
+        //            let contact = array[i]
+        //            self.blockNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0)
+        //            }
+        //        }
+        //        //===
         
         //        if isWarning{
         reload()
@@ -529,14 +529,14 @@ extension HomeScreen{
     func goFurthergetSpamsAPI(){
         for i in 0..<self.blockNumberArray.count {
             autoreleasepool{
-            let contact = self.blockNumberArray[i]
-            
-//            let phonenumber = contact.phone ?? "0"
-//            let phonenumberInt = Int(phonenumber.suffix(10))
-            
+                let contact = self.blockNumberArray[i]
+                
+                //            let phonenumber = contact.phone ?? "0"
+                //            let phonenumberInt = Int(phonenumber.suffix(10))
+                
                 if !self.blockedArray.contains(Int64(contact.phone ?? "0") ?? 0){
-                self.blockNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0)
-            }
+                    self.blockNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0)
+                }
             }
         }
         
