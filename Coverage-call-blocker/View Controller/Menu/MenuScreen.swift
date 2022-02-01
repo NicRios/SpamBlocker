@@ -35,6 +35,12 @@ class MenuScreen: UIViewController {
     }
     
     @IBAction func onBlacklistNumber(_ sender: Any) {
+        
+//        if isBlockingNumberInProgress == true{
+//            self.view.makeToast("Number blocking is in progress, Please try again in some time.")
+//            return
+//        }
+        
         self.sideMenuController?.hideLeftView()
         
         let vc =  STORYBOARD.menu.instantiateViewController(withIdentifier: "BlacklistNumberScreen") as! BlacklistNumberScreen
@@ -63,6 +69,7 @@ class MenuScreen: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: {_ in
             Utility.removeUserData()
+            sleep(UInt32(4.0))
             self.App_Delegate.setupViewController()
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.cancel, handler: nil))

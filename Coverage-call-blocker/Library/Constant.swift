@@ -19,7 +19,7 @@ struct STORYBOARD {
 let screenWidth = UIScreen.main.bounds.width
 let screenHeight = UIScreen.main.bounds.height
 
-//let isiPad: Bool = UIDevice.current.userInterfaceIdiom == .pad
+let isiPad: Bool = UIDevice.current.userInterfaceIdiom == .pad
 
 let APPLICATION_NAME     = "Coverage-call-blocker"
 let store_url            = ""
@@ -27,19 +27,16 @@ let android_url          = ""
 let AppID                = ""
 let video_lenth          = 60
 let leftMenuWidth = (screenWidth/10) * 7
-var videoFaceMaskOutputURL = ""
-let tableViewHeight: CGFloat = 100
+var isBlockingNumberInProgress = false
 var CountryCode = "+91"
 
-
-//MARK: - color
+//MARK: - App color
 let appBackgroundColor = UIColor.init(hex: "F0F0F0")
 
-//MARK:- API URL
-
+//MARK: - API URL
 let server_url = "https://demo.iroidsolutions.com/spam-blocker-backend/public/api/v1/"
 
-//Login
+//MARK: - Login
 let refreshTokenURL = server_url+"refresh-token"
 let signupURL = server_url+"signup"
 let checkmailURL = server_url+"checkmail"
@@ -47,25 +44,24 @@ let loginURL = server_url+"login"
 let sendotpURL = server_url+"send-otp"
 let verifyotpURL = server_url+"verify-otp"
 
-//Survey
+//MARK: - Survey
 let getStatesURL = server_url+"get/states"
 let getCompaniesURL = server_url+"get/companies"
 let serveyPostURL = server_url+"servey/post"
 let getMaxBlockingURL = server_url+"get/max_blocking"
 let getSpamsURL = server_url+"get/spams"
 
-
-//MARK:- Session Key
+//MARK: - Session Key
 let USER_DATA = "user_data"
 let SURVEYARRAY = "SurveyArray"
 let KEYWhiteListArray = "whiteListNumberArray"
 let KEYBlackListArray = "blackListNumberArray"
 let KEYSelectedOptionOnHomeScreen = "selectedOptionOnHomeScreen"
+let KEYBlockNumberCount = "BlockNumberCount"
+let KEYJSonFileCount = "JSonFileCount"
 
-//let GOOGLE_CLIENT_ID = "394157784224-l7lpjf6mp36ml094ibd08lehto0opsin.apps.googleusercontent.com"
-
+//MARK: - Common message
 let SimNotAvailableMessage = "Sim not available."
-
 
 func getFileName() -> String{
     let dateFormatter = DateFormatter()

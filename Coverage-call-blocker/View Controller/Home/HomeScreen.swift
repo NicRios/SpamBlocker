@@ -10,12 +10,13 @@ import CallKit
 import CoreData
 import CallerData
 import CoreTelephony
+import FirebaseMessaging
 
 class HomeScreen: UIViewController {
     
     var caller: Caller? {
         didSet {
-            //            self.updateUI()
+            self.updateUI()
         }
     }
     
@@ -37,17 +38,21 @@ class HomeScreen: UIViewController {
     @IBOutlet weak var noBlockingSelectedImageView: UIImageView!
     @IBOutlet weak var noBlockingBottomView: UIView!
     
-    var blockNumberArray: [MaxBlockingResponse] = []
+    fileprivate var blockNumberArray: [MaxBlockingResponse] = []
     
     lazy private var callerData = CallerData()
     private var resultsController: NSFetchedResultsController<Caller>!
     
-    var blockedArray = [Int64]()
+    fileprivate var blockedArray = [Int64]()
     
-    fileprivate var blackListNumberArray: [ContactResponse] = []
+//    fileprivate var blackListNumberArray: [ContactResponse] = []
     
-    var page: Int = 0
-    var meta: Meta?
+    fileprivate var page: Int = 0
+    fileprivate var meta: Meta?
+    
+    fileprivate var ReloadAt: Int = 20000
+    fileprivate var NextReloadAt: Int = 20000
+    fileprivate var isReadFromJson: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +67,9 @@ class HomeScreen: UIViewController {
     
     func setUpInitialView(){
         
+        //        let token = Messaging.messaging().fcmToken
+        //        print("FCM token ----> \(token ?? "")")
+        
         maxBlockingButton.setTitleColor(UIColor.init(hex: "34A6E6"), for: .normal)
         maxBlockingButton.setTitleColor(UIColor.white, for: .selected)
         
@@ -75,7 +83,9 @@ class HomeScreen: UIViewController {
         
         setSelectedButton()
         
-        retiveblockNumber()
+        retrieveblockNumber()
+        //        deleteAllRecords()
+        
     }
     
     func setDefalutButtonView(){
@@ -105,6 +115,17 @@ class HomeScreen: UIViewController {
         
         if a == 1{
             maxBlockingSelectedImageView.isHidden = false
+            
+            let JSonFileCount: Int = UserDefaults.standard.value(forKey: KEYJSonFileCount) as? Int ?? 0
+            let BlockNumberCount: Int = UserDefaults.standard.value(forKey: KEYBlockNumberCount) as? Int ?? 0
+            
+            if BlockNumberCount < JSonFileCount{
+                isBlockingNumberInProgress = true
+                blockNumberFormJsonFile()
+            }else{
+                isBlockingNumberInProgress = false
+                self.view.makeToast("Blocked all numbers.")
+            }
         }
         else if a == 2{
             knownCallersSelectedImageView.isHidden = false
@@ -117,45 +138,6 @@ class HomeScreen: UIViewController {
         }
     }
     
-    func blockNumber(nameString : String , number: Int64){
-        
-        //        print("nameString : ", nameString)
-        //        print("number : ", number)
-        //        let num = Int64("\(CountryCode)"+"\(number)")
-        //        print("num : ", num ?? 0)
-        //        print("number : ", number)
-        
-        let caller = self.caller ?? Caller(context: self.callerData.context)
-        caller.name = nameString
-        //        caller.number  = num ?? 0
-        caller.number  = number
-        caller.isBlocked = true
-        caller.isRemoved = false
-        caller.updatedDate = Date()
-        self.callerData.saveContext()
-        
-        //        reload()
-    }
-    
-    func warningNumber(nameString : String , number: Int64){
-        
-        //        print("nameString : ", nameString)
-        //        print("number : ", number)
-        //        let num = Int64("\(CountryCode)"+"\(number)")
-        //        print("num : ", num ?? 0)
-        
-        let caller = self.caller ?? Caller(context: self.callerData.context)
-        caller.name = "This is spam call warning"
-        //        caller.number  = num ?? 0
-        caller.number  = number
-        caller.isBlocked = false
-        caller.isRemoved = false
-        caller.updatedDate = Date()
-        self.callerData.saveContext()
-        
-        //        reload()
-    }
-    
     func reload(){
         
         CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: "com.test.mobile.app.Coverage-call-blocker.Coverage-call-blockerExtension", completionHandler: { (error) in
@@ -164,6 +146,12 @@ class HomeScreen: UIViewController {
             }
         })
     }
+    
+    private func updateUI() {
+        
+    }
+    
+    //MARK: - Retrieve blocked number
     
     func retrieveBlockedData(isWarning: Bool) {
         
@@ -175,33 +163,31 @@ class HomeScreen: UIViewController {
         do {
             try self.resultsController.performFetch()
             
-            let results = self.resultsController.fetchedObjects
+            //            let results = self.resultsController.fetchedObjects
+            let results = try self.callerData.context.fetch(fetchRequest)
+            self.blockedArray.append(contentsOf: results.map({$0.number}))
             
-            for i in 0..<results!.count {
-                autoreleasepool{
-                    let indexPath = IndexPath(item: i, section: 0)
-                    let caller = self.resultsController.object(at: indexPath)
-                    //                let phonenumber = "\(caller.number)"
-                    //                let phonenumberInt = Int64(phonenumber.suffix(10)) ?? 0
-                    //                blockedArray.append(phonenumberInt)
-                    blockedArray.append(caller.number)
-                }
-            }
-            
-//            blockedArray.sort()
+            print("blocked number count : ", blockedArray.count)
             
         } catch {
             print("Failed to fetch data: \(error.localizedDescription)")
         }
         
-        page = 1
-        print("Page : ", page)
-        print("Api calling at : ", Date())
-        max_blockingAPI(isWarning: isWarning, pageINT: page)
-        
+        if isReadFromJson{
+            if isWarning{
+                setWarningFormJsonFile()
+            }else{
+                blockNumberFormJsonFile()
+            }
+        }else{
+            page = 1
+            print("Page : ", page)
+            print("Api calling at : ", Date())
+            max_blockingAPI(isWarning: isWarning, pageINT: page)
+        }
     }
     
-    func retiveblockNumber(){
+    func retrieveblockNumber(){
         blockedArray.removeAll()
         
         let fetchRequest:NSFetchRequest<Caller> = self.callerData.fetchRequest(blocked: true)
@@ -210,38 +196,237 @@ class HomeScreen: UIViewController {
         do {
             try self.resultsController.performFetch()
             
-            let results = self.resultsController.fetchedObjects
+            //            let results = self.resultsController.fetchedObjects
+            let results = try self.callerData.context.fetch(fetchRequest)
             
-            for i in 0..<results!.count {
-                autoreleasepool{
-                    let indexPath = IndexPath(item: i, section: 0)
-                    let caller = self.resultsController.object(at: indexPath)
-                    //                let phonenumber = "\(caller.number)"
-                    //                let phonenumberInt = Int64(phonenumber.suffix(10)) ?? 0
-                    //                blockedArray.append(phonenumberInt)
-                    blockedArray.append(caller.number)
-                }
-            }
+            self.blockedArray.append(contentsOf: results.map({$0.number}))
+            
+            print("blocked number count : ", blockedArray.count)
+            UserDefaults.standard.set(self.blockedArray.count, forKey: KEYBlockNumberCount)
+            UserDefaults.standard.synchronize()
             
         } catch {
             print("Failed to fetch data: \(error.localizedDescription)")
         }
     }
     
-    //    func hasCellularCoverage() -> Bool {
-    //
-    //        if #available(iOS 12.0, *) {
-    //            return CTTelephonyNetworkInfo().serviceSubscriberCellularProviders?.first?.value.mobileNetworkCode != nil
-    //        } else {
-    //            if let _ = CTTelephonyNetworkInfo().subscriberCellularProvider?.isoCountryCode {
-    //                return true
-    //            } else {
-    //                return false
-    //            }
-    //        }
-    //    }
+    //MARK: - Read number from jsonfile
     
-    //MARK: - button clicked event
+    func blockNumberFormJsonFile(){
+        
+        DispatchQueue.global(qos: .background).async {
+            print("Run on background thread")
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.view.makeToast("Start reading number from Json file.")
+            }
+            
+            print("Start reading data from json file : ", Date())
+            
+            if let path = Bundle.main.path(forResource: "spams", ofType: "json") {
+                do {//spams.json   //BlockContacts
+                    let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                    let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                    if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let person = jsonResult["data"] as? NSArray {
+                        
+                        print("End reading data from json file : ", Date())
+                        print("json file number count : ", person.count)
+                        UserDefaults.standard.set(person.count, forKey: KEYJSonFileCount)
+                        UserDefaults.standard.synchronize()
+                        
+                        let BlockNumberCount: Int = UserDefaults.standard.value(forKey: KEYBlockNumberCount) as? Int ?? 0
+                        print("Block Number Count : ", BlockNumberCount)
+                        
+                        let result = Array(person.dropFirst(BlockNumberCount))
+                        print("Remaining json file number count : ", result.count)
+                        
+                        DispatchQueue.main.async { [weak self] in
+                            self?.view.makeToast("Start blocking number from Json file.")
+                            print("Start blocking at : ", Date())
+                        }
+                        
+                        isBlockingNumberInProgress = true
+                        
+                        //                        let context = self.callerData.context
+                        //                        let privateManagedObjectContext: NSManagedObjectContext = {
+                        //                            let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+                        //                            moc.parent = context
+                        //                            return moc
+                        //                        }()
+                        
+                        for item in result {
+                            
+                            let loginData = Utility.getUserData()
+                            if loginData == nil{
+                                print("Stop blocking.")
+                                break
+                            }
+                            
+                            //                            DispatchQueue.main.async {
+                            //                            autoreleasepool {
+                            let data = item as? NSDictionary ?? [:]
+                            self.blockNumberArray.append(MaxBlockingResponse(user_id: data["id"] as? Int ?? 0, phone: data["phone"] as? String ?? "", context: data["context"] as? String ?? ""))
+                            self.blockedArray.append(Int64(data["phone"] as? String ?? "") ?? 0)
+                            
+                            //                            let caller = self.caller ?? Caller(context: self.callerData.context)
+                            //                            let caller = self.caller
+                            //                                        let caller = Caller(context: self.callerData.context)
+                            //                            let caller = NSEntityDescription.insertNewObject(forEntityName: "Caller", into: privateManagedObjectContext) as! Caller
+                            //
+                            //            //                            if caller != nil{
+                            //                                        caller.name = data["context"] as? String ?? ""
+                            //                                        caller.number = Int64(data["phone"] as? String ?? "") ?? 0
+                            //                                        caller.isBlocked = true
+                            //                                        caller.isRemoved = false
+                            //                                        caller.updatedDate = Date()
+                            //            //                            }
+                            
+                            self.saveOrInsertData(name: data["context"] as? String ?? "", number: Int64(data["phone"] as? String ?? "") ?? 0)
+                            
+                            //                            }
+                            if self.blockNumberArray.count == self.ReloadAt{
+                                self.callerData.saveContext()
+                                //                                sleep(UInt32(3.5))
+                                self.reload()
+                                
+                                DispatchQueue.main.async { [weak self] in
+                                    self?.view.makeToast("Successfully blocked \(self?.ReloadAt ?? 0) numbers")
+                                    UserDefaults.standard.set(self?.blockedArray.count ?? 0, forKey: KEYBlockNumberCount)
+                                    UserDefaults.standard.synchronize()
+                                }
+                                
+                                self.ReloadAt = self.ReloadAt + self.NextReloadAt
+                                sleep(UInt32(1.0))
+                                print("End blocking at : ", Date())
+                                print("Successfully blocked \(self.ReloadAt) numbers")
+                                print("Start blocking at : ", Date())
+                            }
+                        }
+                        self.callerData.saveContext()
+                        //                        sleep(UInt32(4.0))
+                        print("End reading data from json file : ", Date())
+                        print("Block number count : ", self.blockNumberArray.count)
+                        print("Start blocking at : ", Date())
+                        self.reload()
+                        print("End blocking at : ", Date())
+                        DispatchQueue.main.async { [weak self] in
+                            self?.view.makeToast("Blocked all numbers.")
+                            isBlockingNumberInProgress = false
+                            //                            self?.endBackgroundTask()
+                        }
+                        
+                        UserDefaults.standard.set(self.blockedArray.count, forKey: KEYBlockNumberCount)
+                        UserDefaults.standard.synchronize()
+                    }
+                } catch {
+                    print("Something wrong")
+                }
+            }
+        }
+    }
+    
+    func saveOrInsertData(name : String, number: Int64){
+        let context = self.callerData.context
+        let privateManagedObjectContext: NSManagedObjectContext = {
+            let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+            moc.parent = context
+            return moc
+        }()
+        
+        let caller = NSEntityDescription.insertNewObject(forEntityName: "Caller", into: privateManagedObjectContext) as! Caller
+        caller.name = name
+        caller.number = number
+        caller.isFromContacts = false
+        caller.isBlocked = true
+        caller.isRemoved = false
+        caller.updatedDate = Date()
+        privateManagedObjectContext.perform {
+            do {
+                try privateManagedObjectContext.save()
+            }catch {
+                print("Something wrong in coredata.")
+            }
+        }
+    }
+    
+    func setWarningFormJsonFile(){
+        print("Start reading data from json file : ", Date())
+        
+        if let path = Bundle.main.path(forResource: "BlockContacts", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let person = jsonResult["data"] as? NSArray {
+                    
+                    print("json file number count : ", person.count)
+                    
+                    for item in 0...person.count - 1 {
+                        let data = person[item] as? NSDictionary ?? [:]
+                        
+                        autoreleasepool {
+                            let caller = self.caller ?? Caller(context: self.callerData.context)
+                            caller.name = "This is spam call warning"
+                            caller.number = Int64(data["phone"] as? String ?? "") ?? 0
+                            caller.isFromContacts = false
+                            caller.isBlocked = false
+                            caller.isRemoved = false
+                            caller.updatedDate = Date()
+                            //                            self.callerBlockNumberArray.append(caller)
+                            //                            self.callerData.saveContext()
+                            
+                            if item == self.ReloadAt{
+                                self.callerData.saveContext()
+                                sleep(UInt32(5.0))
+                                self.reload()
+                                print("Success \(self.ReloadAt) numbers")
+                                
+                                DispatchQueue.main.async {
+                                    self.view.makeToast("Success \(self.ReloadAt) numbers")
+                                }
+                                
+                                print("End blocking at : ", Date())
+                                self.ReloadAt = self.ReloadAt + NextReloadAt
+                                sleep(UInt32(5.0))
+                                print("Start blocking at : ", Date())
+                            }
+                        }
+                        
+                    }
+                    self.callerData.saveContext()
+                    
+                    print("End reading data from json file : ", Date())
+                    print("Number count : ", blockNumberArray.count)
+                    //                    self.goFurthermax_blockingAPI(isWarning: false)
+                    print("Start blocking at : ", Date())
+                    reload()
+                    print("End blocking at : ", Date())
+                }
+            } catch {
+                print("Something wrong")
+            }
+        }
+    }
+    
+    //MARK: - Delete all numbers
+    
+    func deleteAllRecords() {
+        
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Caller")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        
+        do {
+            try self.callerData.context.execute(deleteRequest)
+            try self.callerData.context.save()
+        } catch {
+            print ("There was an error")
+        }
+        
+        reload()
+        retrieveblockNumber()
+        
+    }
+    
+    //MARK: - Button clicked event
     
     @IBAction func onMenu(_ sender: Any)
     {
@@ -301,6 +486,7 @@ class HomeScreen: UIViewController {
         }
         
     }
+    
     @IBAction func onSelectMaxBlocking(_ sender: UIButton) {
         if hasCellularCoverage() == false{
             self.view.makeToast(SimNotAvailableMessage)
@@ -319,43 +505,48 @@ class HomeScreen: UIViewController {
         UserDefaults.standard.synchronize()
         
         setSelectedButton()
+        
+        //        DispatchQueue.background(background: {
+        //            self.retrieveBlockedData(isWarning: false)
+        //        }, completion:{
+        //            UserDefaults.standard.setValue(1, forKey: KEYSelectedOptionOnHomeScreen)
+        //            UserDefaults.standard.synchronize()
+        //
+        //            self.setSelectedButton()
+        //        })
+        
     }
     
     @IBAction func onSelectKnownCallers(_ sender: UIButton) {
+        
+        self.view.makeToast("This module is under development")
+        return
+        
         if hasCellularCoverage() == false{
             self.view.makeToast(SimNotAvailableMessage)
             return
         }
         
-        page = 1
-        getSpamsAPI(pageINT: page)
-        
-        UserDefaults.standard.setValue(2, forKey: KEYSelectedOptionOnHomeScreen)
-        UserDefaults.standard.synchronize()
-        
-        setSelectedButton()
-    }
-    
-    @IBAction func onSelectNoBlocking(_ sender: UIButton) {
-        if hasCellularCoverage() == false{
-            self.view.makeToast(SimNotAvailableMessage)
+        let selectebutton: Int = UserDefaults.standard.value(forKey: KEYSelectedOptionOnHomeScreen) as? Int ?? 0
+        if selectebutton == 2{
+            self.view.makeToast("You are already in Spam Blocking system.")
             return
         }
         
         //=========
         
-        if let tempDic = UserDefaults.standard.value(forKey: KEYBlackListArray) as? [[String:Any]]  {
-            
-            for i in tempDic {
-                autoreleasepool{
-                    if let obj = ContactResponse(JSON:i) {
-                        self.blackListNumberArray.append(obj)
-                    }
-                }
-            }
-            
-            print("BlackList array from user defaults : ",self.blackListNumberArray.toJSON())
-        }
+//        if let tempDic = UserDefaults.standard.value(forKey: KEYBlackListArray) as? [[String:Any]]  {
+//
+//            for i in tempDic {
+//                autoreleasepool{
+//                    if let obj = ContactResponse(JSON:i) {
+//                        self.blackListNumberArray.append(obj)
+//                    }
+//                }
+//            }
+//
+//            print("BlackList array from user defaults : ",self.blackListNumberArray.toJSON())
+//        }
         
         //=========
         let results = self.resultsController.fetchedObjects
@@ -365,32 +556,165 @@ class HomeScreen: UIViewController {
                 let indexPath = IndexPath(item: i, section: 0)
                 let caller = self.resultsController.object(at: indexPath)
                 
-                //            let phonenumber = "\(caller.number)"
-                //            let phonenumberInt = Int64(phonenumber.suffix(10)) ?? 0
-                
-                //            if self.blackListNumberArray.contains(where: { $0.number != Int64(phonenumberInt)}){
-                if self.blackListNumberArray.contains(where: { $0.number != caller.number}){
-                    
+//                if self.blackListNumberArray.contains(where: { $0.number != caller.number}){
+//
+//                    caller.isRemoved = true
+//                    //            caller.isBlocked = false
+//                    caller.updatedDate = Date()                    //                    self.callerData.saveContext()
+//                }
+//                else{
+                    caller.name = caller.name
+                    //                caller.number  = num ?? 0
+                    caller.number = caller.number
+                    caller.isFromContacts = false
+                    caller.isBlocked = true
                     caller.isRemoved = true
-                    //            caller.isBlocked = false
                     caller.updatedDate = Date()
-                    self.callerData.saveContext()
+                    //                    self.callerData.saveContext()
+//                }
+            }
+        }
+        self.callerData.saveContext()
+        self.reload()
+        
+        Utility.hideIndicator()
+        
+        if isReadFromJson{
+            
+            print("Start reading data from json file : ", Date())
+            
+            if let path = Bundle.main.path(forResource: "spams", ofType: "json") {
+                do {
+                    let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                    let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                    if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let person = jsonResult["data"] as? NSArray {
+                        
+                        print("json file number count : ", person.count)
+                        
+                        for item in 0...person.count - 1 {
+                            autoreleasepool {
+                                let data = person[item] as? NSDictionary ?? [:]
+                                
+                                let caller = self.caller ?? Caller(context: self.callerData.context)
+                                caller.name = data["context"] as? String ?? ""
+                                caller.number = Int64(data["phone"] as? String ?? "") ?? 0
+                                caller.isFromContacts = false
+                                caller.isBlocked = true
+                                caller.isRemoved = false
+                                caller.updatedDate = Date()
+                                //                            self.callerBlockNumberArray.append(caller)
+                                //                            self.callerData.saveContext()
+                            }
+                            
+                            if item == self.ReloadAt{
+                                self.callerData.saveContext()
+                                sleep(UInt32(5.0))
+                                self.reload()
+                                print("Success \(self.ReloadAt) numbers")
+                                
+                                DispatchQueue.main.async {
+                                    self.view.makeToast("Success \(self.ReloadAt) numbers")
+                                }
+                                
+                                print("End blocking at : ", Date())
+                                self.ReloadAt = self.ReloadAt + NextReloadAt
+                                sleep(UInt32(5.0))
+                                print("Start blocking at : ", Date())
+                            }
+                        }
+                        self.callerData.saveContext()
+                        
+                        print("End reading data from json file : ", Date())
+                        print("Number count : ", self.blockNumberArray.count)
+                        //                    self.goFurthermax_blockingAPI(isWarning: false)
+                        print("Start blocking at : ", Date())
+                        self.reload()
+                        print("End blocking at : ", Date())
+                    }
+                } catch {
+                    print("Something wrong")
                 }
-                else{
+            }
+            
+        }else{
+            page = 1
+            getSpamsAPI(pageINT: page)
+        }
+        
+        UserDefaults.standard.setValue(2, forKey: KEYSelectedOptionOnHomeScreen)
+        UserDefaults.standard.synchronize()
+        
+        setSelectedButton()
+    }
+    
+    @IBAction func onSelectNoBlocking(_ sender: UIButton) {
+        
+        self.view.makeToast("This module is under development")
+        return
+        
+        if hasCellularCoverage() == false{
+            self.view.makeToast(SimNotAvailableMessage)
+            return
+        }
+        
+        let selectebutton: Int = UserDefaults.standard.value(forKey: KEYSelectedOptionOnHomeScreen) as? Int ?? 0
+        if selectebutton == 3{
+            self.view.makeToast("You already set spam call warning.")
+            return
+        }
+        
+        DispatchQueue.main.async {
+            Utility.showIndecator()
+        }
+        
+        //=========
+        
+//        if let tempDic = UserDefaults.standard.value(forKey: KEYBlackListArray) as? [[String:Any]]  {
+//
+//            for i in tempDic {
+//                autoreleasepool{
+//                    if let obj = ContactResponse(JSON:i) {
+//                        self.blackListNumberArray.append(obj)
+//                    }
+//                }
+//            }
+//
+//            print("BlackList array from user defaults : ",self.blackListNumberArray.toJSON())
+//        }
+        
+        //=========
+        let results = self.resultsController.fetchedObjects
+        
+        for i in 0..<results!.count {
+            autoreleasepool{
+                let indexPath = IndexPath(item: i, section: 0)
+                let caller = self.resultsController.object(at: indexPath)
+                
+//                if self.blackListNumberArray.contains(where: { $0.number != caller.number}){
+//
+//                    caller.isRemoved = true
+//                    //            caller.isBlocked = false
+//                    caller.updatedDate = Date()                    //                    self.callerData.saveContext()
+//                }
+//                else{
                     //                print("phonenumberInt : ", phonenumberInt)
                     //                let num = Int64("\(CountryCode)"+"\(phonenumberInt)")
                     
                     caller.name = caller.name
                     //                caller.number  = num ?? 0
                     caller.number = caller.number
+                    caller.isFromContacts = false
                     caller.isBlocked = true
                     caller.isRemoved = true
                     caller.updatedDate = Date()
-                    self.callerData.saveContext()
-                }
+                    //                    self.callerData.saveContext()
+//                }
             }
         }
+        self.callerData.saveContext()
         self.reload()
+        
+        Utility.hideIndicator()
         
         //========
         
@@ -408,8 +732,8 @@ extension HomeScreen{
     
     //MARK: - max_blocking API
     func max_blockingAPI(isWarning: Bool,pageINT: Int){
-        self.view.endEditing(true)
-        Utility.showIndecator()
+        //        self.view.endEditing(true)
+        //        Utility.showIndecator()
         let url = "\(getMaxBlockingURL)?page=\(page)"
         ServeyServices.shared.max_blocking(url:url,success: {  (statusCode, response) in
             
@@ -419,12 +743,13 @@ extension HomeScreen{
             
             if (response?.maxBlockingResponse) != nil{
                 print("Api response at : ", Date())
-                if self.meta?.lastPage ?? 0 >= self.meta?.currentPage ?? 0{
+                if self.meta?.lastPage ?? 0 >= self.meta?.currentPage ?? 0
+                {
                     self.blockNumberArray = response?.maxBlockingResponse ?? []
-//                    self.blockNumberArray = self.blockNumberArray.sorted(by: { $0.phone ?? "" > $1.phone ?? "" })
                     self.goFurthermax_blockingAPI(isWarning: isWarning)
-                    
-                }else{
+                }
+                else
+                {
                     Utility.hideIndicator()
                     self.view.makeToast("Success")
                 }
@@ -440,7 +765,7 @@ extension HomeScreen{
     func goFurthermax_blockingAPI(isWarning: Bool){
         
         //        print("==== Start blocking ====")
-        print("Start blocking at : ", Date())
+        print("Start Store number in db at : ", Date())
         
         //=== Before
         
@@ -448,22 +773,44 @@ extension HomeScreen{
             autoreleasepool {
                 let contact = self.blockNumberArray[i]
                 if isWarning{
-                    self.warningNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0)
+                    //                    self.warningNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0)
+                    
+                    let caller = self.caller ?? Caller(context: self.callerData.context)
+                    caller.name = "This is spam call warning"
+                    //        caller.number  = num ?? 0
+                    caller.number  = Int64(contact.phone ?? "0") ?? 0
+                    caller.isFromContacts = false
+                    caller.isBlocked = false
+                    caller.isRemoved = false
+                    caller.updatedDate = Date()
+                    self.callerData.saveContext()
+                    
                 }
                 else{
                     autoreleasepool {
-                        //                let phonenumber = contact.phone ?? "0"
-                        //                let phonenumberInt = Int(phonenumber.suffix(10))
-                        //                print("phonenumberInt : ", phonenumberInt ?? "")
                         
                         if !self.blockedArray.contains(Int64(contact.phone ?? "0") ?? 0){
-                            self.blockNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0 )
+                            //                            self.blockNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0 )
+                            
+                            let caller = self.caller ?? Caller(context: self.callerData.context)
+                            caller.name = contact.context ?? ""
+                            //        caller.number  = num ?? 0
+                            caller.number  = Int64(contact.phone ?? "0") ?? 0
+                            caller.isFromContacts = false
+                            caller.isBlocked = true
+                            caller.isRemoved = false
+                            caller.updatedDate = Date()
+                            //                            self.callerData.saveContext()
+                            
                         }
                     }
                 }
             }
         }
         
+        print("End Store number in db at : ", Date())
+        
+        print("Start blocking at : ", Date())
         //        //=== After
         //
         //        let array = self.blockNumberArray.filter{ !self.blockedArray.contains(Int64($0.phone?.suffix(10) ?? "") ?? 0)}
@@ -485,7 +832,7 @@ extension HomeScreen{
         //        print("==== End blocking ====")
         print("End blocking at : ", Date())
         
-        retiveblockNumber()
+        retrieveblockNumber()
         
         let currentPage = self.meta?.currentPage ?? 0
         self.page = currentPage + 1
@@ -534,13 +881,32 @@ extension HomeScreen{
                 //            let phonenumber = contact.phone ?? "0"
                 //            let phonenumberInt = Int(phonenumber.suffix(10))
                 
-                if !self.blockedArray.contains(Int64(contact.phone ?? "0") ?? 0){
-                    self.blockNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0)
+                //                if !self.blockedArray.contains(Int64(contact.phone ?? "0") ?? 0){
+                //                    self.blockNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0)
+                //                }
+                
+                autoreleasepool {
+                    
+                    if !self.blockedArray.contains(Int64(contact.phone ?? "0") ?? 0){
+                        //                            self.blockNumber(nameString: contact.context ?? "" , number: Int64(contact.phone ?? "0") ?? 0 )
+                        
+                        let caller = self.caller ?? Caller(context: self.callerData.context)
+                        caller.name = contact.context ?? ""
+                        //        caller.number  = num ?? 0
+                        caller.number  = Int64(contact.phone ?? "0") ?? 0
+                        caller.isFromContacts = false
+                        caller.isBlocked = true
+                        caller.isRemoved = false
+                        caller.updatedDate = Date()
+                        //                            self.callerData.saveContext()
+                        
+                    }
                 }
+                
             }
         }
         
-        retiveblockNumber()
+        retrieveblockNumber()
         
         let currentPage = self.meta?.currentPage ?? 0
         self.page = currentPage + 1
@@ -548,4 +914,30 @@ extension HomeScreen{
         
     }
 }
+
+//DispatchQueue.background(delay: 3.0, background: {
+//    // do something in background
+//}, completion: {
+//    // when background job finishes, wait 3 seconds and do something in main thread
+//})
+//
+//DispatchQueue.background(background: {
+//    // do something in background
+//}, completion:{
+//    // when background job finished, do something in main thread
+//})
+//
+//DispatchQueue.background(delay: 3.0, completion:{
+//    // do something in main thread after 3 seconds
+//})
+
+////==========
+//Dispatch.background {
+//    // do stuff
+//
+//    Dispatch.main {
+//        // update UI
+//    }
+//}
+////==========
 

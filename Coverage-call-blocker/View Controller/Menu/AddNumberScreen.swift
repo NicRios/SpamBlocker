@@ -153,6 +153,7 @@ class AddNumberScreen: UIViewController {
         let caller = self.caller ?? Caller(context: self.callerData.context)
         caller.name = nameString
         caller.number  = num ?? 0
+        caller.isFromContacts = true
         caller.isBlocked = true
         caller.isRemoved = false
         caller.updatedDate = Date()

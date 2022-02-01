@@ -102,6 +102,12 @@ class MaxBlockingResponse: Mappable{
         
     }
     
+    init(user_id: Int?, phone: String?, context: String) {
+        self.user_id = user_id
+        self.phone = phone
+        self.context = context
+    }
+    
     func mapping(map: Map) {
         
         user_id <- map["user_id"]

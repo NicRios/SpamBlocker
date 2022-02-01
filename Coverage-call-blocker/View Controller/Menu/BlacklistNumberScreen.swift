@@ -26,13 +26,13 @@ class BlacklistNumberScreen: UIViewController {
     @IBOutlet weak var blockNumberTableView: UITableView!
     
     lazy private var callerData = CallerData()
-    private var resultsController: NSFetchedResultsController<Caller>!
+    //    private var resultsController: NSFetchedResultsController<Caller>!
     
-    var contactArray: [ContactResponse] = []
-    var contactArrayMain: [ContactResponse] = []
+    //    var contactArray: [ContactResponse] = []
+    //    var contactArrayMain: [ContactResponse] = []
     
-    fileprivate var blackListNumberArray: [ContactResponse] = []
-    fileprivate var blackListNumberArrayMain: [ContactResponse] = []
+    fileprivate var blackListNumberArray: [Caller] = [] //ContactResponse
+    fileprivate var blackListNumberArrayMain: [Caller] = []    //ContactResponse
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,29 +43,34 @@ class BlacklistNumberScreen: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        blackListNumberArray.removeAll()
-        blackListNumberArrayMain.removeAll()
+        //        blackListNumberArray.removeAll()
+        //        blackListNumberArrayMain.removeAll()
+        //
+        //        if let tempDic = UserDefaults.standard.value(forKey: KEYBlackListArray) as? [[String:Any]]  {
+        //
+        //            for i in tempDic {
+        //                if let obj = ContactResponse(JSON:i) {
+        //                    self.blackListNumberArray.append(obj)
+        //                    self.blackListNumberArrayMain.append(obj)
+        //                }
+        //            }
+        //
+        //            print("Blacklist array from user defaults : ",self.blackListNumberArray.toJSON())
+        //        }
         
-        if let tempDic = UserDefaults.standard.value(forKey: KEYBlackListArray) as? [[String:Any]]  {
-            
-            for i in tempDic {
-                if let obj = ContactResponse(JSON:i) {
-                    self.blackListNumberArray.append(obj)
-                    self.blackListNumberArrayMain.append(obj)
-                }
-            }
-            
-            print("Blacklist array from user defaults : ",self.blackListNumberArray.toJSON())
-        }
+        //        blockNumberTableView.reloadData()
         
-        blockNumberTableView.reloadData()
+        retrieveDataFirstTime()
     }
     
     func reload(){
         
         CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: "com.test.mobile.app.Coverage-call-blocker.Coverage-call-blockerExtension", completionHandler: { (error) in
-            if let error = error {
-                print("Error reloading extension: \(error.localizedDescription)")
+            
+            if (error == nil) {
+                print("======== UnBlock successfully.=========")
+            }else{
+                print("Error reloading extension: \(error?.localizedDescription ?? "")")
             }
         })
     }
@@ -78,6 +83,61 @@ class BlacklistNumberScreen: UIViewController {
         searchTextField.delegate = self
         searchTextField.addTarget(self, action: #selector(txtSearchTextChange(_:)), for: .editingChanged)
         
+    }
+    
+    func retrieveDataFirstTime() {
+        
+        let manageContext = self.callerData.context
+        //
+        //        let fetchRequest:NSFetchRequest<Caller> = self.callerData.fetchRequest(blocked: true)
+        //
+        //        self.resultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.callerData.context, sectionNameKeyPath: nil, cacheName: nil)
+        //
+        //        self.resultsController.delegate = self
+        //        do {
+        ////            try self.resultsController.performFetch()
+        //            blackListNumberArray = try manageContext.fetch(fetchRequest)
+        //        } catch {
+        //            print("Failed to fetch data: \(error.localizedDescription)")
+        //        }
+        ////        print(self.resultsController.fetchedObjects?.count)
+        //        blockNumberTableView.reloadData()
+        
+        //============
+        
+        let fetchRequest = NSFetchRequest<Caller>(entityName: "Caller")
+        
+        let fetchRequestIsBlocked = NSPredicate(format:"isBlocked == %@",NSNumber(value:true))
+        let fetchRequestIsFromContact = NSPredicate(format:"isFromContacts == %@",NSNumber(value:true))
+        let fetchRequestIsRemoved = NSPredicate(format:"isRemoved == %@",NSNumber(value:false))
+        let predicate: NSPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fetchRequestIsBlocked,fetchRequestIsFromContact,fetchRequestIsRemoved])
+        fetchRequest.predicate = predicate
+        
+        do {
+            blackListNumberArray = try manageContext.fetch(fetchRequest)
+            blackListNumberArrayMain = blackListNumberArray
+        } catch {
+            print("Failed to fetch data: \(error.localizedDescription)")
+        }
+        
+        blockNumberTableView.reloadData()
+    }
+    
+    func unblocknumber(data: Caller){
+        
+        let manageContext = self.callerData.context
+        do {
+            data.isRemoved = true
+            //            caller.isBlocked = false
+            data.updatedDate = Date()
+            try manageContext.save()
+        }catch let error{
+            print("Could not update local video id \(error)")
+        }
+        
+        self.reload()
+        
+        retrieveDataFirstTime()
     }
     
     //MARK: - Button clicked event
@@ -111,22 +171,51 @@ class BlacklistNumberScreen: UIViewController {
         }
     }
     
-    func unBlockNumber(nameString : String , number: Int64){
-        
-        print("nameString : ", nameString)
-        
-        let num = Int64("\(CountryCode)"+"\(number)")
-        print("num : ", num ?? 0)
-        
-        let caller = self.caller ?? Caller(context: self.callerData.context)
-        caller.isRemoved = true
-        //            caller.isBlocked = false
-        caller.updatedDate = Date()
-        self.callerData.saveContext()
-        
-        self.reload()
-        
-    }
+    //    func unBlockNumber(nameString : String , number: Int64){
+    //
+    //        let num = Int64("\(CountryCode)"+"\(number)")
+    ////        self.resultsController.fetchedObjects?.forEach({ objCaller in
+    ////            if objCaller.number == num{
+    ////
+    //////                let indexPath = IndexPath(row: index, section: 0)
+    //////                let caller = self.resultsController.object(at: indexPath)
+    ////                objCaller.isRemoved = true
+    ////                //            caller.isBlocked = false
+    ////                objCaller.updatedDate = Date()
+    ////
+    ////            }
+    ////        })
+    //
+    ////        let array = self.resultsController.fetchedObjects?.filter({
+    ////            $0.number == number
+    ////        })
+    //
+    ////        print(self.resultsController.sections?.count ?? 0)
+    //
+    //        if let index = self.resultsController.fetchedObjects?.firstIndex(where: {$0.number == num}){
+    ////            print("index : ", index)
+    //            let numberindexPath = IndexPath(row: index, section: 0)
+    //            let caller = self.resultsController.object(at: numberindexPath)
+    //            caller.isRemoved = true
+    //            //            caller.isBlocked = false
+    //            caller.updatedDate = Date()
+    //        }
+    //
+    //
+    ////        print("nameString : ", nameString)
+    ////
+    ////        let num = Int64("\(CountryCode)"+"\(number)")
+    ////        print("num : ", num ?? 0)
+    ////
+    ////        let caller = self.caller ?? Caller(context: self.callerData.context)
+    ////        caller.isRemoved = true
+    ////        //            caller.isBlocked = false
+    ////        caller.updatedDate = Date()
+    ////        self.callerData.saveContext()
+    ////        sleep(1)
+    ////        self.reload()
+    //
+    //    }
     
     //MARK: - search
     @IBAction func txtSearchTextChange(_ sender: Any) {
@@ -156,6 +245,8 @@ extension BlacklistNumberScreen: UITableViewDelegate,UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
+        //        return self.resultsController.sections?.count ?? 0
+        
         var numOfSections: Int = 0
         
         if blackListNumberArray.count > 0 {
@@ -175,6 +266,7 @@ extension BlacklistNumberScreen: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        //        return self.resultsController.fetchedObjects?.count ?? 0
         return blackListNumberArray.count
         
     }
@@ -182,6 +274,9 @@ extension BlacklistNumberScreen: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as? ContactTableViewCell ?? Bundle.main.loadNibNamed("ContactTableViewCell", owner: self, options: nil)![0] as! ContactTableViewCell
         cell.selectionStyle = .none
+        
+        //        let caller = self.resultsController.object(at: indexPath)
+        //        cell.nameLabel?.text =  "\(caller.name ?? "")"
         
         cell.nameLabel.text = blackListNumberArray[indexPath.row].name
         
@@ -196,34 +291,70 @@ extension BlacklistNumberScreen: UITableViewDelegate,UITableViewDataSource{
         
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: {_ in
             
-            let phoneNumber = self.blackListNumberArray[indexPath.row].number
+            //            let caller = self.resultsController.object(at: indexPath)
+            //            caller.isRemoved = true
+            //            //            caller.isBlocked = false
+            //            caller.updatedDate = Date()
+            //            self.callerData.saveContext()
+            //
+            //            self.reload()
+            //            sleep(1)
+            //            self.retrieveDataFirstTime()
+            //
+            //            self.blackListNumberArray.removeAll()
+            //            UserDefaults.standard.set(self.blackListNumberArray.toJSON(), forKey: KEYBlackListArray)
+            //            UserDefaults.standard.synchronize()
             
-            for i in 0..<self.blackListNumberArray.count {
-                let data = self.blackListNumberArray[i]
-                if data.number == Int64(phoneNumber ?? 0){
-                    
-                    let a = "\(data.number ?? 0)"
-                    let number = Int64(String(a.suffix(10)))
-                    self.unBlockNumber(nameString: data.name ?? "" , number: number ?? 0)
-                    
-                    self.blackListNumberArray.remove(at: i)
-                    
-                    UserDefaults.standard.set(self.blackListNumberArray.toJSON(), forKey: KEYBlackListArray)
-                    UserDefaults.standard.synchronize()
-                    
-                    self.searchTextField.text = ""
-                    
-                    self.view.makeToast("Number remove successfully.")
-                    
-                    self.blackListNumberArrayMain = self.blackListNumberArray
-                    
-                    break
-                }
-            }
+            ////            let phoneNumber = self.blackListNumberArray[indexPath.row].number
+            //
+            ////            autoreleasepool{
+            ////                for i in 0..<self.blackListNumberArray.count {
+            ////            let data = self.blackListNumberArray[indexPath.row]
+            ////                    if data.number == Int64(phoneNumber ?? 0){
+            //
+            ////                        let a = "\(data.number ?? 0)"
+            //                        let a = self.blackListNumberArray[indexPath.row].number
+            //                        let number = Int64(String(a.suffix(10)))
+            ////                        self.unBlockNumber(nameString: data.name ?? "" , number: number ?? 0)
+            //
+            //                        let num = Int64("\(CountryCode)"+"\(number ?? 0)")
+            //                        if let index = self.resultsController.fetchedObjects?.firstIndex(where: {$0.number == num}){
+            //                            print("index : ", index)
+            //                            print("sections : ", self.resultsController.sections?.count ?? 0)
+            //                            let numberIndexPath = IndexPath(row: index, section: 0)
+            //                            print("numberIndexPath : ", numberIndexPath)
+            //                            print(self.resultsController.object(at: indexPath))
+            //                            let caller = self.resultsController.object(at: numberIndexPath)
+            //                            caller.isRemoved = true
+            //                            //            caller.isBlocked = false
+            //                            caller.updatedDate = Date()
+            //
+            //                            self.callerData.saveContext()
+            //
+            //                            self.reload()
+            //                        }
+            //
+            ////                        self.blackListNumberArray.remove(at: i)
+            //
+            //                        UserDefaults.standard.set(self.blackListNumberArray.toJSON(), forKey: KEYBlackListArray)
+            //                        UserDefaults.standard.synchronize()
+            //
+            //                        self.searchTextField.text = ""
+            //
+            //                        self.view.makeToast("Number remove successfully.")
+            //
+            //                        self.blackListNumberArrayMain = self.blackListNumberArray
+            //
+            ////                        break
+            ////                    }
+            ////                }
+            ////            }
+            //
+            //            tableView.reloadData()
+            //
+            //            self.view.makeToast("Number unblock successfully.")
             
-            tableView.reloadData()
-            
-            self.view.makeToast("Number unblock successfully.")
+            self.unblocknumber(data: self.blackListNumberArray[indexPath.row])
             
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: nil))
@@ -232,35 +363,35 @@ extension BlacklistNumberScreen: UITableViewDelegate,UITableViewDataSource{
     }
 }
 
-extension BlacklistNumberScreen: NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.blockNumberTableView.beginUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        let newIndexPath: IndexPath? = newIndexPath != nil ? IndexPath(row: newIndexPath!.row, section: 0) : nil
-        let currentIndexPath: IndexPath? = indexPath != nil ? IndexPath(row: indexPath!.row, section: 0) : nil
-        
-        switch type {
-        case .insert:
-            self.blockNumberTableView.insertRows(at: [newIndexPath!], with: .automatic)
-            
-        case .delete:
-            self.blockNumberTableView.deleteRows(at: [currentIndexPath!], with: .fade)
-            
-        case .move:
-            self.blockNumberTableView.moveRow(at: currentIndexPath!, to: newIndexPath!)
-            
-        case .update:
-            self.blockNumberTableView.reloadRows(at: [currentIndexPath!], with: .automatic)
-            
-        @unknown default:
-            fatalError()
-        }
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.blockNumberTableView.endUpdates()
-    }
-}
+//extension BlacklistNumberScreen: NSFetchedResultsControllerDelegate {
+//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        self.blockNumberTableView.beginUpdates()
+//    }
+//
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+//
+//        let newIndexPath: IndexPath? = newIndexPath != nil ? IndexPath(row: newIndexPath!.row, section: 0) : nil
+//        let currentIndexPath: IndexPath? = indexPath != nil ? IndexPath(row: indexPath!.row, section: 0) : nil
+//
+//        switch type {
+//        case .insert:
+//            self.blockNumberTableView.insertRows(at: [newIndexPath!], with: .automatic)
+//
+//        case .delete:
+//            self.blockNumberTableView.deleteRows(at: [currentIndexPath!], with: .fade)
+//
+//        case .move:
+//            self.blockNumberTableView.moveRow(at: currentIndexPath!, to: newIndexPath!)
+//
+//        case .update:
+//            self.blockNumberTableView.reloadRows(at: [currentIndexPath!], with: .automatic)
+//
+//        @unknown default:
+//            fatalError()
+//        }
+//    }
+//
+//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        self.blockNumberTableView.endUpdates()
+//    }
+//}

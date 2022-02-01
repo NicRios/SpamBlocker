@@ -24,16 +24,16 @@ class ContactsScreen: UIViewController {
     @IBOutlet weak var contactTableView: UITableView!
     
     lazy private var callerData = CallerData()
-    private var resultsController: NSFetchedResultsController<Caller>!
+    //    private var resultsController: NSFetchedResultsController<Caller>!
     
     fileprivate var whiteListNumberArray: [ContactResponse] = []
-    fileprivate var blackListNumberArray: [ContactResponse] = []
-    var contactArray: [ContactResponse] = []
-    var contactArrayMain: [ContactResponse] = []
+    fileprivate var blackListNumberArray: [Caller] = [] //ContactResponse
+    fileprivate var contactArray: [ContactResponse] = []
+    fileprivate var contactArrayMain: [ContactResponse] = []
+    
+    //    fileprivate var blockNumberArray = [Int64]()
     
     var isWhiteListNumber: Bool = false
-    
-    var blockNumberArray = [Int64]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,34 +62,59 @@ class ContactsScreen: UIViewController {
             }
         }
         
-        if let tempBlackDic = UserDefaults.standard.value(forKey: KEYBlackListArray) as? [[String:Any]]  {
-            
-            for i in tempBlackDic {
-                if let obj = ContactResponse(JSON:i) {
-                    self.blackListNumberArray.append(obj)
-                }
-            }
-        }
+        //        if let tempBlackDic = UserDefaults.standard.value(forKey: KEYBlackListArray) as? [[String:Any]]  {
+        //
+        //            for i in tempBlackDic {
+        //                if let obj = ContactResponse(JSON:i) {
+        //                    self.blackListNumberArray.append(obj)
+        //                }
+        //            }
+        //        }
     }
+    
+    //    func retrieveDataFirstTime() {
+    //
+    //        let fetchRequest:NSFetchRequest<Caller> = self.callerData.fetchRequest(blocked: true)
+    //
+    //        self.resultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.callerData.context, sectionNameKeyPath: nil, cacheName: nil)
+    //        do {
+    //            try self.resultsController.performFetch()
+    //
+    //            let results = self.resultsController.fetchedObjects
+    //
+    //            for i in 0..<results!.count {
+    //                let indexPath = IndexPath(item: i, section: 0)
+    //                let caller = self.resultsController.object(at: indexPath)
+    //                let phonenumber = "\(caller.number)"
+    //                let phonenumberInt = Int64(phonenumber.suffix(10)) ?? 0
+    //                blockNumberArray.append(phonenumberInt)
+    //            }
+    //
+    //            print("blocked number count : ", blockNumberArray.count)
+    //
+    //        } catch {
+    //            print("Failed to fetch data: \(error.localizedDescription)")
+    //        }
+    //
+    //        getContact()
+    //    }
     
     func retrieveDataFirstTime() {
         
-        let fetchRequest:NSFetchRequest<Caller> = self.callerData.fetchRequest(blocked: true)
+        let manageContext = self.callerData.context
         
-        self.resultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.callerData.context, sectionNameKeyPath: nil, cacheName: nil)
+        //============
+        
+        let fetchRequest = NSFetchRequest<Caller>(entityName: "Caller")
+        
+        let fetchRequestIsBlocked = NSPredicate(format:"isBlocked == %@",NSNumber(value:true))
+        let fetchRequestIsFromContact = NSPredicate(format:"isFromContacts == %@",NSNumber(value:true))
+        let fetchRequestIsRemoved = NSPredicate(format:"isRemoved == %@",NSNumber(value:false))
+        let predicate: NSPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fetchRequestIsBlocked,fetchRequestIsFromContact,fetchRequestIsRemoved])
+        fetchRequest.predicate = predicate
+        
         do {
-            try self.resultsController.performFetch()
-            
-            let results = self.resultsController.fetchedObjects
-            
-            for i in 0..<results!.count {
-                let indexPath = IndexPath(item: i, section: 0)
-                let caller = self.resultsController.object(at: indexPath)
-                let phonenumber = "\(caller.number)"
-                let phonenumberInt = Int64(phonenumber.suffix(10)) ?? 0
-                blockNumberArray.append(phonenumberInt)
-            }
-            
+            blackListNumberArray = try manageContext.fetch(fetchRequest)
         } catch {
             print("Failed to fetch data: \(error.localizedDescription)")
         }
@@ -129,13 +154,16 @@ class ContactsScreen: UIViewController {
                         if contact.phoneNumbers.count > 0{
                             let phonenumber = (contact.phoneNumbers[0].value).value(forKey: "digits") as? String ?? ""
                             let phonenumberInt = Int(phonenumber.suffix(10))
-                            let phonenumberWhitelistInt = Int64(phonenumber)
+                            let num = Int64("\(CountryCode)"+"\(phonenumberInt ?? 0)")
+                            //                            let phonenumberWhitelistInt = Int64(phonenumber)
                             
-                            if self.blockNumberArray.contains(Int64(phonenumberInt ?? 0)){
+                            //                            if self.blockNumberArray.contains(Int64(phonenumberInt ?? 0))
+                            if self.blackListNumberArray.contains(where: { $0.number == Int64(num ?? 0)})
+                            {
                                 
                             }
                             //                            else if self.whiteListNumberArray.contains(Int64(phonenumberWhitelistInt ?? 0)){
-                            else if self.whiteListNumberArray.contains(where: { $0.number == Int64(phonenumberWhitelistInt ?? 0)})
+                            else if self.whiteListNumberArray.contains(where: { $0.number == Int64(phonenumberInt ?? 0)})
                             {
                                 
                             }
@@ -150,6 +178,8 @@ class ContactsScreen: UIViewController {
                     print("unable to fetch contacts")
                 }
                 
+                print("contacts : ", contacts.count)
+                
                 if contacts.count > 0{
                     for contact in contacts {
                         
@@ -161,17 +191,18 @@ class ContactsScreen: UIViewController {
                             //self.contactArray.append(ContactResponse(name: "\(contact.givenName) \(contact.familyName)", number: number, isWhiteList: false, isBlackList: false))
                             self.contactArrayMain.append(ContactResponse(name: "\(contact.givenName) \(contact.familyName)", number: number, isWhiteList: false, isBlackList: false))
                             
-                            self.contactArray = self.contactArrayMain
+                            //                            self.contactArray = self.contactArrayMain
                             
                         }
                     }
                     
                     DispatchQueue.main.async {
+                        self.contactArray = self.contactArrayMain
                         self.contactTableView.reloadData()
                     }
                 }
             } else {
-                print("access denied")
+                self.view.makeToast("Please give permision to access contacts.")
             }
         }
     }
@@ -179,8 +210,11 @@ class ContactsScreen: UIViewController {
     func reload(){
         
         CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: "com.test.mobile.app.Coverage-call-blocker.Coverage-call-blockerExtension", completionHandler: { (error) in
-            if let error = error {
-                print("Error reloading extension: \(error.localizedDescription)")
+            
+            if (error == nil) {
+                print("========Block successfully.=========")
+            }else{
+                print("Error reloading extension: \(error?.localizedDescription ?? "")")
             }
         })
     }
@@ -196,12 +230,37 @@ class ContactsScreen: UIViewController {
         let caller = self.caller ?? Caller(context: self.callerData.context)
         caller.name = nameString
         caller.number  = num ?? 0
+        caller.isFromContacts = true
         caller.isBlocked = true
         caller.isRemoved = false
         caller.updatedDate = Date()
-        self.callerData.saveContext()
-        
+        //        self.callerData.saveContext()
     }
+    
+    //    func saveOrInsertData(name : String, number: Int64){
+    //        //        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    //        //        let context = appDelegate.persistentContainer.viewContext
+    //        let context = self.callerData.context
+    //        let privateManagedObjectContext: NSManagedObjectContext = {
+    //            let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+    //            moc.parent = context
+    //            return moc
+    //        }()
+    //
+    //        let caller = NSEntityDescription.insertNewObject(forEntityName: "Caller", into: privateManagedObjectContext) as! Caller
+    //        caller.name = name
+    //        caller.number = number
+    //        caller.isBlocked = true
+    //        caller.isRemoved = false
+    //        caller.updatedDate = Date()
+    //        privateManagedObjectContext.perform {
+    //            do {
+    //                try privateManagedObjectContext.save()
+    //            }catch {
+    //                print("Something wrong in coredata.")
+    //            }
+    //        }
+    //    }
     
     //MARK: - Button clicked event
     @IBAction func onDone(_ sender: UIButton) {
@@ -245,21 +304,25 @@ class ContactsScreen: UIViewController {
             alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: {_ in
                 
                 let array = self.contactArrayMain.filter({$0.isBlackList == true})
-                print("array : ", array.count)
-                
-                for i in 0..<array.count {
-                    let contact = array[i]
-                    let a = "\(contact.number ?? 0)"
-                    let number = Int64(String(a.suffix(10)))
-                    self.blockNumber(nameString: contact.name ?? "" , number: number ?? 0)
-                    
-                    self.blackListNumberArray.append(ContactResponse(name: contact.name, number: number, isWhiteList: false, isBlackList: false))
+                //                print("array : ", array.count)
+                autoreleasepool{
+                    for i in 0..<array.count {
+                        let contact = array[i]
+                        let a = "\(contact.number ?? 0)"
+                        let number = Int64(String(a.suffix(10)))
+                        self.blockNumber(nameString: contact.name ?? "" , number: number ?? 0)
+                        //                    self.saveOrInsertData(name: contact.name ?? "", number: number ?? 0)
+                        
+                        //                        self.blackListNumberArray.append(ContactResponse(name: contact.name, number: number, isWhiteList: false, isBlackList: false))
+                    }
                 }
                 
+                self.callerData.saveContext()
+                sleep(1)
                 self.reload()
                 
-                UserDefaults.standard.set(self.blackListNumberArray.toJSON(), forKey: KEYBlackListArray)
-                UserDefaults.standard.synchronize()
+                //                UserDefaults.standard.set(self.blackListNumberArray.toJSON(), forKey: KEYBlackListArray)
+                //                UserDefaults.standard.synchronize()
                 
                 self.navigationController?.popViewController(animated: true)
                 

@@ -9,6 +9,7 @@ import Foundation
 import CallKit
 import CallerData
 import CoreData
+//import RealmSwift
 
 class CallDirectoryHandler: CXCallDirectoryProvider {
     
@@ -56,12 +57,13 @@ class CallDirectoryHandler: CXCallDirectoryProvider {
 //        for phoneNumber in allPhoneNumbers {
 //            context.addBlockingEntry(withNextSequentialPhoneNumber: phoneNumber)
 //        }
-        
-        if let callers = try? self.callers(blocked: true) {
-            for caller in callers {
-                context.addBlockingEntry(withNextSequentialPhoneNumber: caller.number)
+//        DispatchQueue(label: "background").async {
+            if let callers = try? self.callers(blocked: true) {
+                for caller in callers {
+                    context.addBlockingEntry(withNextSequentialPhoneNumber: caller.number)
+                }
             }
-        }
+//        }
     }
 
 //    private func addOrRemoveIncrementalBlockingPhoneNumbers(to context: CXCallDirectoryExtensionContext) {
@@ -81,15 +83,18 @@ class CallDirectoryHandler: CXCallDirectoryProvider {
 //    }
     
     private func addOrRemoveIncrementalBlockingPhoneNumbers(to context: CXCallDirectoryExtensionContext, since date: Date) {
-        if let callers = try? self.callers(blocked: true, includeRemoved: true, since: date) {
-            for caller in callers {
-                if caller.isRemoved {
-                    context.removeBlockingEntry(withPhoneNumber: caller.number)
-                } else {
-                    context.addBlockingEntry(withNextSequentialPhoneNumber: caller.number)
+        
+//        DispatchQueue(label: "background").async {
+            if let callers = try? self.callers(blocked: true, includeRemoved: true, since: date) {
+                for caller in callers {
+                    if caller.isRemoved {
+                        context.removeBlockingEntry(withPhoneNumber: caller.number)
+                    } else {
+                        context.addBlockingEntry(withNextSequentialPhoneNumber: caller.number)
+                    }
                 }
             }
-        }
+//        }
     }
 
     private func addAllIdentificationPhoneNumbers(to context: CXCallDirectoryExtensionContext) {
@@ -104,13 +109,15 @@ class CallDirectoryHandler: CXCallDirectoryProvider {
 //            context.addIdentificationEntry(withNextSequentialPhoneNumber: phoneNumber, label: label)
 //        }
         
-        if let callers = try? self.callers(blocked: false) {
-            for caller in callers {
-                if let name = caller.name {
-                    context.addIdentificationEntry(withNextSequentialPhoneNumber: caller.number, label: name)
+//        DispatchQueue(label: "background").async {
+            if let callers = try? self.callers(blocked: false) {
+                for caller in callers {
+                    if let name = caller.name {
+                        context.addIdentificationEntry(withNextSequentialPhoneNumber: caller.number, label: name)
+                    }
                 }
             }
-        }
+//        }
     }
 
 //    private func addOrRemoveIncrementalIdentificationPhoneNumbers(to context: CXCallDirectoryExtensionContext) {
@@ -133,17 +140,19 @@ class CallDirectoryHandler: CXCallDirectoryProvider {
 //    }
     
     private func addOrRemoveIncrementalIdentificationPhoneNumbers(to context: CXCallDirectoryExtensionContext, since date: Date) {
-        if let callers = try? self.callers(blocked: false, includeRemoved: true, since: date) {
-            for caller in callers {
-                if caller.isRemoved {
-                    context.removeIdentificationEntry(withPhoneNumber: caller.number)
-                } else {
-                    if let name = caller.name {
-                        context.addIdentificationEntry(withNextSequentialPhoneNumber: caller.number, label: name)
+//        DispatchQueue(label: "background").async {
+            if let callers = try? self.callers(blocked: false, includeRemoved: true, since: date) {
+                for caller in callers {
+                    if caller.isRemoved {
+                        context.removeIdentificationEntry(withPhoneNumber: caller.number)
+                    } else {
+                        if let name = caller.name {
+                            context.addIdentificationEntry(withNextSequentialPhoneNumber: caller.number, label: name)
+                        }
                     }
                 }
             }
-        }
+//        }
     }
 
 }

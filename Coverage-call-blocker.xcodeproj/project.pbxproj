@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2607E92E2771DA5C00B31587 /* BlockContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 2607E92D2771DA5C00B31587 /* BlockContacts.json */; };
 		26118F7527102D8F00B7165A /* InAppPurchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26118F7427102D8F00B7165A /* InAppPurchase.storyboard */; };
 		26118F7727102DA400B7165A /* InAppPurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26118F7627102DA400B7165A /* InAppPurchaseScreen.swift */; };
 		26118F7927102DD400B7165A /* Question1Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26118F7827102DD400B7165A /* Question1Screen.swift */; };
@@ -59,6 +60,7 @@
 		2696E5DA2706F55E0011337E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696E5D72706F55E0011337E /* Response.swift */; };
 		2696E5DB2706F55E0011337E /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696E5D82706F55E0011337E /* ResponseModel.swift */; };
 		2696E5DD2706F5720011337E /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696E5DC2706F5720011337E /* LoginService.swift */; };
+		26A883B02776FA480079BDA0 /* spams.json in Resources */ = {isa = PBXBuildFile; fileRef = 26A883AF2776FA480079BDA0 /* spams.json */; };
 		26A8BA7A272964F8004E71F3 /* ContactsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8BA79272964F7004E71F3 /* ContactsScreen.swift */; };
 		26AB28C527393AC6000D6532 /* AddNumberScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB28C427393AC5000D6532 /* AddNumberScreen.swift */; };
 		26C41E5D271834B900EF345F /* States.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C41E5C271834B900EF345F /* States.json */; };
@@ -155,6 +157,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2607E92D2771DA5C00B31587 /* BlockContacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BlockContacts.json; sourceTree = "<group>"; };
 		26118F7427102D8F00B7165A /* InAppPurchase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InAppPurchase.storyboard; sourceTree = "<group>"; };
 		26118F7627102DA400B7165A /* InAppPurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseScreen.swift; sourceTree = "<group>"; };
 		26118F7827102DD400B7165A /* Question1Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question1Screen.swift; sourceTree = "<group>"; };
@@ -212,6 +215,7 @@
 		2696E5D72706F55E0011337E /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		2696E5D82706F55E0011337E /* ResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		2696E5DC2706F5720011337E /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		26A883AF2776FA480079BDA0 /* spams.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spams.json; sourceTree = "<group>"; };
 		26A8BA79272964F7004E71F3 /* ContactsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsScreen.swift; sourceTree = "<group>"; };
 		26AB28C427393AC5000D6532 /* AddNumberScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNumberScreen.swift; sourceTree = "<group>"; };
 		26C41E5C271834B900EF345F /* States.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = States.json; sourceTree = "<group>"; };
@@ -438,6 +442,8 @@
 				2696E5BC2706EF310011337E /* Utility.swift */,
 				26C41E5C271834B900EF345F /* States.json */,
 				26C41E5E27183BA000EF345F /* IndustryGroups.json */,
+				2607E92D2771DA5C00B31587 /* BlockContacts.json */,
+				26A883AF2776FA480079BDA0 /* spams.json */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -661,6 +667,8 @@
 				2657959227106E5000CB31B9 /* Roboto-Light.ttf in Resources */,
 				261B8274271161BC006E796B /* QuestionTableViewCell.xib in Resources */,
 				2657959327106E5000CB31B9 /* Roboto-Medium.ttf in Resources */,
+				2607E92E2771DA5C00B31587 /* BlockContacts.json in Resources */,
+				26A883B02776FA480079BDA0 /* spams.json in Resources */,
 				2696E5A82706EC540011337E /* LaunchScreen.storyboard in Resources */,
 				2696E5C92706EF320011337E /* Rachability in Resources */,
 				26118F7527102D8F00B7165A /* InAppPurchase.storyboard in Resources */,
