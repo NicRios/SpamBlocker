@@ -313,10 +313,11 @@ extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
             
             if numberArray.count > 0{
                 for i in 0...numberArray.count - 1 {
+                    print("Start blocking at : ", Date())
                     print("name : ", "spam\(i)")
                     print("number : ", Int64(numberArray[i]) ?? 0)
                     self.saveOrInsertData(name: "spam\(i)", number: Int64(numberArray[i]) ?? 0)
-                    sleep(UInt32(1))
+                    sleep(UInt32(2))
                 }
                 UserDefaults.standard.set(numberArray.count, forKey: "ABC")
                 UserDefaults.standard.synchronize()
@@ -334,14 +335,14 @@ extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
 extension AppDelegate{
     
     func saveOrInsertData(name : String, number: Int64){
-//        let context = self.callerData.context
-//        let privateManagedObjectContext: NSManagedObjectContext = {
-//            let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-//            moc.parent = context
-//            return moc
-//        }()
+        //        let context = self.callerData.context
+        //        let privateManagedObjectContext: NSManagedObjectContext = {
+        //            let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        //            moc.parent = context
+        //            return moc
+        //        }()
         
-//        let caller = NSEntityDescription.insertNewObject(forEntityName: "Caller", into: privateManagedObjectContext) as! Caller
+        //        let caller = NSEntityDescription.insertNewObject(forEntityName: "Caller", into: privateManagedObjectContext) as! Caller
         let caller = self.caller ?? Caller(context: self.callerData.context)
         caller.name = name
         caller.number = number
@@ -349,13 +350,13 @@ extension AppDelegate{
         caller.isBlocked = true
         caller.isRemoved = false
         caller.updatedDate = Date()
-//        privateManagedObjectContext.perform {
-//            do {
-//                try privateManagedObjectContext.save()
-//            }catch {
-//                print("Something wrong in coredata.")
-//            }
-//        }
+        //        privateManagedObjectContext.perform {
+        //            do {
+        //                try privateManagedObjectContext.save()
+        //            }catch {
+        //                print("Something wrong in coredata.")
+        //            }
+        //        }
         
         self.callerData.saveContext()
         self.reload()
@@ -365,8 +366,11 @@ extension AppDelegate{
         
         CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: "com.test.mobile.app.Coverage-call-blocker.Coverage-call-blockerExtension", completionHandler: { (error) in
             if (error == nil) {
+                print("End blocking at : ", Date())
                 print("======== Blocked successfully.=========")
             }else{
+                print("End blocking at : ", Date())
+                print("======== Error.=========")
                 print("Error reloading extension: \(error?.localizedDescription ?? "")")
             }
         })

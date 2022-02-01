@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -159,13 +159,18 @@
                                                                                     <action selector="onSelectMaxBlocking:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Qhv-XU-BKK"/>
                                                                                 </connections>
                                                                             </button>
+                                                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="toa-pT-SaI">
+                                                                                <rect key="frame" x="186.5" y="299.5" width="20" height="20"/>
+                                                                            </activityIndicatorView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstItem="f0s-CT-nJL" firstAttribute="top" secondItem="neQ-Rj-Uim" secondAttribute="top" constant="8" id="0Jc-D2-7y7"/>
                                                                             <constraint firstItem="f0s-CT-nJL" firstAttribute="leading" secondItem="neQ-Rj-Uim" secondAttribute="leading" constant="24" id="43F-gp-t0T"/>
+                                                                            <constraint firstItem="h4r-iv-8fY" firstAttribute="leading" secondItem="toa-pT-SaI" secondAttribute="trailing" constant="16" id="8Wt-6b-5xZ"/>
                                                                             <constraint firstAttribute="bottom" secondItem="h4r-iv-8fY" secondAttribute="bottom" constant="8" id="Ly9-PM-kwj"/>
                                                                             <constraint firstItem="h4r-iv-8fY" firstAttribute="top" secondItem="f0s-CT-nJL" secondAttribute="bottom" constant="24" id="fdH-aO-qhg"/>
+                                                                            <constraint firstItem="toa-pT-SaI" firstAttribute="centerY" secondItem="h4r-iv-8fY" secondAttribute="centerY" id="mRH-BB-Vn8"/>
                                                                             <constraint firstAttribute="trailing" secondItem="h4r-iv-8fY" secondAttribute="trailing" constant="8" id="wYC-Ep-v5h"/>
                                                                             <constraint firstAttribute="trailing" secondItem="f0s-CT-nJL" secondAttribute="trailing" constant="24" id="zDs-JI-U5r"/>
                                                                         </constraints>
@@ -456,6 +461,8 @@
                         <outlet property="maxBlockingBottomView" destination="neQ-Rj-Uim" id="ada-Kn-cwQ"/>
                         <outlet property="maxBlockingButton" destination="yrK-aI-zru" id="Eb2-Rl-xfy"/>
                         <outlet property="maxBlockingDownArrowImageView" destination="ivO-Rh-JNN" id="Fh2-bP-6TQ"/>
+                        <outlet property="maxBlockingIndicator" destination="toa-pT-SaI" id="6af-MN-POK"/>
+                        <outlet property="maxBlockingSelectButton" destination="h4r-iv-8fY" id="W5a-Hi-WNo"/>
                         <outlet property="maxBlockingSelectedImageView" destination="7QT-Pm-ab5" id="oDB-D7-Bex"/>
                         <outlet property="maxBlockingView" destination="xHP-8S-Qqa" id="0SC-Qc-xrf"/>
                         <outlet property="noBlockingBottomView" destination="im4-Ug-LxL" id="o5s-wL-nk6"/>

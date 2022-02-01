@@ -265,10 +265,10 @@ class ContactsScreen: UIViewController {
     //MARK: - Button clicked event
     @IBAction func onDone(_ sender: UIButton) {
         
-        if hasCellularCoverage() == false{
-            self.view.makeToast(SimNotAvailableMessage)
-            return
-        }
+        //        if hasCellularCoverage() == false{
+        //            self.view.makeToast(SimNotAvailableMessage)
+        //            return
+        //        }
         
         if isWhiteListNumber{
             
