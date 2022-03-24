@@ -10,16 +10,16 @@ import UIKit
 import SwiftyStoreKit
 import StoreKit
 
-var storeKitSharedSecret = "5d2cd941d5094b2587cc3a598188a167"
+var storeKitSharedSecret = "1cb64f2e656c459c881d3cf74968a658"
 var transactionId: String = ""
 
 enum Product: String, CaseIterable{
-    case monthly = "com.whostrippin.month"
-//    case yearly = "com.ivideo.yearly"
+    case monthly = "com.coveragecallblocker.month"
+    case yearly = "com.coveragecallblocker.yearly"
 //    case onetime = "com.ivideo.onetime"
 }
 func returnProductIDs() -> [String]? {
-    return [Product.monthly.rawValue]//,Product.yearly.rawValue,Product.onetime.rawValue
+    return [Product.monthly.rawValue,Product.yearly.rawValue]//,Product.onetime.rawValue
 }
 class NetworkActivityIndicatorManager: NSObject {
 
@@ -63,10 +63,12 @@ class NetworkActivityIndicatorManager: NSObject {
 //                print(monthlyPrice)
                 print(product.localizedPrice ?? "")
             }
-//            else if productId == Product.yearly.rawValue{
+            else if productId == Product.yearly.rawValue{
 //                yearlyPrice = product.localizedPrice ?? ""
 //                print(yearlyPrice)
-//            }else if productId == Product.onetime.rawValue {
+                print(product.localizedPrice ?? "")
+            }
+//            else if productId == Product.onetime.rawValue {
 //                oneTimePrice = product.localizedPrice ?? ""
 //                print(oneTimePrice)
 //            }
@@ -134,21 +136,21 @@ class NetworkActivityIndicatorManager: NSObject {
                 switch result {
                 case .success(let receipt):
                     if let pendingRenewalArray = receipt["pending_renewal_info"] as? NSArray{
-                        let dictionary = pendingRenewalArray.object(at: 0) as! NSDictionary
+                        let dictionary = pendingRenewalArray.object(at: 0) as? NSDictionary ?? [:]
                         let productId = dictionary["product_id"] as? String ?? ""
                         print("productId : ", productId)
-                        let string = dictionary.object(forKey: "auto_renew_status") as! String
+                        let string = dictionary.object(forKey: "auto_renew_status") as? String ?? ""
                         if (string == "1") {
-                            let purchaseDateArray = receipt["latest_receipt_info"] as! NSArray
-                            let purchaseDateDictionary = purchaseDateArray.object(at: 0) as! NSDictionary
-                            let purchaseDateLastDictionary = purchaseDateArray.object(at: purchaseDateArray.count - 1) as! NSDictionary
+                            let purchaseDateArray = receipt["latest_receipt_info"] as? NSArray ?? []
+                            let purchaseDateDictionary = purchaseDateArray.object(at: 0) as? NSDictionary ?? [:]
+                            let purchaseDateLastDictionary = purchaseDateArray.object(at: purchaseDateArray.count - 1) as? NSDictionary ?? [:]
                             print(purchaseDateLastDictionary)
-                            let transactionId = purchaseDateDictionary.object(forKey: "transaction_id")! as! String
+                            let transactionId = purchaseDateDictionary.object(forKey: "transaction_id")! as? String ?? ""
                             let latestReceipt = receipt["latest_receipt"] as? String ?? ""
                             
                             print("latestReceipt : ", latestReceipt)
                             
-//                            self.userForMembershipAPI(transactionId: transactionId, receipt: latestReceipt, expiryDate: self.expiryDate)
+                            self.subscriptionAPI(receiptString: latestReceipt, transactIdString: transactionId)
                             
                         }else{
                             Utility.hideIndicator()

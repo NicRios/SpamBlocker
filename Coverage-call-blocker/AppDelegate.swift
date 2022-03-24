@@ -84,8 +84,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        UserDefaults.standard.set("", forKey: "ABC")
         //        UserDefaults.standard.synchronize()
         
-        let abc = UserDefaults.standard.value(forKey: "ABC")
-        print("abc ====> ", abc ?? "")
+//        let abc = UserDefaults.standard.value(forKey: "ABC")
+//        print("abc ====> ", abc ?? "")
         
         return true
     }
@@ -266,7 +266,7 @@ extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("Firebase registration token: \(String(describing: fcmToken))")
+//        print("Firebase registration token: \(String(describing: fcmToken))")
         //        UserDefaults.standard.setValue(fcmToken, forKey: "fcmToken")
         //        UserDefaults.standard.synchronize()
         //        let dataDict:[String: String] = ["token": fcmToken ?? ""]
@@ -319,8 +319,8 @@ extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
                     self.saveOrInsertData(name: "spam\(i)", number: Int64(numberArray[i]) ?? 0)
                     sleep(UInt32(2))
                 }
-                UserDefaults.standard.set(numberArray.count, forKey: "ABC")
-                UserDefaults.standard.synchronize()
+//                UserDefaults.standard.set(numberArray.count, forKey: "ABC")
+//                UserDefaults.standard.synchronize()
             }
             
         }
@@ -364,7 +364,7 @@ extension AppDelegate{
     
     func reload(){
         
-        CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: "com.test.mobile.app.Coverage-call-blocker.Coverage-call-blockerExtension", completionHandler: { (error) in
+        CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: reloadExtetionString, completionHandler: { (error) in
             if (error == nil) {
                 print("End blocking at : ", Date())
                 print("======== Blocked successfully.=========")

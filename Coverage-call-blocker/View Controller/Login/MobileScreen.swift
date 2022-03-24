@@ -32,6 +32,8 @@ class MobileScreen: UIViewController {
         mobileNumberTextField.delegate = self
         mobileNumberTextField.setLeftPaddingPoints(16)
         
+//        mobileNumberTextField.textContentType = .telephoneNumber
+        
         pinView.shouldSecureText = false
         pinView.didFinishCallback = { pin in
             print("phone number : \(pin)")
@@ -105,6 +107,13 @@ class MobileScreen: UIViewController {
         textField.text = format(with: "(XXX) XXX-XXXX", phone: newString)
         return false
     }
+    
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        
+//        let phoneNumber = string.getPhoneNumber()
+//        textField.text = "\(phoneNumber.suffix(10))"
+//        return false
+//    }
     
 }
 

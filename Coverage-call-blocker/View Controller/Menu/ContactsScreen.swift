@@ -209,7 +209,7 @@ class ContactsScreen: UIViewController {
     
     func reload(){
         
-        CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: "com.test.mobile.app.Coverage-call-blocker.Coverage-call-blockerExtension", completionHandler: { (error) in
+        CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: reloadExtetionString, completionHandler: { (error) in
             
             if (error == nil) {
                 print("========Block successfully.=========")
@@ -236,6 +236,33 @@ class ContactsScreen: UIViewController {
         caller.updatedDate = Date()
         //        self.callerData.saveContext()
     }
+    
+//    func blockNumber(nameString : String , number: Int64){
+//        let context = self.callerData.context
+//        let privateManagedObjectContext: NSManagedObjectContext = {
+//            let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+//            moc.parent = context
+//            return moc
+//        }()
+//
+//        let num = Int64("\(CountryCode)"+"\(number)")
+//        print("num : ", num ?? 0)
+//
+//        let caller = NSEntityDescription.insertNewObject(forEntityName: "Caller", into: privateManagedObjectContext) as? Caller
+//        caller?.name = nameString
+//        caller?.number = num ?? 0
+//        caller?.isFromContacts = true
+//        caller?.isBlocked = true
+//        caller?.isRemoved = false
+//        caller?.updatedDate = Date()
+//        privateManagedObjectContext.perform {
+//            do {
+//                try privateManagedObjectContext.save()
+//            }catch {
+//                print("Something wrong in coredata.")
+//            }
+//        }
+//    }
     
     //    func saveOrInsertData(name : String, number: Int64){
     //        //        let appDelegate = UIApplication.shared.delegate as? AppDelegate

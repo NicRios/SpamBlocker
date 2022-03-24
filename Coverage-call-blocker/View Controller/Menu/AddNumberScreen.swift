@@ -164,7 +164,7 @@ class AddNumberScreen: UIViewController {
     
     func reload(){
         
-        CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: "com.test.mobile.app.Coverage-call-blocker.Coverage-call-blockerExtension", completionHandler: { (error) in
+        CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: reloadExtetionString, completionHandler: { (error) in
             if let error = error {
                 print("Error reloading extension: \(error.localizedDescription)")
             }

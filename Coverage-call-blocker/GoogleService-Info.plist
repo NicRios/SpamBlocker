@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>194204603188-i4um9naffnfl8i43shm6ktbf94asaa5b.apps.googleusercontent.com</string>
+	<string>194204603188-0g3a29tu9sltsc9m6rdrter8q7b91qp1.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.194204603188-i4um9naffnfl8i43shm6ktbf94asaa5b</string>
+	<string>com.googleusercontent.apps.194204603188-0g3a29tu9sltsc9m6rdrter8q7b91qp1</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAu_uFN4u_X5nCsJJabcd_KkSO0D0L1MBA</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.test.mobile.app.Coverage-call-blocker</string>
+	<string>com.coveragecallblocker.mobile.app</string>
 	<key>PROJECT_ID</key>
 	<string>coverage-call-blocker</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:194204603188:ios:921ba663e9de9097414b61</string>
+	<string>1:194204603188:ios:d2a69b88233f2f03414b61</string>
 </dict>
 </plist>

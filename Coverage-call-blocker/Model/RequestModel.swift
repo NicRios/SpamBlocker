@@ -132,3 +132,22 @@ class CheckEmailRequest: Mappable{
     }
 }
 
+class SubscribeRequest: Mappable{
+    var receipt: String?
+    var transactId: String?
+    
+    init(receipt: String?, transactId: String?) {
+        self.receipt = receipt
+        self.transactId = transactId
+    }
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        receipt <- map["receipt"]
+        transactId <- map["transactId"]
+    }
+}
+

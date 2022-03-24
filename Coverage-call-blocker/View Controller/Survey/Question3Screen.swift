@@ -225,6 +225,7 @@ extension Question3Screen{
         progressLabel.text = "100% completed"
         
         let vc =  STORYBOARD.inAppPurchase.instantiateViewController(withIdentifier: "InAppPurchaseScreen") as! InAppPurchaseScreen
+        vc.isFromHomeScreen = false
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

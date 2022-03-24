@@ -65,7 +65,7 @@ class BlacklistNumberScreen: UIViewController {
     
     func reload(){
         
-        CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: "com.test.mobile.app.Coverage-call-blocker.Coverage-call-blockerExtension", completionHandler: { (error) in
+        CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: reloadExtetionString, completionHandler: { (error) in
             
             if (error == nil) {
                 print("======== UnBlock successfully.=========")
@@ -78,6 +78,8 @@ class BlacklistNumberScreen: UIViewController {
     private func setUpInititalData(){
         blockNumberTableView.delegate = self
         blockNumberTableView.dataSource = self
+        blockNumberTableView.tableFooterView = UIView()
+//        blockNumberTableView.separatorStyle = .none
         
         searchTextField.setLeftPaddingPoints(16)
         searchTextField.delegate = self
@@ -114,6 +116,8 @@ class BlacklistNumberScreen: UIViewController {
         fetchRequest.predicate = predicate
         
         do {
+            blackListNumberArray.removeAll()
+            blackListNumberArrayMain.removeAll()
             blackListNumberArray = try manageContext.fetch(fetchRequest)
             blackListNumberArrayMain = blackListNumberArray
         } catch {

@@ -11,6 +11,8 @@ import ObjectMapper
 class LoginResponse: Mappable{
     var id: Int?
     var email: String?
+    var phone: String?
+    var is_premium: Int?
     var password: String?
     var isPremium: Int?
     var auth: Auth?
@@ -22,6 +24,8 @@ class LoginResponse: Mappable{
     func mapping(map: Map) {
         id <- map["id"]
         email <- map["email"]
+        phone <- map["phone"]
+        is_premium <- map["is_premium"]
         password <- map["password"]
         isPremium <- map["isPremium"]
         auth <- map["access_token"]
@@ -158,6 +162,18 @@ class Meta: Mappable{
         currentPage <- map["current_page"]
         lastPage <- map["last_page"]
         from <- map["from"]
+    }
+}
+
+class CheckSubscription: Mappable{
+    var is_premium: Int?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        is_premium <- map["is_premium"]
     }
 }
 

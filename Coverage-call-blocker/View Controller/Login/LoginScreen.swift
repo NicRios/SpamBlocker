@@ -32,6 +32,7 @@ class LoginScreen: UIViewController {
         emailTextField.delegate = self
         emailTextField.setLeftPaddingPoints(16)
         emailTextField.text = ""
+        emailTextField.textContentType = .emailAddress
         passwordTextField.delegate = self
         passwordTextField.setLeftPaddingPoints(16)
         passwordTextField.text = ""
@@ -115,7 +116,6 @@ class LoginScreen: UIViewController {
     
     @IBAction func onButton(_ sender: UIButton) {
         let vc =  STORYBOARD.Survey.instantiateViewController(withIdentifier: "SurveyScreen") as! SurveyScreen
-        //        let vc =  STORYBOARD.inAppPurchase.instantiateViewController(withIdentifier: "InAppPurchaseScreen") as! InAppPurchaseScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

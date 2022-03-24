@@ -7,6 +7,10 @@
 import Foundation
 import UIKit
 
+//bundle id - old iroid account
+//com.test.mobile.app.Coverage-call-blocker
+//com.test.mobile.app.Coverage-call-blocker.Coverage-call-blockerExtension
+
 struct STORYBOARD {
     static let main = UIStoryboard(name: "Main", bundle: Bundle.main)
     static let login = UIStoryboard(name: "Login", bundle: Bundle.main)
@@ -15,6 +19,9 @@ struct STORYBOARD {
     static let menu = UIStoryboard(name: "Menu", bundle: Bundle.main)
     static let inAppPurchase = UIStoryboard(name: "InAppPurchase", bundle: Bundle.main)
 }
+
+//com.test.mobile.app.Coverage-call-blocker.Coverage-call-blockerExtension
+let reloadExtetionString = "com.coveragecallblocker.mobile.app.extension"
 
 let screenWidth = UIScreen.main.bounds.width
 let screenHeight = UIScreen.main.bounds.height
@@ -28,6 +35,7 @@ let AppID                = ""
 let video_lenth          = 60
 let leftMenuWidth = (screenWidth/10) * 7
 var isBlockingNumberInProgress = false
+//var isStoreNumberInDBInProgress = false
 var CountryCode = "+91"
 
 //MARK: - App color
@@ -51,6 +59,10 @@ let serveyPostURL = server_url+"servey/post"
 let getMaxBlockingURL = server_url+"get/max_blocking"
 let getSpamsURL = server_url+"get/spams"
 
+//MARK: - Subscription
+let subscribeURL = server_url+"subscribe"
+let checkSubscriptionURL = server_url+"check-subscription"
+
 //MARK: - Session Key
 let USER_DATA = "user_data"
 let SURVEYARRAY = "SurveyArray"
@@ -58,7 +70,11 @@ let KEYWhiteListArray = "whiteListNumberArray"
 let KEYBlackListArray = "blackListNumberArray"
 let KEYSelectedOptionOnHomeScreen = "selectedOptionOnHomeScreen"
 let KEYBlockNumberCount = "BlockNumberCount"
+//let KEYSpamNumberCount = "SpamNumberCount"
+let KEYWarningNumberCount = "WarningNumberCount"
 let KEYJSonFileCount = "JSonFileCount"
+let KEYAddedNumberCount = "AddedNumberCount"
+let KEYOtherNumberCount = "OtherNumberCount"
 
 //MARK: - Common message
 let SimNotAvailableMessage = "Sim not available."

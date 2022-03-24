@@ -16,6 +16,7 @@ class Response: Mappable{
 //    var companiesResponse: [CompaniesResponse]?
     var maxBlockingResponse: [MaxBlockingResponse]?
     var contactResponse: [ContactResponse]?
+    var checkSubscription: CheckSubscription?
     
     
     required init?(map: Map) {
@@ -31,6 +32,7 @@ class Response: Mappable{
 //        companiesResponse <- map["data"]
         maxBlockingResponse <- map["data"]
         contactResponse <- map["data"]
+        checkSubscription <- map["data"]
         
     }
 }

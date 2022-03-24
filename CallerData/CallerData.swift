@@ -18,7 +18,8 @@ public final class CallerData {
     
     lazy var persistentContainer: NSPersistentContainer = {
         let momdName = "Coverage_call_blocker"
-        let groupName = "group.com.test.mobile.app.CoverageCallBlocker"
+//        let groupName = "group.com.test.mobile.app.CoverageCallBlocker"
+        let groupName = "group.com.mobile.app.coveragecallblocker"
         let fileName = "demo.sqlite"
         
         guard let modelURL = Bundle(for: type(of: self)).url(forResource: momdName, withExtension:"momd") else {
@@ -68,6 +69,21 @@ public final class CallerData {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+        
+//        let context = persistentContainer.viewContext
+//        let privateManagedObjectContext: NSManagedObjectContext = {
+//            let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+//            moc.parent = context
+//            return moc
+//        }()
+//
+//        privateManagedObjectContext.perform {
+//            do {
+//                try privateManagedObjectContext.save()
+//            }catch {
+//                print("Something wrong in coredata.")
+//            }
+//        }
     }
     
     public func fetchRequest(blocked: Bool, includeRemoved: Bool = false, since date: Date? = nil) -> NSFetchRequest<Caller> {

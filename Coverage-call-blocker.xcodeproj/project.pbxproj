@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2607E92E2771DA5C00B31587 /* BlockContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 2607E92D2771DA5C00B31587 /* BlockContacts.json */; };
+		26026F8A27E30B3D001BE64F /* GoogleService-Info_old.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26026F8927E30B3C001BE64F /* GoogleService-Info_old.plist */; };
+		26026F8C27E31D9E001BE64F /* SubscriptionServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26026F8B27E31D9E001BE64F /* SubscriptionServices.swift */; };
+		2604ECFE27E9930F00441A9D /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2604ECFA27E9930F00441A9D /* UIViewExtension.swift */; };
+		2604ECFF27E9930F00441A9D /* CommonAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2604ECFB27E9930F00441A9D /* CommonAlertVC.swift */; };
+		2604ED0027E9930F00441A9D /* CommonAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2604ECFC27E9930F00441A9D /* CommonAlertVC.xib */; };
+		2604ED0127E9930F00441A9D /* ExtensionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2604ECFD27E9930F00441A9D /* ExtensionUIViewController.swift */; };
 		26118F7527102D8F00B7165A /* InAppPurchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26118F7427102D8F00B7165A /* InAppPurchase.storyboard */; };
 		26118F7727102DA400B7165A /* InAppPurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26118F7627102DA400B7165A /* InAppPurchaseScreen.swift */; };
 		26118F7927102DD400B7165A /* Question1Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26118F7827102DD400B7165A /* Question1Screen.swift */; };
@@ -18,8 +23,10 @@
 		261B827727116BA5006E796B /* InAppPurchaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261B827527116BA5006E796B /* InAppPurchaseCollectionViewCell.swift */; };
 		261B827827116BA5006E796B /* InAppPurchaseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 261B827627116BA5006E796B /* InAppPurchaseCollectionViewCell.xib */; };
 		261B827A271199C8006E796B /* ServeyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261B8279271199C8006E796B /* ServeyServices.swift */; };
+		261BF2B127E8459800B8B638 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 261BF2B027E8459800B8B638 /* StoreKit.framework */; };
 		262708912726C9A800B270DC /* CallDirectoryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262708902726C9A800B270DC /* CallDirectoryHandler.swift */; };
 		262708952726C9A800B270DC /* Coverage-call-blockerExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2627088E2726C9A800B270DC /* Coverage-call-blockerExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2627483327ABB160001D3544 /* AllContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 2627483227ABB160001D3544 /* AllContacts.json */; };
 		2634DE47270F229F00F3C56B /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634DE46270F229F00F3C56B /* HomeScreen.swift */; };
 		2657959027106E5000CB31B9 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2657958827106DD300CB31B9 /* Roboto-Bold.ttf */; };
 		2657959127106E5000CB31B9 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2657958A27106DDB00CB31B9 /* Roboto-Regular.ttf */; };
@@ -60,14 +67,11 @@
 		2696E5DA2706F55E0011337E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696E5D72706F55E0011337E /* Response.swift */; };
 		2696E5DB2706F55E0011337E /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696E5D82706F55E0011337E /* ResponseModel.swift */; };
 		2696E5DD2706F5720011337E /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696E5DC2706F5720011337E /* LoginService.swift */; };
-		26A883B02776FA480079BDA0 /* spams.json in Resources */ = {isa = PBXBuildFile; fileRef = 26A883AF2776FA480079BDA0 /* spams.json */; };
 		26A8BA7A272964F8004E71F3 /* ContactsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8BA79272964F7004E71F3 /* ContactsScreen.swift */; };
 		26AB28C527393AC6000D6532 /* AddNumberScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB28C427393AC5000D6532 /* AddNumberScreen.swift */; };
 		26C41E5D271834B900EF345F /* States.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C41E5C271834B900EF345F /* States.json */; };
 		26C41E5F27183BA000EF345F /* IndustryGroups.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C41E5E27183BA000EF345F /* IndustryGroups.json */; };
 		26CDA9AF2728161E0077167B /* CallerData.docc in Sources */ = {isa = PBXBuildFile; fileRef = 26CDA9AE2728161D0077167B /* CallerData.docc */; };
-		26CDA9B52728161E0077167B /* CallerData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CDA9AB2728161D0077167B /* CallerData.framework */; };
-		26CDA9BC2728161E0077167B /* CallerDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDA9BB2728161E0077167B /* CallerDataTests.swift */; };
 		26CDA9BD2728161E0077167B /* CallerData.h in Headers */ = {isa = PBXBuildFile; fileRef = 26CDA9AD2728161D0077167B /* CallerData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		26CDA9C02728161E0077167B /* CallerData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CDA9AB2728161D0077167B /* CallerData.framework */; };
 		26CDA9C12728161E0077167B /* CallerData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26CDA9AB2728161D0077167B /* CallerData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -77,6 +81,7 @@
 		26E0B470270C34F700085C47 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26E0B46F270C34F700085C47 /* Home.storyboard */; };
 		26E0B474270C35DA00085C47 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26E0B473270C35DA00085C47 /* Menu.storyboard */; };
 		26E0B476270C35EB00085C47 /* MenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0B475270C35EB00085C47 /* MenuScreen.swift */; };
+		26F7B14827E1B67E00B2C5E5 /* AllContactsLaks.json in Resources */ = {isa = PBXBuildFile; fileRef = 26F7B14727E1B67E00B2C5E5 /* AllContactsLaks.json */; };
 		26F7E61427073E1B0094E3BA /* MobileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F7E61327073E1B0094E3BA /* MobileScreen.swift */; };
 		26F7E61627073E3E0094E3BA /* VerifyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F7E61527073E3E0094E3BA /* VerifyScreen.swift */; };
 		6337587BBA7A9BD8D880846D /* Pods_Coverage_call_blocker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7285F1BDFFFDCF9EE20CAA06 /* Pods_Coverage_call_blocker.framework */; };
@@ -89,20 +94,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2627088D2726C9A800B270DC;
 			remoteInfo = "Coverage-call-blockerExtension";
-		};
-		26CDA9B62728161E0077167B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2696E58D2706EC510011337E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 26CDA9AA2728161D0077167B;
-			remoteInfo = CallerData;
-		};
-		26CDA9B82728161E0077167B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2696E58D2706EC510011337E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2696E5942706EC510011337E;
-			remoteInfo = "Coverage-call-blocker";
 		};
 		26CDA9BE2728161E0077167B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -157,7 +148,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2607E92D2771DA5C00B31587 /* BlockContacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BlockContacts.json; sourceTree = "<group>"; };
+		26026F8927E30B3C001BE64F /* GoogleService-Info_old.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_old.plist"; sourceTree = "<group>"; };
+		26026F8B27E31D9E001BE64F /* SubscriptionServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionServices.swift; sourceTree = "<group>"; };
+		2604ECFA27E9930F00441A9D /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		2604ECFB27E9930F00441A9D /* CommonAlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonAlertVC.swift; sourceTree = "<group>"; };
+		2604ECFC27E9930F00441A9D /* CommonAlertVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonAlertVC.xib; sourceTree = "<group>"; };
+		2604ECFD27E9930F00441A9D /* ExtensionUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIViewController.swift; sourceTree = "<group>"; };
 		26118F7427102D8F00B7165A /* InAppPurchase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InAppPurchase.storyboard; sourceTree = "<group>"; };
 		26118F7627102DA400B7165A /* InAppPurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseScreen.swift; sourceTree = "<group>"; };
 		26118F7827102DD400B7165A /* Question1Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question1Screen.swift; sourceTree = "<group>"; };
@@ -168,10 +164,12 @@
 		261B827527116BA5006E796B /* InAppPurchaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		261B827627116BA5006E796B /* InAppPurchaseCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InAppPurchaseCollectionViewCell.xib; sourceTree = "<group>"; };
 		261B8279271199C8006E796B /* ServeyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeyServices.swift; sourceTree = "<group>"; };
+		261BF2B027E8459800B8B638 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2627088E2726C9A800B270DC /* Coverage-call-blockerExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Coverage-call-blockerExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		262708902726C9A800B270DC /* CallDirectoryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDirectoryHandler.swift; sourceTree = "<group>"; };
 		262708922726C9A800B270DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2627089E2726CA5800B270DC /* Coverage-call-blockerExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Coverage-call-blockerExtensionRelease.entitlements"; sourceTree = "<group>"; };
+		2627483227ABB160001D3544 /* AllContacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AllContacts.json; sourceTree = "<group>"; };
 		2634DE46270F229F00F3C56B /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		2657958827106DD300CB31B9 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		2657958A27106DDB00CB31B9 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -215,7 +213,6 @@
 		2696E5D72706F55E0011337E /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		2696E5D82706F55E0011337E /* ResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		2696E5DC2706F5720011337E /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
-		26A883AF2776FA480079BDA0 /* spams.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spams.json; sourceTree = "<group>"; };
 		26A8BA79272964F7004E71F3 /* ContactsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsScreen.swift; sourceTree = "<group>"; };
 		26AB28C427393AC5000D6532 /* AddNumberScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNumberScreen.swift; sourceTree = "<group>"; };
 		26C41E5C271834B900EF345F /* States.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = States.json; sourceTree = "<group>"; };
@@ -224,13 +221,13 @@
 		26CDA9AB2728161D0077167B /* CallerData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CallerData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CDA9AD2728161D0077167B /* CallerData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallerData.h; sourceTree = "<group>"; };
 		26CDA9AE2728161D0077167B /* CallerData.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CallerData.docc; sourceTree = "<group>"; };
-		26CDA9B42728161E0077167B /* CallerDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CallerDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CDA9BB2728161E0077167B /* CallerDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallerDataTests.swift; sourceTree = "<group>"; };
 		26CDA9C8272816500077167B /* CallerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallerData.swift; sourceTree = "<group>"; };
 		26E0B46F270C34F700085C47 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		26E0B473270C35DA00085C47 /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		26E0B475270C35EB00085C47 /* MenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreen.swift; sourceTree = "<group>"; };
 		26EC301E27282B7500524601 /* Coverage-call-blocker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Coverage-call-blocker.entitlements"; sourceTree = "<group>"; };
+		26F7B14727E1B67E00B2C5E5 /* AllContactsLaks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AllContactsLaks.json; sourceTree = "<group>"; };
 		26F7E61327073E1B0094E3BA /* MobileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileScreen.swift; sourceTree = "<group>"; };
 		26F7E61527073E3E0094E3BA /* VerifyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyScreen.swift; sourceTree = "<group>"; };
 		37DF8F67479F0300A9C23746 /* Pods-Coverage-call-blocker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coverage-call-blocker.debug.xcconfig"; path = "Target Support Files/Pods-Coverage-call-blocker/Pods-Coverage-call-blocker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -251,6 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				261BF2B127E8459800B8B638 /* StoreKit.framework in Frameworks */,
 				6337587BBA7A9BD8D880846D /* Pods_Coverage_call_blocker.framework in Frameworks */,
 				26CDA9C02728161E0077167B /* CallerData.framework in Frameworks */,
 			);
@@ -263,23 +261,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		26CDA9B12728161E0077167B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				26CDA9B52728161E0077167B /* CallerData.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		0DB0754D024C49CB2EE3E6C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				261BF2B027E8459800B8B638 /* StoreKit.framework */,
 				7285F1BDFFFDCF9EE20CAA06 /* Pods_Coverage_call_blocker.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2604ECF927E9930F00441A9D /* CustomAlert */ = {
+			isa = PBXGroup;
+			children = (
+				2604ECFA27E9930F00441A9D /* UIViewExtension.swift */,
+				2604ECFB27E9930F00441A9D /* CommonAlertVC.swift */,
+				2604ECFC27E9930F00441A9D /* CommonAlertVC.xib */,
+				2604ECFD27E9930F00441A9D /* ExtensionUIViewController.swift */,
+			);
+			path = CustomAlert;
 			sourceTree = "<group>";
 		};
 		26118F7327102D6400B7165A /* InAppPurchase */ = {
@@ -344,7 +346,6 @@
 				2696E5952706EC510011337E /* Coverage-call-blocker.app */,
 				2627088E2726C9A800B270DC /* Coverage-call-blockerExtension.appex */,
 				26CDA9AB2728161D0077167B /* CallerData.framework */,
-				26CDA9B42728161E0077167B /* CallerDataTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -369,6 +370,7 @@
 				2696E5A62706EC540011337E /* LaunchScreen.storyboard */,
 				2696E5A92706EC540011337E /* Info.plist */,
 				2676B811274CBB9900185C07 /* GoogleService-Info.plist */,
+				26026F8927E30B3C001BE64F /* GoogleService-Info_old.plist */,
 			);
 			path = "Coverage-call-blocker";
 			sourceTree = "<group>";
@@ -387,6 +389,7 @@
 			children = (
 				2696E5DC2706F5720011337E /* LoginService.swift */,
 				261B8279271199C8006E796B /* ServeyServices.swift */,
+				26026F8B27E31D9E001BE64F /* SubscriptionServices.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 		2696E5B62706ED820011337E /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				2604ECF927E9930F00441A9D /* CustomAlert */,
 				2696E5C02706EF310011337E /* Constant.swift */,
 				2696E5BA2706EF310011337E /* Dir.swift */,
 				2696E5B82706EF310011337E /* Extension.swift */,
@@ -442,8 +446,8 @@
 				2696E5BC2706EF310011337E /* Utility.swift */,
 				26C41E5C271834B900EF345F /* States.json */,
 				26C41E5E27183BA000EF345F /* IndustryGroups.json */,
-				2607E92D2771DA5C00B31587 /* BlockContacts.json */,
-				26A883AF2776FA480079BDA0 /* spams.json */,
+				2627483227ABB160001D3544 /* AllContacts.json */,
+				26F7B14727E1B67E00B2C5E5 /* AllContactsLaks.json */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -555,6 +559,7 @@
 				7A9DAFF68DA787D637723CDA /* [CP] Embed Pods Frameworks */,
 				268D86E52726BDFB00D983A4 /* Embed App Extensions */,
 				2627082B2726C49C00B270DC /* Embed Frameworks */,
+				263721B927C6411D002EE2A9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -585,25 +590,6 @@
 			productReference = 26CDA9AB2728161D0077167B /* CallerData.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		26CDA9B32728161E0077167B /* CallerDataTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 26CDA9C52728161E0077167B /* Build configuration list for PBXNativeTarget "CallerDataTests" */;
-			buildPhases = (
-				26CDA9B02728161E0077167B /* Sources */,
-				26CDA9B12728161E0077167B /* Frameworks */,
-				26CDA9B22728161E0077167B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				26CDA9B72728161E0077167B /* PBXTargetDependency */,
-				26CDA9B92728161E0077167B /* PBXTargetDependency */,
-			);
-			name = CallerDataTests;
-			productName = CallerDataTests;
-			productReference = 26CDA9B42728161E0077167B /* CallerDataTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -623,10 +609,6 @@
 					26CDA9AA2728161D0077167B = {
 						CreatedOnToolsVersion = 13.0;
 					};
-					26CDA9B32728161E0077167B = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = 2696E5942706EC510011337E;
-					};
 				};
 			};
 			buildConfigurationList = 2696E5902706EC510011337E /* Build configuration list for PBXProject "Coverage-call-blocker" */;
@@ -645,7 +627,6 @@
 				2696E5942706EC510011337E /* Coverage-call-blocker */,
 				26CDA9AA2728161D0077167B /* CallerData */,
 				2627088D2726C9A800B270DC /* Coverage-call-blockerExtension */,
-				26CDA9B32728161E0077167B /* CallerDataTests */,
 			);
 		};
 /* End PBXProject section */
@@ -666,17 +647,19 @@
 				2657959127106E5000CB31B9 /* Roboto-Regular.ttf in Resources */,
 				2657959227106E5000CB31B9 /* Roboto-Light.ttf in Resources */,
 				261B8274271161BC006E796B /* QuestionTableViewCell.xib in Resources */,
+				2604ED0027E9930F00441A9D /* CommonAlertVC.xib in Resources */,
 				2657959327106E5000CB31B9 /* Roboto-Medium.ttf in Resources */,
-				2607E92E2771DA5C00B31587 /* BlockContacts.json in Resources */,
-				26A883B02776FA480079BDA0 /* spams.json in Resources */,
 				2696E5A82706EC540011337E /* LaunchScreen.storyboard in Resources */,
 				2696E5C92706EF320011337E /* Rachability in Resources */,
+				26026F8A27E30B3D001BE64F /* GoogleService-Info_old.plist in Resources */,
+				26F7B14827E1B67E00B2C5E5 /* AllContactsLaks.json in Resources */,
 				26118F7527102D8F00B7165A /* InAppPurchase.storyboard in Resources */,
 				26E0B474270C35DA00085C47 /* Menu.storyboard in Resources */,
 				26E0B470270C34F700085C47 /* Home.storyboard in Resources */,
 				2696E5CF2706F0530011337E /* Login.storyboard in Resources */,
 				2696E5A52706EC540011337E /* Assets.xcassets in Resources */,
 				26C41E5D271834B900EF345F /* States.json in Resources */,
+				2627483327ABB160001D3544 /* AllContacts.json in Resources */,
 				267AE189270AE1D80012FCE0 /* Survey.storyboard in Resources */,
 				266ECD192720450F0097E6A5 /* ContactTableViewCell.xib in Resources */,
 				2696E5A02706EC510011337E /* Main.storyboard in Resources */,
@@ -694,16 +677,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		26CDA9B22728161E0077167B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		263721B927C6411D002EE2A9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
 		7A9DAFF68DA787D637723CDA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -762,7 +757,9 @@
 				2696E5CC2706EF320011337E /* Toast.swift in Sources */,
 				26118F7D27102DF300B7165A /* Question3Screen.swift in Sources */,
 				26118F7B27102DE400B7165A /* Question2Screen.swift in Sources */,
+				26026F8C27E31D9E001BE64F /* SubscriptionServices.swift in Sources */,
 				2696E5C72706EF320011337E /* Utility.swift in Sources */,
+				2604ED0127E9930F00441A9D /* ExtensionUIViewController.swift in Sources */,
 				2696E59D2706EC510011337E /* ViewController.swift in Sources */,
 				2696E5DA2706F55E0011337E /* Response.swift in Sources */,
 				26E0B476270C35EB00085C47 /* MenuScreen.swift in Sources */,
@@ -787,10 +784,12 @@
 				26118F7727102DA400B7165A /* InAppPurchaseScreen.swift in Sources */,
 				261B8273271161BC006E796B /* QuestionTableViewCell.swift in Sources */,
 				2696E5CA2706EF320011337E /* ImagePicker.swift in Sources */,
+				2604ECFE27E9930F00441A9D /* UIViewExtension.swift in Sources */,
 				266ECD112720421F0097E6A5 /* WhitelistNumberScreen.swift in Sources */,
 				267AE186270AE1A50012FCE0 /* SurveyScreen.swift in Sources */,
 				2696E5C62706EF320011337E /* ExtensionClass.swift in Sources */,
 				2696E5C22706EF310011337E /* LightCompressor.swift in Sources */,
+				2604ECFF27E9930F00441A9D /* CommonAlertVC.swift in Sources */,
 				2696E5D32706F0C70011337E /* LoginScreen.swift in Sources */,
 				2696E5D52706F52A0011337E /* APIManager.swift in Sources */,
 				2696E59B2706EC510011337E /* SceneDelegate.swift in Sources */,
@@ -809,14 +808,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		26CDA9B02728161E0077167B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				26CDA9BC2728161E0077167B /* CallerDataTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -824,16 +815,6 @@
 			isa = PBXTargetDependency;
 			target = 2627088D2726C9A800B270DC /* Coverage-call-blockerExtension */;
 			targetProxy = 262708932726C9A800B270DC /* PBXContainerItemProxy */;
-		};
-		26CDA9B72728161E0077167B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 26CDA9AA2728161D0077167B /* CallerData */;
-			targetProxy = 26CDA9B62728161E0077167B /* PBXContainerItemProxy */;
-		};
-		26CDA9B92728161E0077167B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2696E5942706EC510011337E /* Coverage-call-blocker */;
-			targetProxy = 26CDA9B82728161E0077167B /* PBXContainerItemProxy */;
 		};
 		26CDA9BF2728161E0077167B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -872,10 +853,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "Coverage-call-blockerExtension/Coverage-call-blockerExtension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J5X8BFQ884;
+				DEVELOPMENT_TEAM = 8Q43UFX7HK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Coverage-call-blockerExtension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Coverage-call-blockerExtension";
@@ -887,9 +868,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.test.mobile.app.Coverage-call-blocker.Coverage-call-blockerExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coveragecallblocker.mobile.app.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = CallBlockerExtensionDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -902,10 +883,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "Coverage-call-blockerExtension/Coverage-call-blockerExtensionRelease.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J5X8BFQ884;
+				DEVELOPMENT_TEAM = 8Q43UFX7HK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Coverage-call-blockerExtension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Coverage-call-blockerExtension";
@@ -917,9 +898,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.test.mobile.app.Coverage-call-blocker.Coverage-call-blockerExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coveragecallblocker.mobile.app.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = CallBlockerExtentionAppStore;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1051,10 +1032,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Coverage-call-blocker/Coverage-call-blocker.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = J5X8BFQ884;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8Q43UFX7HK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Coverage-call-blocker/Info.plist";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Please allow contacts for block and unblock number.";
@@ -1071,10 +1053,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.test.mobile.app.Coverage-call-blocker";
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coveragecallblocker.mobile.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = CoveragecallblockerDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1089,10 +1071,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Coverage-call-blocker/Coverage-call-blockerRelease.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = J5X8BFQ884;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Q43UFX7HK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Coverage-call-blocker/Info.plist";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Please allow contacts for block and unblock number.";
@@ -1109,10 +1091,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.test.mobile.app.Coverage-call-blocker";
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coveragecallblocker.mobile.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = CoveragecallblockerAdHoc;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1140,7 +1122,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.mobile.app.CallerData;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coveragecallblocker.mobile.app.callerdata;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -1174,7 +1156,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.mobile.app.CallerData;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coveragecallblocker.mobile.app.callerdata;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -1184,60 +1166,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		26CDA9C62728161E0077167B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J5X8BFQ884;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.mobile.app.CallerDataTests;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Coverage-call-blocker.app/Coverage-call-blocker";
-			};
-			name = Debug;
-		};
-		26CDA9C72728161E0077167B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J5X8BFQ884;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.mobile.app.CallerDataTests;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Coverage-call-blocker.app/Coverage-call-blocker";
 			};
 			name = Release;
 		};
@@ -1276,15 +1204,6 @@
 			buildConfigurations = (
 				26CDA9C32728161E0077167B /* Debug */,
 				26CDA9C42728161E0077167B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		26CDA9C52728161E0077167B /* Build configuration list for PBXNativeTarget "CallerDataTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				26CDA9C62728161E0077167B /* Debug */,
-				26CDA9C72728161E0077167B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

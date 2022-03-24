@@ -36,10 +36,10 @@ class MenuScreen: UIViewController {
     
     @IBAction func onBlacklistNumber(_ sender: Any) {
         
-//        if isBlockingNumberInProgress == true{
-//            self.view.makeToast("Number blocking is in progress, Please try again in some time.")
-//            return
-//        }
+        if isBlockingNumberInProgress == true{
+            self.view.makeToast("Number blocking is in progress, Please try again after finished progress.")
+            return
+        }
         
         self.sideMenuController?.hideLeftView()
         

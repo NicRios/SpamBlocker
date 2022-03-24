@@ -25,7 +25,9 @@ target 'Coverage-call-blocker' do
 #  pod 'Firebase/Auth'
 #  pod 'Firebase/Firestore'
   pod 'Firebase/AppDistribution'
-  pod 'Firebase/Messaging'  
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
 #  pod 'RealmSwift'
 #  pod 'RealmSwift', '~>10'
 
