@@ -54,12 +54,6 @@ class HomeScreen: UIViewController {
     
     typealias CompletionHandler = (_ success:Bool) -> Void
     
-//    var caller: Caller? {
-//        didSet {
-//            //            self.updateUI()
-//        }
-//    }
-    
     //    let context = callerData.context
     let privateManagedObjectContext: NSManagedObjectContext = {
         let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
@@ -71,11 +65,6 @@ class HomeScreen: UIViewController {
         super.viewDidLoad()
         
         setUpInitialView()
-        
-        //        if hasCellularCoverage() == false{
-        //            self.view.makeToast(SimNotAvailableMessage)
-        //            return
-        //        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -166,7 +155,6 @@ class HomeScreen: UIViewController {
                 noBlockingSelectButton.isUserInteractionEnabled = false
                 
                 blockNumberFormJsonFile(isSpam: false, isWarning: false)
-//                self.onSelectMaxBlocking()
             }else{
                 isBlockingNumberInProgress = false
                 self.view.makeToast("Successfully blocked all numbers.")
@@ -186,7 +174,6 @@ class HomeScreen: UIViewController {
                 noBlockingSelectButton.isUserInteractionEnabled = false
                 
                 blockNumberFormJsonFile(isSpam: true, isWarning: false)
-//                self.onSelectKnownCallers()
             }else{
                 isBlockingNumberInProgress = false
                 self.view.makeToast("Successfully blocked all numbers.")
@@ -206,50 +193,17 @@ class HomeScreen: UIViewController {
                 noBlockingSelectButton.isUserInteractionEnabled = false
                 
                 blockNumberFormJsonFile(isSpam: false, isWarning: true)
-//                self.onSelectNoBlocking()
             }else{
                 isBlockingNumberInProgress = false
                 self.view.makeToast("Successfully set warining for all numbers.")
             }
         }
         else{
-            /*
-            let JSonFileCount: Int = UserDefaults.standard.value(forKey: KEYJSonFileCount) as? Int ?? 0
-            let AddedNumberCount: Int = UserDefaults.standard.value(forKey: KEYAddedNumberCount) as? Int ?? 0
             
-            if AddedNumberCount == 0 || AddedNumberCount < JSonFileCount{
-                //                isStoreNumberInDBInProgress = true
-                
-                storeNumberInLocalDBFormJsonFile()
-                
-                maxBlockingSelectButton.isUserInteractionEnabled = false
-                knownCallersSelectButton.isUserInteractionEnabled = false
-                noBlockingSelectButton.isUserInteractionEnabled = false
-            }else{
-                //                isStoreNumberInDBInProgress = false
-                
-                maxBlockingSelectButton.isUserInteractionEnabled = true
-                knownCallersSelectButton.isUserInteractionEnabled = true
-                noBlockingSelectButton.isUserInteractionEnabled = true
-                
-                self.view.makeToast("Store all numbers.")
-            }
-            */
         }
     }
     
     func reload(){
-        
-        /*
-         CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: reloadExtetionString, completionHandler: { (error) in
-         if let error = error {
-         print("ReloadExtension Error: \(error.localizedDescription)")
-         DispatchQueue.main.async {
-         self.view.makeToast(error.localizedDescription)
-         }
-         }
-         })
-         */
         
         CXCallDirectoryManager.sharedInstance.getEnabledStatusForExtension(withIdentifier: reloadExtetionString, completionHandler: { (enabledStatus,error) ->
             
@@ -288,13 +242,6 @@ class HomeScreen: UIViewController {
             }
             
             print("Start reading data from json file : ", Date())
-            
-            //            var jsonFileName: String = "AllContacts"
-            //            if isSpam == true{
-            //                jsonFileName = "Contacts_spam"
-            //            }
-            //
-            //            print("jsonFileName : ", jsonFileName)
             
             if let path = Bundle.main.path(forResource: self.jsonFileName, ofType: "json") {
                 do {
@@ -428,17 +375,17 @@ class HomeScreen: UIViewController {
             }
         }
         
-/*
-        let caller = self.caller ?? Caller(context: self.callerData.context)
-        caller.name = name
-        caller.number = number
-        caller.isFromContacts = isFromContacts
-        caller.isBlocked = true
-        caller.isRemoved = false
-        caller.category = category
-        caller.updatedDate = Date()
-//        self.callerData.saveContext()
-*/
+        /*
+         let caller = self.caller ?? Caller(context: self.callerData.context)
+         caller.name = name
+         caller.number = number
+         caller.isFromContacts = isFromContacts
+         caller.isBlocked = true
+         caller.isRemoved = false
+         caller.category = category
+         caller.updatedDate = Date()
+         //        self.callerData.saveContext()
+         */
     }
     
     func saveWarningNumber(name : String, number: Int64, category: String){
@@ -465,17 +412,17 @@ class HomeScreen: UIViewController {
             }
         }
         
-/*
-        let caller = self.caller ?? Caller(context: self.callerData.context)
-        caller.name = "This is spam call warning"
-        caller.number = number
-        caller.isFromContacts = false
-        caller.isBlocked = false
-        caller.isRemoved = false
-        caller.category = category
-        caller.updatedDate = Date()
-//        self.callerData.saveContext()
-*/
+        /*
+         let caller = self.caller ?? Caller(context: self.callerData.context)
+         caller.name = "This is spam call warning"
+         caller.number = number
+         caller.isFromContacts = false
+         caller.isBlocked = false
+         caller.isRemoved = false
+         caller.category = category
+         caller.updatedDate = Date()
+         //        self.callerData.saveContext()
+         */
     }
     
     //MARK: - Delete all numbers
@@ -495,7 +442,7 @@ class HomeScreen: UIViewController {
         sleep(UInt32(2.0))
         self.reload()
         sleep(UInt32(2.0))
-        //        retrieveblockNumber()
+        
         print("blockListContackNumberArrayCount : ", self.blockListContackNumberArray.count)
         if self.blockListContackNumberArray.count != 0{
             //            autoreleasepool(){
@@ -511,7 +458,6 @@ class HomeScreen: UIViewController {
         else{
             print("No contact number.")
         }
-        //        retrieveblockNumber()
     }
     
     func getContactBlockedNumbers() {
@@ -562,7 +508,6 @@ class HomeScreen: UIViewController {
             maxBlockingButton.isSelected = true
             maxBlockingDownArrowImageView.image = UIImage.init(named: "Arrow - Down_White")
         }
-        
     }
     
     @IBAction func onKnownCallers(_ sender: Any) {
@@ -577,7 +522,6 @@ class HomeScreen: UIViewController {
             knownCallersButton.isSelected = true
             knownCallersDownArrowImageView.image = UIImage.init(named: "Arrow - Down_White")
         }
-        
     }
     
     @IBAction func onNoBlocking(_ sender: Any) {
@@ -592,32 +536,32 @@ class HomeScreen: UIViewController {
             noBlockingButton.isSelected = true
             noBlockingDownArrowImageView.image = UIImage.init(named: "Arrow - Down_White")
         }
-        
     }
     
     @IBAction func onSelectMaxBlocking(_ sender: UIButton) {
         
+        // For In-app purchase check
         /*
-        if Utility.getUserData()?.isPremium != 1{
-            
-            let actionYes : [String: () -> Void] = [ "YES" : { (
-                self.pushToInAppPurchase()
-            ) }]
-            let actionNo : [String: () -> Void] = [ "No" : { (
-                print("tapped NO")
-            ) }]
-            let arrayActions = [actionYes, actionNo]
-            
-            //#imageLiteral(resourceName: "app logos_Blue")
-            self.showCustomAlertWith(
-                message: "For use this functionality, Please subscribe.",
-                descMsg: "",
-                itemimage: nil,
-                actions: arrayActions)
-            
-            return
-        }
-        */
+         if Utility.getUserData()?.isPremium != 1{
+         
+         let actionYes : [String: () -> Void] = [ "YES" : { (
+         self.pushToInAppPurchase()
+         ) }]
+         let actionNo : [String: () -> Void] = [ "No" : { (
+         print("tapped NO")
+         ) }]
+         let arrayActions = [actionYes, actionNo]
+         
+         //#imageLiteral(resourceName: "app logos_Blue")
+         self.showCustomAlertWith(
+         message: "For use this functionality, Please subscribe.",
+         descMsg: "",
+         itemimage: nil,
+         actions: arrayActions)
+         
+         return
+         }
+         */
         
         let selectebutton: Int = UserDefaults.standard.value(forKey: KEYSelectedOptionOnHomeScreen) as? Int ?? 0
         if selectebutton == 1{
@@ -625,65 +569,56 @@ class HomeScreen: UIViewController {
             return
         }
         
-        //==========
-        /*
-        UserDefaults.standard.set(0, forKey: KEYBlockNumberCount)
-        UserDefaults.standard.setValue(1, forKey: KEYSelectedOptionOnHomeScreen)
-        UserDefaults.standard.synchronize()
+        self.getContactBlockedNumbers()
         
-        self.onSelectMaxBlocking()
-        */
-        //==========
-        
-         self.getContactBlockedNumbers()
-         
         print("Start")
         
-         self.maxBlockingIndicator.startAnimating()
+        self.maxBlockingIndicator.startAnimating()
         
-         self.maxBlockingSelectButton.isUserInteractionEnabled = false
-         self.knownCallersSelectButton.isUserInteractionEnabled = false
-         self.noBlockingSelectButton.isUserInteractionEnabled = false
-         
-         ReloadAt = NextReloadAt
-         
-         UserDefaults.standard.set(0, forKey: KEYBlockNumberCount)
-         
+        self.maxBlockingSelectButton.isUserInteractionEnabled = false
+        self.knownCallersSelectButton.isUserInteractionEnabled = false
+        self.noBlockingSelectButton.isUserInteractionEnabled = false
+        
+        ReloadAt = NextReloadAt
+        
+        UserDefaults.standard.set(0, forKey: KEYBlockNumberCount)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
             self.blockNumberFormJsonFile(isSpam: false, isWarning: false)
         })
-         
-         
-         UserDefaults.standard.setValue(1, forKey: KEYSelectedOptionOnHomeScreen)
-         UserDefaults.standard.synchronize()
-         
-         self.setSelectedButton()
+        
+        
+        UserDefaults.standard.setValue(1, forKey: KEYSelectedOptionOnHomeScreen)
+        UserDefaults.standard.synchronize()
+        
+        self.setSelectedButton()
         
     }
     
     @IBAction func onSelectKnownCallers(_ sender: UIButton) {
         
+        // For In-app purchase check
         /*
-        if Utility.getUserData()?.isPremium != 1{
-            
-            let actionYes : [String: () -> Void] = [ "YES" : { (
-                self.pushToInAppPurchase()
-            ) }]
-            let actionNo : [String: () -> Void] = [ "No" : { (
-                print("tapped NO")
-            ) }]
-            let arrayActions = [actionYes, actionNo]
-            
-            //#imageLiteral(resourceName: "app logos_Blue")
-            self.showCustomAlertWith(
-                message: "For use this functionality, Please subscribe.",
-                descMsg: "",
-                itemimage: nil,
-                actions: arrayActions)
-            
-            return
-        }
-        */
+         if Utility.getUserData()?.isPremium != 1{
+         
+         let actionYes : [String: () -> Void] = [ "YES" : { (
+         self.pushToInAppPurchase()
+         ) }]
+         let actionNo : [String: () -> Void] = [ "No" : { (
+         print("tapped NO")
+         ) }]
+         let arrayActions = [actionYes, actionNo]
+         
+         //#imageLiteral(resourceName: "app logos_Blue")
+         self.showCustomAlertWith(
+         message: "For use this functionality, Please subscribe.",
+         descMsg: "",
+         itemimage: nil,
+         actions: arrayActions)
+         
+         return
+         }
+         */
         
         let selectebutton: Int = UserDefaults.standard.value(forKey: KEYSelectedOptionOnHomeScreen) as? Int ?? 0
         if selectebutton == 2{
@@ -691,65 +626,54 @@ class HomeScreen: UIViewController {
             return
         }
         
-        //===========
-        /*
+        self.getContactBlockedNumbers()
+        
+        print("Start")
+        
+        knownCallersIndicator.startAnimating()
+        
+        maxBlockingSelectButton.isUserInteractionEnabled = false
+        knownCallersSelectButton.isUserInteractionEnabled = false
+        noBlockingSelectButton.isUserInteractionEnabled = false
+        
+        ReloadAt = NextReloadAt
+        
         UserDefaults.standard.set(0, forKey: KEYBlockNumberCount)
-        UserDefaults.standard.set(0, forKey: KEYOtherNumberCount)
-        UserDefaults.standard.setValue(2, forKey: KEYSelectedOptionOnHomeScreen)
-        UserDefaults.standard.synchronize()
         
-        self.onSelectKnownCallers()
-        */
-        //===========
-        
-         self.getContactBlockedNumbers()
-         
-         //======
-         print("Start")
-         
-         knownCallersIndicator.startAnimating()
-         
-         maxBlockingSelectButton.isUserInteractionEnabled = false
-         knownCallersSelectButton.isUserInteractionEnabled = false
-         noBlockingSelectButton.isUserInteractionEnabled = false
-         
-         ReloadAt = NextReloadAt
-         
-         UserDefaults.standard.set(0, forKey: KEYBlockNumberCount)
-         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
             self.blockNumberFormJsonFile(isSpam: true, isWarning: false)
         })
-         
-         UserDefaults.standard.setValue(2, forKey: KEYSelectedOptionOnHomeScreen)
-         UserDefaults.standard.synchronize()
-         
-         setSelectedButton()
+        
+        UserDefaults.standard.setValue(2, forKey: KEYSelectedOptionOnHomeScreen)
+        UserDefaults.standard.synchronize()
+        
+        setSelectedButton()
     }
     
     @IBAction func onSelectNoBlocking(_ sender: UIButton) {
         
+        // For In-app purchase check
         /*
-        if Utility.getUserData()?.isPremium != 1{
-            
-            let actionYes : [String: () -> Void] = [ "YES" : { (
-                self.pushToInAppPurchase()
-            ) }]
-            let actionNo : [String: () -> Void] = [ "No" : { (
-                print("tapped NO")
-            ) }]
-            let arrayActions = [actionYes, actionNo]
-            
-            //#imageLiteral(resourceName: "app logos_Blue")
-            self.showCustomAlertWith(
-                message: "For use this functionality, Please subscribe.",
-                descMsg: "",
-                itemimage: nil,
-                actions: arrayActions)
-            
-            return
-        }
-        */
+         if Utility.getUserData()?.isPremium != 1{
+         
+         let actionYes : [String: () -> Void] = [ "YES" : { (
+         self.pushToInAppPurchase()
+         ) }]
+         let actionNo : [String: () -> Void] = [ "No" : { (
+         print("tapped NO")
+         ) }]
+         let arrayActions = [actionYes, actionNo]
+         
+         //#imageLiteral(resourceName: "app logos_Blue")
+         self.showCustomAlertWith(
+         message: "For use this functionality, Please subscribe.",
+         descMsg: "",
+         itemimage: nil,
+         actions: arrayActions)
+         
+         return
+         }
+         */
         
         let selectebutton: Int = UserDefaults.standard.value(forKey: KEYSelectedOptionOnHomeScreen) as? Int ?? 0
         if selectebutton == 3{
@@ -757,447 +681,28 @@ class HomeScreen: UIViewController {
             return
         }
         
-        //===========
-        /*
-        UserDefaults.standard.set(0, forKey: KEYBlockNumberCount)
-        UserDefaults.standard.setValue(3, forKey: KEYSelectedOptionOnHomeScreen)
-        UserDefaults.standard.synchronize()
+        self.getContactBlockedNumbers()
         
-        self.onSelectNoBlocking()
-        */
-        //===========
+        print("Start")
         
-         self.getContactBlockedNumbers()
-         
-         print("Start")
-         
-         noBlockingIndicator.startAnimating()
-         
-         maxBlockingSelectButton.isUserInteractionEnabled = false
-         knownCallersSelectButton.isUserInteractionEnabled = false
-         noBlockingSelectButton.isUserInteractionEnabled = false
-         
-         ReloadAt = NextReloadAt
-         
-         UserDefaults.standard.set(0, forKey: KEYBlockNumberCount)
+        noBlockingIndicator.startAnimating()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-            self.blockNumberFormJsonFile(isSpam: false, isWarning: true)
-        })
-         
-         UserDefaults.standard.setValue(3, forKey: KEYSelectedOptionOnHomeScreen)
-         UserDefaults.standard.synchronize()
-         
-         setSelectedButton()
-    }
-}
-
-extension HomeScreen{
-    
-    func storeNumberInLocalDBFormJsonFile(){
-        ReloadAt = NextReloadAt
-        
-        DispatchQueue.global(qos: .background).async {
-            
-            DispatchQueue.main.async { [weak self] in
-                self?.view.makeToast("Start reading number from Json file.")
-            }
-            
-            print("Start reading data from json file : ", Date())
-            
-            if let path = Bundle.main.path(forResource: self.jsonFileName, ofType: "json") {
-                do {
-                    let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                    let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-                    if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let person = jsonResult["data"] as? NSArray {
-                        
-                        print("End reading data from json file : ", Date())
-                        print("json file number count : ", person.count)
-                        UserDefaults.standard.set(person.count, forKey: KEYJSonFileCount)
-                        UserDefaults.standard.synchronize()
-                        
-                        let addedNumberCount: Int = UserDefaults.standard.value(forKey: KEYAddedNumberCount) as? Int ?? 0
-                        print("Added Number Count : ", addedNumberCount)
-                        
-                        self.ReloadAt = addedNumberCount + self.NextReloadAt
-                        
-                        let result = Array(person.dropFirst(addedNumberCount))
-                        print("Remaining json file number count : ", result.count)
-                        
-                        DispatchQueue.main.async { [weak self] in
-                            self?.view.makeToast("Start adding number from Json file.")
-                            print("Start adding at : ", Date())
-                        }
-                        
-                        //                        isStoreNumberInDBInProgress = true
-                        if result.count != 0{
-                            for i in 0...result.count - 1 {
-                                
-                                let loginData = Utility.getUserData()
-                                if loginData == nil{
-                                    print("Stop adding.")
-                                    break
-                                }
-                                
-                                let data = result[i] as? NSDictionary ?? [:]
-                                
-                                self.storeNumberInDB(name: data["context"] as? String ?? "", number: Int64(data["phone"] as? String ?? "") ?? 0, category: data["category"] as? String ?? "")
-                                
-                                if i == self.ReloadAt{
-                                    self.callerData.saveContext()
-                                    
-                                    DispatchQueue.main.async { [weak self] in
-                                        self?.view.makeToast("Successfully added \(self?.ReloadAt ?? 0) numbers in db.")
-                                        UserDefaults.standard.set(self?.ReloadAt, forKey: KEYAddedNumberCount)
-                                        UserDefaults.standard.synchronize()
-                                    }
-                                    
-                                    print("End adding at : ", Date())
-                                    print("Successfully added \(self.ReloadAt) numbers in db.")
-                                    self.ReloadAt = self.ReloadAt + self.NextReloadAt
-                                    print("Start adding at : ", Date())
-                                }
-                            }
-                        }
-                        
-                        self.callerData.saveContext()
-                        
-                        //                        isStoreNumberInDBInProgress = false
-                        DispatchQueue.main.async { [weak self] in
-                            print("Store all numbers.")
-                            self?.view.makeToast("Store all numbers.")
-                            let JSonFileCount: Int = UserDefaults.standard.value(forKey: KEYJSonFileCount) as? Int ?? 0
-                            UserDefaults.standard.set(JSonFileCount, forKey: KEYAddedNumberCount)
-                            UserDefaults.standard.synchronize()
-                            self?.maxBlockingSelectButton.isUserInteractionEnabled = true
-                            self?.knownCallersSelectButton.isUserInteractionEnabled = true
-                            self?.noBlockingSelectButton.isUserInteractionEnabled = true
-                        }
-                    }
-                } catch {
-                    print("Something wrong")
-                }
-            }
-        }
-    }
-    
-    func storeNumberInDB(name : String, number: Int64, category: String){
-        let context = self.callerData.context
-        let privateManagedObjectContext: NSManagedObjectContext = {
-            let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-            moc.parent = context
-            return moc
-        }()
-        
-        let caller = NSEntityDescription.insertNewObject(forEntityName: "Caller", into: privateManagedObjectContext) as? Caller
-        caller?.name = name
-        caller?.number = number
-        caller?.isFromContacts = false
-        caller?.isBlocked = false
-        caller?.isRemoved = false
-        caller?.category = category
-        caller?.updatedDate = Date()
-        privateManagedObjectContext.perform {
-            do {
-                try privateManagedObjectContext.save()
-            }catch {
-                print("Something wrong in coredata.")
-            }
-        }
-    }
-    
-    func onSelectMaxBlocking(){
-        self.maxBlockingIndicator.startAnimating()
-        self.maxBlockingSelectButton.isUserInteractionEnabled = false
-        self.knownCallersSelectButton.isUserInteractionEnabled = false
-        self.noBlockingSelectButton.isUserInteractionEnabled = false
-        
-        DispatchQueue.global(qos: .background).async {
-            print("Run on background thread")
-            
-            let manageContext = self.callerData.context
-            let fetchRequest = NSFetchRequest<Caller>(entityName: "Caller")
-            
-            let fetchRequestIsFromContact = NSPredicate(format:"isFromContacts == %@",NSNumber(value:false))
-            let predicate: NSPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fetchRequestIsFromContact])
-            fetchRequest.predicate = predicate
-            
-            do {
-                self.blockListContackNumberArray.removeAll()
-                self.blockListContackNumberArray = try manageContext.fetch(fetchRequest)
-                print("blockListContackNumberArray count : ", self.blockListContackNumberArray.count)
-            } catch {
-                print("Failed to fetch data: \(error.localizedDescription)")
-            }
-            
-            var BlockNumberCount: Int = UserDefaults.standard.value(forKey: KEYBlockNumberCount) as? Int ?? 0
-            print("Block Number Count : ", BlockNumberCount)
-            
-            let result = Array(self.blockListContackNumberArray.dropFirst(BlockNumberCount))
-            print("Remaining json file number count : ", result.count)
-            
-            self.ReloadAt = self.NextReloadAt + BlockNumberCount
-            
-            print("Start blocking at : ", Date())
-            //            autoreleasepool(){
-            
-            self.privateManagedObjectContext.perform {
-                result.forEach { data in
-                    BlockNumberCount = BlockNumberCount + 1
-                    data.name = "number\(BlockNumberCount)"
-                    data.isBlocked = true
-                    data.updatedDate = Date()
-                    
-                    do {
-                        try self.privateManagedObjectContext.save()
-                    }catch{
-                        print(error.localizedDescription)
-                    }
-                    
-                    if BlockNumberCount == self.ReloadAt{
-                        print("start saving data at : ", Date())
-                        self.callerData.saveContext()
-                        print("End saving data at : ", Date())
-                        print("ReloadAt : ",self.ReloadAt)
-                        self.reload()
-//                        sleep(UInt32(2.0))
-                        DispatchQueue.main.async {
-                            UserDefaults.standard.set(BlockNumberCount, forKey: KEYBlockNumberCount)
-                            UserDefaults.standard.synchronize()
-                        }
-                        self.ReloadAt = self.ReloadAt + self.NextReloadAt
-                    }
-                    
-                }
-                //                    do {
-                //                        try self?.privateManagedObjectContext.save()
-                //                    }catch{
-                //                        print(error.localizedDescription)
-                //                    }
-                
-                print("End blocking at : ", Date())
-                print("start saving data at : ", Date())
-                
-                self.callerData.saveContext()
-                
-                print("End saving data at : ", Date())
-                print("Start reload at : ", Date())
-                
-                self.reload()
-                
-                print("End reload at : ", Date())
-                
-                DispatchQueue.main.async {
-                    UserDefaults.standard.set(BlockNumberCount, forKey: KEYBlockNumberCount)
-                    UserDefaults.standard.synchronize()
-                    
-                    self.maxBlockingIndicator.stopAnimating()
-                    self.maxBlockingSelectButton.isUserInteractionEnabled = true
-                    self.knownCallersSelectButton.isUserInteractionEnabled = true
-                    self.noBlockingSelectButton.isUserInteractionEnabled = true
-                    self.setSelectedButton()
-                }
-            }
-            //            }
-        }
-    }
-    
-    func onSelectKnownCallers(){
-        knownCallersIndicator.startAnimating()
         maxBlockingSelectButton.isUserInteractionEnabled = false
         knownCallersSelectButton.isUserInteractionEnabled = false
         noBlockingSelectButton.isUserInteractionEnabled = false
         
-        DispatchQueue.global(qos: .background).async {
-            print("Run on background thread")
-            
-            let manageContext = self.callerData.context
-            let fetchRequest = NSFetchRequest<Caller>(entityName: "Caller")
-            
-            let fetchRequestIsFromContact = NSPredicate(format:"isFromContacts == %@",NSNumber(value:false))
-            //            let fetchRequestSpamNumbers = NSPredicate(format:"category == %@",NSString(string:"Spam"))
-            let predicate: NSPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fetchRequestIsFromContact])
-            fetchRequest.predicate = predicate
-            
-            do {
-                self.blockListContackNumberArray.removeAll()
-                self.blockListContackNumberArray = try manageContext.fetch(fetchRequest)
-                print("blockListContackNumberArray count : ", self.blockListContackNumberArray.count)
-            } catch {
-                print("Failed to fetch data: \(error.localizedDescription)")
-            }
-            
-            var BlockNumberCount: Int = UserDefaults.standard.value(forKey: KEYBlockNumberCount) as? Int ?? 0
-            print("Block Number Count : ", BlockNumberCount)
-            
-            let result = Array(self.blockListContackNumberArray.dropFirst(BlockNumberCount))
-            print("Remaining json file number count : ", result.count)
-            
-            self.ReloadAt = self.NextReloadAt + BlockNumberCount
-            
-            print("Start blocking at : ", Date())
-            //            autoreleasepool(){
-            
-            self.privateManagedObjectContext.perform {
-                result.forEach { data in
-                    BlockNumberCount = BlockNumberCount + 1
-                    if data.category == "Spam"{
-                        data.name = "number\(BlockNumberCount)"
-                        data.isBlocked = true
-                        data.updatedDate = Date()
-                    }else{
-                        data.name = "This is spam call warning"
-                        data.isBlocked = false
-                        data.updatedDate = Date()
-                    }
-                    
-                    do {
-                        try self.privateManagedObjectContext.save()
-                    }catch{
-                        print(error.localizedDescription)
-                    }
-                    
-                    if BlockNumberCount == self.ReloadAt{
-                        print("start saving data at : ", Date())
-                        self.callerData.saveContext()
-                        print("End saving data at : ", Date())
-                        print("ReloadAt : ",self.ReloadAt)
-                        self.reload()
-//                        sleep(UInt32(2.0))
-                        DispatchQueue.main.async {
-                            UserDefaults.standard.set(BlockNumberCount, forKey: KEYBlockNumberCount)
-                            UserDefaults.standard.synchronize()
-                        }
-                        self.ReloadAt = self.ReloadAt + self.NextReloadAt
-                    }
-                }
-                //                    do {
-                //                        try self?.privateManagedObjectContext.save()
-                //                    }catch{
-                //                        print(error.localizedDescription)
-                //                    }
-                
-                print("End blocking at : ", Date())
-                print("start saving data at : ", Date())
-                
-                self.callerData.saveContext()
-                
-                print("End saving data at : ", Date())
-                print("Start reload at : ", Date())
-                
-                self.reload()
-                
-                print("End reload at : ", Date())
-                
-                DispatchQueue.main.async {
-                    UserDefaults.standard.set(BlockNumberCount, forKey: KEYBlockNumberCount)
-                    UserDefaults.standard.synchronize()
-                    
-                    self.knownCallersIndicator.stopAnimating()
-                    self.maxBlockingSelectButton.isUserInteractionEnabled = true
-                    self.knownCallersSelectButton.isUserInteractionEnabled = true
-                    self.noBlockingSelectButton.isUserInteractionEnabled = true
-                    self.setSelectedButton()
-                }
-            }
-            //            }
-        }
-    }
-    
-    func onSelectNoBlocking(){
-        self.noBlockingIndicator.startAnimating()
-        self.maxBlockingSelectButton.isUserInteractionEnabled = false
-        self.knownCallersSelectButton.isUserInteractionEnabled = false
-        self.noBlockingSelectButton.isUserInteractionEnabled = false
+        ReloadAt = NextReloadAt
         
-        DispatchQueue.global(qos: .background).async {
-            print("Run on background thread")
-            
-            let manageContext = self.callerData.context
-            let fetchRequest = NSFetchRequest<Caller>(entityName: "Caller")
-            
-            let fetchRequestIsFromContact = NSPredicate(format:"isFromContacts == %@",NSNumber(value:false))
-            let predicate: NSPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fetchRequestIsFromContact])
-            fetchRequest.predicate = predicate
-            
-            do {
-                self.blockListContackNumberArray.removeAll()
-                self.blockListContackNumberArray = try manageContext.fetch(fetchRequest)
-                print("blockListContackNumberArray count : ", self.blockListContackNumberArray.count)
-            } catch {
-                print("Failed to fetch data: \(error.localizedDescription)")
-            }
-            
-            var BlockNumberCount: Int = UserDefaults.standard.value(forKey: KEYBlockNumberCount) as? Int ?? 0
-            print("Block Number Count : ", BlockNumberCount)
-            
-            let result = Array(self.blockListContackNumberArray.dropFirst(BlockNumberCount))
-            print("Remaining json file number count : ", result.count)
-            
-            self.ReloadAt = self.NextReloadAt + BlockNumberCount
-            
-            print("Start warning at : ", Date())
-            
-            //            autoreleasepool(){
-            self.privateManagedObjectContext.perform {
-                result.forEach { data in
-                    BlockNumberCount = BlockNumberCount + 1
-                    data.name = "This is spam call warning"
-                    data.isBlocked = false
-                    data.updatedDate = Date()
-                    
-                    do {
-                        try self.privateManagedObjectContext.save()
-                    }catch{
-                        print(error.localizedDescription)
-                    }
-                    
-                    if BlockNumberCount == self.ReloadAt{
-                        print("start saving data at : ", Date())
-                        self.callerData.saveContext()
-                        print("End saving data at : ", Date())
-                        print("ReloadAt : ",self.ReloadAt)
-                        self.reload()
-//                        sleep(UInt32(2.0))
-                        DispatchQueue.main.async {
-                            UserDefaults.standard.set(BlockNumberCount, forKey: KEYBlockNumberCount)
-                            UserDefaults.standard.synchronize()
-                        }
-                        self.ReloadAt = self.ReloadAt + self.NextReloadAt
-                    }
-                }
-                //                    do {
-                //                        try self?.privateManagedObjectContext.save()
-                //                    }catch{
-                //                        print(error.localizedDescription)
-                //                    }
-                
-                print("End warning at : ", Date())
-                print("start saving data at : ", Date())
-                
-                self.callerData.saveContext()
-                
-                print("End saving data at : ", Date())
-                print("Start reload at : ", Date())
-                
-                self.reload()
-                
-                print("End reload at : ", Date())
-                
-                DispatchQueue.main.async {
-                    print("BlockNumberCount : ", BlockNumberCount)
-                    UserDefaults.standard.set(BlockNumberCount, forKey: KEYBlockNumberCount)
-                    UserDefaults.standard.synchronize()
-                    
-                    self.noBlockingIndicator.stopAnimating()
-                    self.maxBlockingSelectButton.isUserInteractionEnabled = true
-                    self.knownCallersSelectButton.isUserInteractionEnabled = true
-                    self.noBlockingSelectButton.isUserInteractionEnabled = true
-                    self.setSelectedButton()
-                }
-            }
-            //            }
-        }
+        UserDefaults.standard.set(0, forKey: KEYBlockNumberCount)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            self.blockNumberFormJsonFile(isSpam: false, isWarning: true)
+        })
+        
+        UserDefaults.standard.setValue(3, forKey: KEYSelectedOptionOnHomeScreen)
+        UserDefaults.standard.synchronize()
+        
+        setSelectedButton()
     }
 }
 

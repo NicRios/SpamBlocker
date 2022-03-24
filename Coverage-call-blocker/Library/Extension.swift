@@ -165,31 +165,3 @@ extension UIView {
     }
 }
 
-extension UIViewController{
-    //    func hasCellularCoverage() -> Bool {
-    //
-    ////        if #available(iOS 12.0, *) {
-    ////            return CTTelephonyNetworkInfo().serviceSubscriberCellularProviders?.first?.value.mobileNetworkCode != nil
-    ////        } else {
-    ////            if let _ = CTTelephonyNetworkInfo().subscriberCellularProvider?.isoCountryCode {
-    ////                return true
-    ////            } else {
-    ////                return false
-    ////            }
-    ////        }
-    //
-    //        let info = CTTelephonyNetworkInfo()
-    //        let carr = info.subscriberCellularProvider
-    //        guard let carrier = carr else {
-    //            return false
-    //        }
-    //        guard let carrierCode = carrier.mobileNetworkCode else {
-    //            return false
-    //        }
-    //        guard carrierCode != "" else {
-    //            return false
-    //        }
-    //        return true
-    //
-    //    }
-}

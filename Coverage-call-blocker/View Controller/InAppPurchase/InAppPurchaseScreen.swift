@@ -13,8 +13,6 @@ class InAppPurchaseScreen: UIViewController {
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
-    //    var dealResourceArray:[DealResourceResponse] = []
-    
     var isFlagRestore: Bool = false
     var expiryDate: String = ""
     
@@ -41,6 +39,7 @@ class InAppPurchaseScreen: UIViewController {
         mainCollectionView.register(UINib(nibName: "InAppPurchaseCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "InAppPurchaseCollectionViewCell")
         
     }
+    
     //MARK: - button clicked event
     
     @IBAction func onSkip(_ sender: UIButton) {
@@ -70,22 +69,6 @@ class InAppPurchaseScreen: UIViewController {
 extension InAppPurchaseScreen:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        //        var numOfSections: Int = 0
-        //
-        //        if dealResourceArray.count > 0 {
-        //            numOfSections = 1
-        //            collectionView.backgroundView = nil
-        //        } else {
-        //            let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height))
-        //            noDataLabel.text = "No Deals Found"
-        //            noDataLabel.textColor = UIColor.darkGray
-        //            noDataLabel.textAlignment = .center
-        //            noDataLabel.numberOfLines = 1
-        //            collectionView.backgroundView = noDataLabel
-        //        }
-        //
-        //        return numOfSections
-        
         return 1
     }
     
@@ -142,6 +125,7 @@ extension InAppPurchaseScreen:UICollectionViewDelegate,UICollectionViewDataSourc
 extension InAppPurchaseScreen{
     
     //MARK: - subscription API
+    
     func subscriptionAPI(receiptString: String, transactIdString: String ){
         self.view.endEditing(true)
         Utility.showIndecator()

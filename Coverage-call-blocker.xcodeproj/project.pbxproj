@@ -26,7 +26,6 @@
 		261BF2B127E8459800B8B638 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 261BF2B027E8459800B8B638 /* StoreKit.framework */; };
 		262708912726C9A800B270DC /* CallDirectoryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262708902726C9A800B270DC /* CallDirectoryHandler.swift */; };
 		262708952726C9A800B270DC /* Coverage-call-blockerExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2627088E2726C9A800B270DC /* Coverage-call-blockerExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		2627483327ABB160001D3544 /* AllContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 2627483227ABB160001D3544 /* AllContacts.json */; };
 		2634DE47270F229F00F3C56B /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634DE46270F229F00F3C56B /* HomeScreen.swift */; };
 		2657959027106E5000CB31B9 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2657958827106DD300CB31B9 /* Roboto-Bold.ttf */; };
 		2657959127106E5000CB31B9 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2657958A27106DDB00CB31B9 /* Roboto-Regular.ttf */; };
@@ -169,7 +168,6 @@
 		262708902726C9A800B270DC /* CallDirectoryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDirectoryHandler.swift; sourceTree = "<group>"; };
 		262708922726C9A800B270DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2627089E2726CA5800B270DC /* Coverage-call-blockerExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Coverage-call-blockerExtensionRelease.entitlements"; sourceTree = "<group>"; };
-		2627483227ABB160001D3544 /* AllContacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AllContacts.json; sourceTree = "<group>"; };
 		2634DE46270F229F00F3C56B /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		2657958827106DD300CB31B9 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		2657958A27106DDB00CB31B9 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -446,7 +444,6 @@
 				2696E5BC2706EF310011337E /* Utility.swift */,
 				26C41E5C271834B900EF345F /* States.json */,
 				26C41E5E27183BA000EF345F /* IndustryGroups.json */,
-				2627483227ABB160001D3544 /* AllContacts.json */,
 				26F7B14727E1B67E00B2C5E5 /* AllContactsLaks.json */,
 			);
 			path = Library;
@@ -659,7 +656,6 @@
 				2696E5CF2706F0530011337E /* Login.storyboard in Resources */,
 				2696E5A52706EC540011337E /* Assets.xcassets in Resources */,
 				26C41E5D271834B900EF345F /* States.json in Resources */,
-				2627483327ABB160001D3544 /* AllContacts.json in Resources */,
 				267AE189270AE1D80012FCE0 /* Survey.storyboard in Resources */,
 				266ECD192720450F0097E6A5 /* ContactTableViewCell.xib in Resources */,
 				2696E5A02706EC510011337E /* Main.storyboard in Resources */,

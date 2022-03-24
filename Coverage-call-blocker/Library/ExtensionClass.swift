@@ -9,13 +9,6 @@ import UIKit
 import AVFoundation
 import SDWebImage
 import SVProgressHUD
-//import CoreMedia
-//import AGHandyUIKit
-//import StoreKit
-//////import FBSDKCoreKit
-//////import FBSDKLoginKit
-//////import ChatSDK
-//import AuthenticationServices
 
 extension String
 {
@@ -494,23 +487,6 @@ extension UIView
     case none = 0, self_press, super_press
 }
 
-//extension UIControl {
-//
-//    @objc var objctDic: NSDictionary?  {
-//        get {
-//            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.objectDic) as? NSDictionary else {
-//                return nil
-//            }
-//            return value
-//        }
-//        set {
-//            objc_setAssociatedObject(self, &AssociatedKeys.objectDic, newValue, .OBJC_ASSOCIATION_RETAIN)
-//        }
-//    }
-//
-//}
-
-
 extension URL {
     var videoThumbNail: UIImage? {
         do {
@@ -677,78 +653,7 @@ extension UIViewController
     var appUUidString: String {
         return UIDevice.current.identifierForVendor?.uuidString ?? ""
     }
-    
-    //    func rateApp() {
-    //        if #available(iOS 10.3, *) {
-    //            SKStoreReviewController.requestReview()
-    //        } else if let url = URL(string: "itms-apps://itunes.apple.com/app/" + AppID) {
-    //            if #available(iOS 10, *) {
-    //                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    //            } else {
-    //                UIApplication.shared.openURL(url)
-    //            }
-    //        }
-    //    }
-    
-    //    func presentLeftDetail(_ viewControllerToPresent: UIViewController) {
-    //        let transition = CATransition()
-    //        transition.duration = 0.25
-    //        transition.type = CATransitionType.push
-    //        transition.subtype = CATransitionSubtype.fromLeft
-    //        self.view.window!.layer.add(transition, forKey: kCATransition)
-    //        viewControllerToPresent.modalPresentationStyle = .overFullScreen
-    //
-    //        present(viewControllerToPresent, animated: false)
-    //    }
-    
-    //    func dismissLeftDetail() {
-    ////        let transition = CATransition()
-    ////        transition.duration = 0.25
-    ////        transition.type = CATransitionType.push
-    ////        transition.subtype = CATransitionSubtype.fromRight
-    ////        self.view.window!.layer.add(transition, forKey: kCATransition)
-    ////
-    ////        dismiss(animated: false)
-    //
-    //
-    //        let transition = CATransition()
-    //        transition.duration = 0.4
-    //        transition.type = CATransitionType.push
-    //        transition.subtype = CATransitionSubtype.fromRight
-    //        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
-    //        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
-    //
-    //        self.navigationController?.popViewController(animated: true)
-    //    }
-    
 }
-
-//extension URLSession {
-//
-//    var tempPath: String?{
-//        get {
-//            guard  let value = objc_getAssociatedObject(self, &AssociatedKeys.tempPath) as? String else {
-//                return nil
-//            }
-//            return value
-//        }
-//        set {
-//            objc_setAssociatedObject(self, &AssociatedKeys.tempPath, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-//        }
-//    }
-//
-//    var videoID: String{
-//        get {
-//            guard  let value = objc_getAssociatedObject(self, &AssociatedKeys.videoID) as? String else {
-//                return ""
-//            }
-//            return value
-//        }
-//        set {
-//            objc_setAssociatedObject(self, &AssociatedKeys.videoID, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-//        }
-//    }
-//}
 
 enum UserDefaultsKeys : String {
     case isLoggedIn
@@ -1034,7 +939,7 @@ extension String {
     func replace(string:String, replacement:String) -> String {
         return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
     }
-
+    
     func removeWhitespace() -> String {
         return self.replace(string: " ", replacement: "")
     }
@@ -1159,14 +1064,6 @@ extension NSObject {
     
     class func AppLogout(){
         
-        //        self.App_Delegate.questionAnsDic = [:]
-        //        self.App_Delegate.serviceCall_Logout()
-        //        LoginManager().logOut()
-        //        self.App_Delegate.clk_StopAudioPlayer()
-        //        BChatSDK.auth()?.logout()
-        //        Screen.UDSET(data: false, key: ApiUrl.kkeyUserLogin)
-        //        Screen.UDSET(data: [:], key: ApiUrl.kkeyUserPlayload)
-        //        self.App_Delegate.loadViewController()
     }
 }
 
@@ -1261,7 +1158,7 @@ extension UITextField {
 }
 
 extension DispatchQueue {
-
+    
     static func background(delay: Double = 0.0, background: (()->Void)? = nil, completion: (() -> Void)? = nil) {
         DispatchQueue.global(qos: .background).async {
             background?()
@@ -1272,19 +1169,18 @@ extension DispatchQueue {
             }
         }
     }
-
 }
 
 typealias Dispatch = DispatchQueue
 
 extension Dispatch {
-
+    
     static func background(_ task: @escaping () -> ()) {
         Dispatch.global(qos: .background).async {
             task()
         }
     }
-
+    
     static func main(_ task: @escaping () -> ()) {
         Dispatch.main.async {
             task()

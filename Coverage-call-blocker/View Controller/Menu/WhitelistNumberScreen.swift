@@ -90,11 +90,9 @@ class WhitelistNumberScreen: UIViewController {
             }else{
                 
             }
-            
         }) {
             
         }
-        
     }
     
     //MARK: - search
@@ -111,7 +109,6 @@ class WhitelistNumberScreen: UIViewController {
             })
         }
         contactTableView.reloadData()
-        
     }
 }
 
